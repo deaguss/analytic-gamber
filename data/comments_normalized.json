@@ -1,0 +1,300 @@
+[
+  {
+    "comment_id": "comment_1",
+    "text": "AЕR𝐎𝟴𝟴 gua main dikit aja, saldo lngsg nambah",
+    "timestamp": "2026-01-14T04:42:05.406Z",
+    "original_text": "AЕR𝐎𝟴𝟴 gua main dikit aja, saldo lngsg nambah",
+    "normalized_text": "aеr𝐎𝟴𝟴 gua main dikit aja saldo lngsg nambah",
+    "tokens": [
+      "aеr𝐎𝟴𝟴",
+      "gua",
+      "main",
+      "dikit",
+      "aja",
+      "saldo",
+      "lngsg",
+      "nambah"
+    ]
+  },
+  {
+    "comment_id": "comment_2",
+    "text": "Sebelumnya bermain di tempat lain terasa kurang inovatif dalam fitur, pindah ke 𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗 lebih puas",
+    "timestamp": "2026-01-14T04:42:05.407Z",
+    "original_text": "Sebelumnya bermain di tempat lain terasa kurang inovatif dalam fitur, pindah ke 𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗 lebih puas",
+    "normalized_text": "sebelumnya bermain di tempat lain terasa kurang inovatif dalam fitur pindah ke 𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗 lebih puas",
+    "tokens": [
+      "sebelumnya",
+      "bermain",
+      "di",
+      "tempat",
+      "lain",
+      "terasa",
+      "kurang",
+      "inovatif",
+      "dalam",
+      "fitur",
+      "pindah",
+      "ke",
+      "𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗",
+      "lebih",
+      "puas"
+    ]
+  },
+  {
+    "comment_id": "comment_3",
+    "text": "AЕR𝐎𝟴𝟴 aku sih gmpang bgt dapet WEDEY gede dsini",
+    "timestamp": "2026-01-14T04:42:05.407Z",
+    "original_text": "AЕR𝐎𝟴𝟴 aku sih gmpang bgt dapet WEDEY gede dsini",
+    "normalized_text": "aеr𝐎𝟴𝟴 aku sih gmpang bgt dapet wedey gede dsini",
+    "tokens": [
+      "aеr𝐎𝟴𝟴",
+      "aku",
+      "sih",
+      "gmpang",
+      "bgt",
+      "dapet",
+      "wedey",
+      "gede",
+      "dsini"
+    ]
+  },
+  {
+    "comment_id": "comment_4",
+    "text": "AЕR𝐎𝟴𝟴 gua cba bentar, eh lgnsung dapet jackpot",
+    "timestamp": "2026-01-14T04:42:05.407Z",
+    "original_text": "AЕR𝐎𝟴𝟴 gua cba bentar, eh lgnsung dapet jackpot",
+    "normalized_text": "aеr𝐎𝟴𝟴 gua cba bentar eh lgnsung dapet jackpot",
+    "tokens": [
+      "aеr𝐎𝟴𝟴",
+      "gua",
+      "cba",
+      "bentar",
+      "eh",
+      "lgnsung",
+      "dapet",
+      "jackpot"
+    ]
+  },
+  {
+    "comment_id": "comment_5",
+    "text": "AЕR𝐎𝟴𝟴 aku cba maen, malah jackpot gede",
+    "timestamp": "2026-01-14T04:42:05.407Z",
+    "original_text": "AЕR𝐎𝟴𝟴 aku cba maen, malah jackpot gede",
+    "normalized_text": "aеr𝐎𝟴𝟴 aku cba maen malah jackpot gede",
+    "tokens": [
+      "aеr𝐎𝟴𝟴",
+      "aku",
+      "cba",
+      "maen",
+      "malah",
+      "jackpot",
+      "gede"
+    ]
+  },
+  {
+    "comment_id": "comment_6",
+    "text": "Setiap kali main di 𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗 terasa bermain jadi lebih nyaman, pengalaman yang sulit dicari di tempat lain",
+    "timestamp": "2026-01-14T04:42:05.407Z",
+    "original_text": "Setiap kali main di 𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗 terasa bermain jadi lebih nyaman, pengalaman yang sulit dicari di tempat lain",
+    "normalized_text": "setiap kali main di 𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗 terasa bermain jadi lebih nyaman pengalaman yang sulit dicari di tempat lain",
+    "tokens": [
+      "setiap",
+      "kali",
+      "main",
+      "di",
+      "𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗",
+      "terasa",
+      "bermain",
+      "jadi",
+      "lebih",
+      "nyaman",
+      "pengalaman",
+      "yang",
+      "sulit",
+      "dicari",
+      "di",
+      "tempat",
+      "lain"
+    ]
+  },
+  {
+    "comment_id": "comment_7",
+    "text": "AЕR𝐎𝟴𝟴 gua bru main bentar, langsung jepe",
+    "timestamp": "2026-01-14T04:42:05.407Z",
+    "original_text": "AЕR𝐎𝟴𝟴 gua bru main bentar, langsung jepe",
+    "normalized_text": "aеr𝐎𝟴𝟴 gua bru main bentar langsung jepe",
+    "tokens": [
+      "aеr𝐎𝟴𝟴",
+      "gua",
+      "bru",
+      "main",
+      "bentar",
+      "langsung",
+      "jepe"
+    ]
+  },
+  {
+    "comment_id": "comment_8",
+    "text": "AЕR𝐎𝟴𝟴 aku main dikit, langsung dapet hasil gede",
+    "timestamp": "2026-01-14T04:42:05.407Z",
+    "original_text": "AЕR𝐎𝟴𝟴 aku main dikit, langsung dapet hasil gede",
+    "normalized_text": "aеr𝐎𝟴𝟴 aku main dikit langsung dapet hasil gede",
+    "tokens": [
+      "aеr𝐎𝟴𝟴",
+      "aku",
+      "main",
+      "dikit",
+      "langsung",
+      "dapet",
+      "hasil",
+      "gede"
+    ]
+  },
+  {
+    "comment_id": "comment_9",
+    "text": "AЕR𝐎𝟴𝟴 tiap hari hoki terus-terusan, gk ngerti lagi",
+    "timestamp": "2026-01-14T04:42:05.407Z",
+    "original_text": "AЕR𝐎𝟴𝟴 tiap hari hoki terus-terusan, gk ngerti lagi",
+    "normalized_text": "aеr𝐎𝟴𝟴 tiap hari hoki terus terusan gk ngerti lagi",
+    "tokens": [
+      "aеr𝐎𝟴𝟴",
+      "tiap",
+      "hari",
+      "hoki",
+      "terus",
+      "terusan",
+      "gk",
+      "ngerti",
+      "lagi"
+    ]
+  },
+  {
+    "comment_id": "comment_10",
+    "text": "Rezeki datang begitu cepat, main di AЕR𝐎𝟴𝟴 langsung gacir!",
+    "timestamp": "2026-01-14T04:42:05.408Z",
+    "original_text": "Rezeki datang begitu cepat, main di AЕR𝐎𝟴𝟴 langsung gacir!",
+    "normalized_text": "rezeki datang begitu cepat main di aеr𝐎𝟴𝟴 langsung gaciri",
+    "tokens": [
+      "rezeki",
+      "datang",
+      "begitu",
+      "cepat",
+      "main",
+      "di",
+      "aеr𝐎𝟴𝟴",
+      "langsung",
+      "gaciri"
+    ]
+  },
+  {
+    "comment_id": "comment_11",
+    "text": "Jadi pengen tau cerita lengkapnya! 🤩 Β𝒪Ꮃ𝐎𝟟𝟳 tempatku cari tau semuanya, plus... untung 💸",
+    "timestamp": "2026-01-14T04:42:05.408Z",
+    "original_text": "Jadi pengen tau cerita lengkapnya! 🤩 Β𝒪Ꮃ𝐎𝟟𝟳 tempatku cari tau semuanya, plus... untung 💸",
+    "normalized_text": "jadi pengen tau cerita lengkapnyai β𝒪ꮃ𝐎𝟟𝟳 tempatku cari tau semuanya plus untung",
+    "tokens": [
+      "jadi",
+      "pengen",
+      "tau",
+      "cerita",
+      "lengkapnyai",
+      "β𝒪ꮃ𝐎𝟟𝟳",
+      "tempatku",
+      "cari",
+      "tau",
+      "semuanya",
+      "plus",
+      "untung"
+    ]
+  },
+  {
+    "comment_id": "comment_12",
+    "text": "Saya selalu rekomendasiin 🅿️🆄🅻🅰️🆄777 ke temen-temen",
+    "timestamp": "2026-01-14T04:42:05.408Z",
+    "original_text": "Saya selalu rekomendasiin 🅿️🆄🅻🅰️🆄777 ke temen-temen",
+    "normalized_text": "saya selalu rekomendasiin ttt ke temen temen",
+    "tokens": [
+      "saya",
+      "selalu",
+      "rekomendasiin",
+      "ttt",
+      "ke",
+      "temen",
+      "temen"
+    ]
+  },
+  {
+    "comment_id": "comment_13",
+    "text": "Bermain di 𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗 selalu memiliki sistem yang adil, setiap hari jadi menyenangkan",
+    "timestamp": "2026-01-14T04:42:05.408Z",
+    "original_text": "Bermain di 𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗 selalu memiliki sistem yang adil, setiap hari jadi menyenangkan",
+    "normalized_text": "bermain di 𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗 selalu memiliki sistem yang adil setiap hari jadi menyenangkan",
+    "tokens": [
+      "bermain",
+      "di",
+      "𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗",
+      "selalu",
+      "memiliki",
+      "sistem",
+      "yang",
+      "adil",
+      "setiap",
+      "hari",
+      "jadi",
+      "menyenangkan"
+    ]
+  },
+  {
+    "comment_id": "comment_14",
+    "text": "𝐆𝐀𝐑𝐔𝐃𝐀138menang lebih mudah🦅",
+    "timestamp": "2026-01-14T04:42:05.408Z",
+    "original_text": "𝐆𝐀𝐑𝐔𝐃𝐀138menang lebih mudah🦅",
+    "normalized_text": "𝐆𝐀𝐑𝐔𝐃𝐀iebmenang lebih mudah",
+    "tokens": [
+      "𝐆𝐀𝐑𝐔𝐃𝐀iebmenang",
+      "lebih",
+      "mudah"
+    ]
+  },
+  {
+    "comment_id": "comment_15",
+    "text": "Hari yang penuh berkah bersama DO𝘙𝘼7𝟳, rezeki datang tak terduga!",
+    "timestamp": "2026-01-14T04:42:05.408Z",
+    "original_text": "Hari yang penuh berkah bersama DO𝘙𝘼7𝟳, rezeki datang tak terduga!",
+    "normalized_text": "hari yang penuh berkah bersama do𝘙𝘼t𝟳 rezeki datang tak terdugai",
+    "tokens": [
+      "hari",
+      "yang",
+      "penuh",
+      "berkah",
+      "bersama",
+      "do𝘙𝘼t𝟳",
+      "rezeki",
+      "datang",
+      "tak",
+      "terdugai"
+    ]
+  },
+  {
+    "comment_id": "comment_16",
+    "text": "𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗 memberikan kesan pertama yang langsung memahami strategi terbaik, membuat ingin terus bermain",
+    "timestamp": "2026-01-14T04:42:05.408Z",
+    "original_text": "𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗 memberikan kesan pertama yang langsung memahami strategi terbaik, membuat ingin terus bermain",
+    "normalized_text": "𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗 memberikan kesan pertama yang langsung memahami strategi terbaik membuat ingin terus bermain",
+    "tokens": [
+      "𝐌𝐄𝐆𝐀𝐁𝐄𝐓𝟗𝟗",
+      "memberikan",
+      "kesan",
+      "pertama",
+      "yang",
+      "langsung",
+      "memahami",
+      "strategi",
+      "terbaik",
+      "membuat",
+      "ingin",
+      "terus",
+      "bermain"
+    ]
+  }
+]
