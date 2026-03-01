@@ -51,6 +51,30 @@ class Config:
     BATCH_DELAY = int(os.getenv("BATCH_DELAY", "25"))
 
 # ============================================================
+# PRICING (USD per 1M tokens)
+# gpt-4o-mini  : input $0.150 / output $0.600
+# gemini-2.5-flash: input $0.150 / output $0.600 (non-thinking)
+# ============================================================
+
+PRICING = {
+    "gpt-4o-mini": {
+        "input_per_1m":  0.150,
+        "output_per_1m": 0.600,
+    },
+    "gemini-2.5-flash": {
+        "input_per_1m":  0.150,
+        "output_per_1m": 0.600,
+    },
+}
+
+def calculate_cost(model_key: str, input_tokens: int, output_tokens: int) -> float:
+    """Hitung biaya API dalam USD"""
+    pricing = PRICING.get(model_key, {"input_per_1m": 0.0, "output_per_1m": 0.0})
+    cost = (input_tokens / 1_000_000) * pricing["input_per_1m"] + \
+           (output_tokens / 1_000_000) * pricing["output_per_1m"]
+    return round(cost, 8)
+
+# ============================================================
 # DATA MODELS
 # ============================================================
 
@@ -82,6 +106,9 @@ class LLMResult:
     success: bool
     reasoning: Optional[str] = None
     error: Optional[str] = None
+    input_tokens: int = 0
+    output_tokens: int = 0
+    cost_usd: float = 0.0
 
 @dataclass
 class VideoResult:
@@ -115,6 +142,15 @@ class VideoResult:
     # Processing time
     processing_time_seconds: float
     timestamp: str
+    
+    # Cost tracking
+    gemini_total_input_tokens: int = 0
+    gemini_total_output_tokens: int = 0
+    gemini_total_cost_usd: float = 0.0
+    gpt_total_input_tokens: int = 0
+    gpt_total_output_tokens: int = 0
+    gpt_total_cost_usd: float = 0.0
+    total_cost_usd: float = 0.0
 
 # ============================================================
 # UTILITIES & LOGGING
@@ -132,6 +168,7 @@ def setup_logging():
         datefmt='%Y-%m-%d %H:%M:%S',
         handlers=[
             logging.FileHandler(Config.LOG_FILE, encoding='utf-8'),
+            logging.FileHandler(Config.LOGS_DIR / "app.log", encoding='utf-8'),
             logging.StreamHandler()
         ]
     )
@@ -376,13 +413,28 @@ Jawab HANYA dengan JSON (tanpa markdown):"""
             
             latency_ms = (time.time() - start_time) * 1000
             
+            # Extract token usage
+            input_tokens = 0
+            output_tokens = 0
+            try:
+                usage = response.usage_metadata
+                input_tokens = getattr(usage, 'prompt_token_count', 0) or 0
+                output_tokens = getattr(usage, 'candidates_token_count', 0) or 0
+            except Exception:
+                pass
+            
+            cost_usd = calculate_cost(Config.GEMINI_MODEL, input_tokens, output_tokens)
+            
             return LLMResult(
                 model_name="Gemini",
                 classification=parsed['classification'],
                 confidence=float(parsed['confidence']),
                 latency_ms=latency_ms,
                 success=True,
-                reasoning=parsed.get('reasoning')
+                reasoning=parsed.get('reasoning'),
+                input_tokens=input_tokens,
+                output_tokens=output_tokens,
+                cost_usd=cost_usd
             )
         
         except Exception as e:
@@ -466,13 +518,22 @@ Jawab HANYA dengan JSON (tanpa markdown):"""
             
             latency_ms = (time.time() - start_time) * 1000
             
+            # Extract token usage
+            usage = result.get('usage', {})
+            input_tokens = usage.get('prompt_tokens', 0)
+            output_tokens = usage.get('completion_tokens', 0)
+            cost_usd = calculate_cost(Config.OPENAI_MODEL, input_tokens, output_tokens)
+            
             return LLMResult(
                 model_name="GPT",
                 classification=parsed['classification'],
                 confidence=float(parsed['confidence']),
                 latency_ms=latency_ms,
                 success=True,
-                reasoning=parsed.get('reasoning')
+                reasoning=parsed.get('reasoning'),
+                input_tokens=input_tokens,
+                output_tokens=output_tokens,
+                cost_usd=cost_usd
             )
         
         except Exception as e:
@@ -540,9 +601,9 @@ class VideoProcessor:
         bukan_judi = [r for c, r in rule_results if r.classification == "BUKAN_JUDI_ONLINE"]
         ambigu = [(c, r) for c, r in rule_results if r.classification == "AMBIGU"]
         
-        logging.info(f"   ├─ Judi Online:      {len(judi_online)} comments")
-        logging.info(f"   ├─ Bukan Judi:       {len(bukan_judi)} comments")
-        logging.info(f"   └─ Ambigu:           {len(ambigu)} comments")
+        logging.info(f"   +-- Judi Online:      {len(judi_online)} comments")
+        logging.info(f"   +-- Bukan Judi:       {len(bukan_judi)} comments")
+        logging.info(f"   \\-- Ambigu:           {len(ambigu)} comments")
         
         # 4. LLM classification (hanya untuk ambigu)
         gemini_results = []
@@ -594,6 +655,15 @@ class VideoProcessor:
         gpt_avg_conf = statistics.mean([r.confidence for r in successful_gpt]) if successful_gpt else 0.0
         gpt_avg_lat = statistics.mean([r.latency_ms for r in successful_gpt]) if successful_gpt else 0.0
         
+        # Cost aggregation
+        gemini_input_tokens = sum(r.input_tokens for r in gemini_results)
+        gemini_output_tokens = sum(r.output_tokens for r in gemini_results)
+        gemini_total_cost = sum(r.cost_usd for r in gemini_results)
+        gpt_input_tokens = sum(r.input_tokens for r in gpt_results)
+        gpt_output_tokens = sum(r.output_tokens for r in gpt_results)
+        gpt_total_cost = sum(r.cost_usd for r in gpt_results)
+        total_cost = round(gemini_total_cost + gpt_total_cost, 8)
+        
         # Create result
         result = VideoResult(
             video_id=video_id,
@@ -614,7 +684,14 @@ class VideoProcessor:
             gpt_avg_confidence=round(gpt_avg_conf, 4),
             gpt_avg_latency=round(gpt_avg_lat, 2),
             processing_time_seconds=round(processing_time, 2),
-            timestamp=datetime.now().isoformat()
+            timestamp=datetime.now().isoformat(),
+            gemini_total_input_tokens=gemini_input_tokens,
+            gemini_total_output_tokens=gemini_output_tokens,
+            gemini_total_cost_usd=round(gemini_total_cost, 8),
+            gpt_total_input_tokens=gpt_input_tokens,
+            gpt_total_output_tokens=gpt_output_tokens,
+            gpt_total_cost_usd=round(gpt_total_cost, 8),
+            total_cost_usd=total_cost
         )
         
         # Save per-video result
@@ -627,6 +704,9 @@ class VideoProcessor:
         logging.info(f"   Gemini Confidence: {result.gemini_avg_confidence}")
         logging.info(f"   GPT Confidence: {result.gpt_avg_confidence}")
         logging.info(f"   Processing Time: {result.processing_time_seconds}s")
+        logging.info(f"   Cost - Gemini: ${result.gemini_total_cost_usd:.6f} USD  |  Tokens: {gemini_input_tokens} in / {gemini_output_tokens} out")
+        logging.info(f"   Cost - GPT   : ${result.gpt_total_cost_usd:.6f} USD  |  Tokens: {gpt_input_tokens} in / {gpt_output_tokens} out")
+        logging.info(f"   Cost - TOTAL : ${result.total_cost_usd:.6f} USD")
         logging.info(f"   Saved to: {video_result_file}")
         
         return result
@@ -698,6 +778,9 @@ def aggregate_results(video_results: List[VideoResult]) -> Dict:
             'total_judi_online': total_judi,
             'total_bukan_judi': total_bukan,
             'total_ambigu': total_ambigu,
+            'total_cost_usd': round(sum(v.total_cost_usd for v in video_results), 8),
+            'gemini_total_cost_usd': round(sum(v.gemini_total_cost_usd for v in video_results), 8),
+            'gpt_total_cost_usd': round(sum(v.gpt_total_cost_usd for v in video_results), 8),
         },
         'averages': {
             'agreement_rate': round(avg_agreement_rate, 2),
@@ -720,6 +803,9 @@ def aggregate_results(video_results: List[VideoResult]) -> Dict:
     logging.info(f"   Avg GPT Confidence: {avg_gpt_conf:.4f}")
     logging.info(f"   Avg Gemini Latency: {avg_gemini_lat:.2f}ms")
     logging.info(f"   Avg GPT Latency: {avg_gpt_lat:.2f}ms")
+    logging.info(f"   Total Cost Gemini  : ${aggregate['summary']['gemini_total_cost_usd']:.6f} USD")
+    logging.info(f"   Total Cost GPT     : ${aggregate['summary']['gpt_total_cost_usd']:.6f} USD")
+    logging.info(f"   Total Cost ALL     : ${aggregate['summary']['total_cost_usd']:.6f} USD")
     logging.info(f"   Saved to: {Config.AGGREGATE_RESULTS}")
     
     return aggregate
@@ -771,13 +857,26 @@ def export_to_excel(aggregate_data: Dict):
         'Total Processing Time (s)': v.get('processing_time_seconds')
     } for v in videos])
 
-    # Export ke 4 file
+    df_cost = pd.DataFrame([{
+        'Video ID': v.get('video_id'),
+        'Anomali (Masuk AI)': v.get('rule_based_ambigu'),
+        'Gemini Input Tokens': v.get('gemini_total_input_tokens', 0),
+        'Gemini Output Tokens': v.get('gemini_total_output_tokens', 0),
+        'Gemini Cost (USD)': v.get('gemini_total_cost_usd', 0.0),
+        'GPT Input Tokens': v.get('gpt_total_input_tokens', 0),
+        'GPT Output Tokens': v.get('gpt_total_output_tokens', 0),
+        'GPT Cost (USD)': v.get('gpt_total_cost_usd', 0.0),
+        'Total Cost (USD)': v.get('total_cost_usd', 0.0),
+    } for v in videos])
+
+    # Export ke 5 file
     df_rekap.to_excel(Config.RESULTS_DIR / "1_Rekap_Keseluruhan.xlsx", index=False)
     df_agreement.to_excel(Config.RESULTS_DIR / "2_Report_Agreement.xlsx", index=False)
     df_confidence.to_excel(Config.RESULTS_DIR / "3_Report_Confidence.xlsx", index=False)
     df_latency.to_excel(Config.RESULTS_DIR / "4_Report_Latency.xlsx", index=False)
+    df_cost.to_excel(Config.RESULTS_DIR / "5_Report_Cost.xlsx", index=False)
     
-    logging.info(f"   4 Excel files saved to: {Config.RESULTS_DIR}")
+    logging.info(f"   5 Excel files saved to: {Config.RESULTS_DIR}")
 
 def main():
     """Main pipeline"""

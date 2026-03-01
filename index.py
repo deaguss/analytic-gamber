@@ -5,6 +5,9 @@ import json
 from pathlib import Path
 import logging
 
+# Ensure logs directory exists before configuring file handler
+Path("logs").mkdir(parents=True, exist_ok=True)
+
 try:
     sys.stdin.reconfigure(encoding='utf-8')
     sys.stdout.reconfigure(encoding='utf-8')
@@ -15,7 +18,11 @@ except AttributeError:
 logging.basicConfig(
     level=logging.INFO,
     format='[%(asctime)s] [%(levelname)s] %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
+    datefmt='%Y-%m-%d %H:%M:%S',
+    handlers=[
+        logging.StreamHandler(),
+        logging.FileHandler("logs/app.log", encoding='utf-8'),
+    ]
 )
 
 def print_banner():

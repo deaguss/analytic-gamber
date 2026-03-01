@@ -43,6 +43,10 @@ def log(message: str, level: str = "INFO"):
     Config.LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
     with open(Config.LOG_FILE, 'a', encoding='utf-8') as f:
         f.write(log_message + '\n')
+    
+    app_log = Config.LOG_FILE.parent / "app.log"
+    with open(app_log, 'a', encoding='utf-8') as f:
+        f.write(log_message + '\n')
 
 def extract_video_id(url: str) -> Optional[str]:
     if 'youtu.be/' in url:
