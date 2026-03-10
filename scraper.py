@@ -138,12 +138,21 @@ def load_urls_from_file(filepath: Path) -> List[str]:
     with open(filepath, 'r', encoding='utf-8') as f:
         data = json.load(f)
     
-    if isinstance(data, list):
-        urls = data
+    # Format baru: {"videos": [{"url": "...", "sample_category": "..."}]}
+    if isinstance(data, dict) and 'videos' in data:
+        urls = []
+        for item in data['videos']:
+            if isinstance(item, dict) and 'url' in item:
+                urls.append(item['url'])
+            elif isinstance(item, str):
+                urls.append(item)
+    # Format lama: list URL string
+    elif isinstance(data, list):
+        urls = [u for u in data if isinstance(u, str)]
     elif isinstance(data, dict) and 'urls' in data:
         urls = data['urls']
     else:
-        raise ValueError("Format file tidak valid! Harus list atau {urls: [...]}")
+        raise ValueError("Format file tidak valid! Gunakan format baru: {\"videos\": [{\"url\": \"...\", \"sample_category\": \"...\"}]}")
     
     log(f"Loaded {len(urls)} URLs from {filepath}")
     return urls

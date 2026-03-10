@@ -15,12 +15,8 @@ from dotenv import load_dotenv
 # Load environment
 load_dotenv()
 
-# ============================================================
 # KONFIGURASI
-# ============================================================
-
 class Config:
-    """Konfigurasi aplikasi"""
     
     # Directories
     YOUTUBE_DIR = Path("youtube")
@@ -50,11 +46,6 @@ class Config:
     BATCH_SIZE = int(os.getenv("BATCH_SIZE", "5"))
     BATCH_DELAY = int(os.getenv("BATCH_DELAY", "25"))
 
-# ============================================================
-# PRICING (USD per 1M tokens)
-# gpt-4o-mini  : input $0.150 / output $0.600
-# gemini-2.5-flash: input $0.150 / output $0.600 (non-thinking)
-# ============================================================
 
 PRICING = {
     "gpt-4o-mini": {
@@ -62,25 +53,20 @@ PRICING = {
         "output_per_1m": 0.600,
     },
     "gemini-2.5-flash": {
-        "input_per_1m":  0.150,
-        "output_per_1m": 0.600,
+        "input_per_1m":  0.300,
+        "output_per_1m": 2.500,
     },
 }
 
 def calculate_cost(model_key: str, input_tokens: int, output_tokens: int) -> float:
-    """Hitung biaya API dalam USD"""
     pricing = PRICING.get(model_key, {"input_per_1m": 0.0, "output_per_1m": 0.0})
     cost = (input_tokens / 1_000_000) * pricing["input_per_1m"] + \
            (output_tokens / 1_000_000) * pricing["output_per_1m"]
     return round(cost, 8)
 
-# ============================================================
 # DATA MODELS
-# ============================================================
-
 @dataclass
 class Comment:
-    """Model data komentar"""
     comment_id: str
     text: str
     timestamp: str
@@ -91,14 +77,12 @@ class Comment:
 
 @dataclass
 class RuleBasedResult:
-    """Hasil rule-based classification"""
     classification: str  # "JUDI_ONLINE", "BUKAN_JUDI_ONLINE", "AMBIGU"
     score: float
     detection_method: str
 
 @dataclass
 class LLMResult:
-    """Hasil LLM classification"""
     model_name: str  # "Gemini" atau "GPT"
     classification: str
     confidence: float
@@ -112,7 +96,6 @@ class LLMResult:
 
 @dataclass
 class VideoResult:
-    """Hasil analisis per video"""
     video_id: str
     video_url: str
     total_comments: int
@@ -152,12 +135,12 @@ class VideoResult:
     gpt_total_cost_usd: float = 0.0
     total_cost_usd: float = 0.0
 
-# ============================================================
-# UTILITIES & LOGGING
-# ============================================================
+    # Kategori sampel penelitian — dari youtube_urls.json
+    # Nilai: "JUDI" | "TIDAK_JUDI" | "AMBIGU"
+    sample_category: str = "UNKNOWN"
 
+# UTILITIES & LOGGING
 def setup_logging():
-    """Setup logging"""
     import logging
     
     Config.LOGS_DIR.mkdir(parents=True, exist_ok=True)
@@ -174,39 +157,30 @@ def setup_logging():
     )
 
 def ensure_directories():
-    """Buat direktori yang dibutuhkan"""
     Config.YOUTUBE_DIR.mkdir(parents=True, exist_ok=True)
     Config.RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     Config.VIDEO_RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     Config.LOGS_DIR.mkdir(parents=True, exist_ok=True)
 
 def save_json(filepath: Path, data):
-    """Simpan data ke JSON"""
     with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2, default=str)
 
 def load_json(filepath: Path) -> Optional[dict]:
-    """Load JSON file"""
     if not filepath.exists():
         return None
     with open(filepath, 'r', encoding='utf-8') as f:
         return json.load(f)
 
 def extract_video_id(url: str) -> str:
-    """Extract video ID dari URL"""
     if 'youtu.be/' in url:
         return url.split('youtu.be/')[-1].split('?')[0]
     if 'watch?v=' in url:
         return url.split('watch?v=')[-1].split('&')[0]
     return url
 
-# ============================================================
 # TEXT PREPROCESSING
-# ============================================================
-
 class TextPreprocessor:
-    """Text preprocessing"""
-    
     LEET_MAP = {
         '0': 'o', '1': 'i', '3': 'e', '4': 'a', '5': 's',
         '7': 't', '8': 'b', '@': 'a', '$': 's', '!': 'i'
@@ -221,7 +195,6 @@ class TextPreprocessor:
     
     @staticmethod
     def normalize_leet_speak(text: str) -> str:
-        """Konversi leet speak"""
         result = []
         for char in text:
             result.append(TextPreprocessor.LEET_MAP.get(char, char))
@@ -229,7 +202,6 @@ class TextPreprocessor:
     
     @staticmethod
     def normalize_text(text: str) -> str:
-        """Normalisasi lengkap"""
         normalized = text.lower()
         normalized = TextPreprocessor.normalize_leet_speak(normalized)
         normalized = re.sub(r'[^\w\s]', ' ', normalized)
@@ -238,30 +210,22 @@ class TextPreprocessor:
     
     @staticmethod
     def tokenize(text: str) -> List[str]:
-        """Tokenisasi"""
         return [token for token in text.split() if token]
     
     @staticmethod
     def remove_stopwords(tokens: List[str]) -> List[str]:
-        """Hapus stopwords"""
         return [token for token in tokens if token not in TextPreprocessor.STOPWORDS]
     
     @classmethod
     def preprocess(cls, comment: Comment) -> Comment:
-        """Proses lengkap"""
         comment.original_text = comment.text
         comment.normalized_text = cls.normalize_text(comment.text)
         comment.tokens = cls.tokenize(comment.normalized_text)
         comment.clean_tokens = cls.remove_stopwords(comment.tokens)
         return comment
 
-# ============================================================
 # RULE-BASED CLASSIFIER
-# ============================================================
-
 class RuleBasedClassifier:
-    """Rule-based classification"""
-    
     SPAM_PATTERNS = {
         'gambling': r'(slot|gacor|rtp|bonus|bet|maxwin|deposit|judi|casino|situs|pragmatic|pg|soft|togel|bandar|jackpot)',
         'urls': r'(https?://[^\s]+\.(bet|casino|slot|gaming)|t\.me/|wa\.me/|bit\.ly)',
@@ -278,7 +242,6 @@ class RuleBasedClassifier:
     
     @classmethod
     def detect_with_regex(cls, comment: Comment) -> Tuple[bool, Optional[str]]:
-        """Deteksi dengan regex"""
         text = comment.normalized_text or comment.text
         
         for pattern_name, pattern in cls.SPAM_PATTERNS.items():
@@ -289,7 +252,6 @@ class RuleBasedClassifier:
     
     @staticmethod
     def levenshtein_distance(s1: str, s2: str) -> int:
-        """Levenshtein distance"""
         if len(s1) < len(s2):
             return RuleBasedClassifier.levenshtein_distance(s2, s1)
         
@@ -310,7 +272,6 @@ class RuleBasedClassifier:
     
     @classmethod
     def similarity_score(cls, s1: str, s2: str) -> float:
-        """Similarity score"""
         max_len = max(len(s1), len(s2))
         if max_len == 0:
             return 1.0
@@ -320,7 +281,6 @@ class RuleBasedClassifier:
     
     @classmethod
     def detect_with_fuzzy_matching(cls, comment: Comment) -> Tuple[float, Optional[str]]:
-        """Fuzzy matching"""
         tokens = comment.clean_tokens or comment.tokens or []
         
         max_score = 0.0
@@ -337,8 +297,7 @@ class RuleBasedClassifier:
     
     @classmethod
     def classify(cls, comment: Comment) -> RuleBasedResult:
-        """Klasifikasi"""
-        # 1. Cek regex
+        # Cek regex
         is_spam_regex, pattern_name = cls.detect_with_regex(comment)
         
         if is_spam_regex:
@@ -348,7 +307,7 @@ class RuleBasedClassifier:
                 detection_method="Regex"
             )
         
-        # 2. Fuzzy matching
+        # Fuzzy matching
         fuzzy_score, matched_keyword = cls.detect_with_fuzzy_matching(comment)
         
         if fuzzy_score >= Config.HIGH_THRESHOLD:
@@ -364,13 +323,8 @@ class RuleBasedClassifier:
             detection_method="Fuzzy Matching"
         )
 
-# ============================================================
 # LLM CLASSIFIERS
-# ============================================================
-
 class GeminiClassifier:
-    """Platform Gemini"""
-    
     def __init__(self):
         if not Config.GEMINI_API_KEY:
             raise ValueError("GEMINI_API_KEY not found!")
@@ -379,7 +333,6 @@ class GeminiClassifier:
         self.model = genai.GenerativeModel(Config.GEMINI_MODEL)
     
     def classify(self, comment: Comment) -> LLMResult:
-        """Klasifikasi dengan Gemini"""
         start_time = time.time()
         
         prompt = f"""Anda adalah sistem deteksi spam judi online untuk platform YouTube.
@@ -452,8 +405,6 @@ Jawab HANYA dengan JSON (tanpa markdown):"""
             )
 
 class GPTClassifier:
-    """OpenAI GPT API"""
-    
     def __init__(self):
         if not Config.OPENAI_API_KEY:
             raise ValueError("OPENAI_API_KEY not found!")
@@ -462,7 +413,6 @@ class GPTClassifier:
         self.api_url = "https://api.openai.com/v1/chat/completions"
     
     def classify(self, comment: Comment) -> LLMResult:
-        """Klasifikasi dengan GPT"""
         start_time = time.time()
         
         prompt = f"""Anda adalah sistem deteksi spam judi online untuk platform YouTube.
@@ -550,28 +500,14 @@ Jawab HANYA dengan JSON (tanpa markdown):"""
                 error=str(e)
             )
 
-# ============================================================
 # PER-VIDEO PROCESSOR
-# ============================================================
-
 class VideoProcessor:
-    """Process single video"""
-    
     def __init__(self):
         self.gemini = GeminiClassifier()
         self.gpt = GPTClassifier()
     
-    def process_video(self, video_url: str, comments_data: List[Dict]) -> VideoResult:
-        """
-        Process 1 video lengkap: preprocessing → rule-based → LLM → result
-        
-        Args:
-            video_url: URL video
-            comments_data: List of comment dicts
-        
-        Returns:
-            VideoResult dengan semua metrics
-        """
+    def process_video(self, video_url: str, comments_data: List[Dict], sample_category: str = "UNKNOWN") -> VideoResult:
+
         import logging
         
         start_time = time.time()
@@ -581,16 +517,16 @@ class VideoProcessor:
         logging.info(f"PROCESSING VIDEO: {video_id}")
         logging.info(f"{'='*70}")
         
-        # 1. Load comments
+        # Load comments
         comments = [Comment(**c) for c in comments_data]
         logging.info(f"Total comments: {len(comments)}")
         
-        # 2. Preprocessing
+        # Preprocessing
         logging.info("Preprocessing...")
         for comment in comments:
             TextPreprocessor.preprocess(comment)
         
-        # 3. Rule-based classification
+        # Rule-based classification
         logging.info("Rule-based classification...")
         rule_results = []
         for comment in comments:
@@ -605,7 +541,7 @@ class VideoProcessor:
         logging.info(f"   +-- Bukan Judi:       {len(bukan_judi)} comments")
         logging.info(f"   \\-- Ambigu:           {len(ambigu)} comments")
         
-        # 4. LLM classification (hanya untuk ambigu)
+        # LLM classification (hanya untuk ambigu)
         gemini_results = []
         gpt_results = []
         
@@ -691,7 +627,8 @@ class VideoProcessor:
             gpt_total_input_tokens=gpt_input_tokens,
             gpt_total_output_tokens=gpt_output_tokens,
             gpt_total_cost_usd=round(gpt_total_cost, 8),
-            total_cost_usd=total_cost
+            total_cost_usd=total_cost,
+            sample_category=sample_category
         )
         
         # Save per-video result
@@ -711,15 +648,8 @@ class VideoProcessor:
         
         return result
 
-# ============================================================
 # MAIN PIPELINE
-# ============================================================
-
 def load_video_comments(video_url: str) -> Optional[List[Dict]]:
-    """
-    Load comments untuk 1 video dari file per-video
-    File format: youtube/{video_id}.json
-    """
     video_id = extract_video_id(video_url)
     video_file = Config.YOUTUBE_DIR / f"{video_id}.json"
     
@@ -731,25 +661,37 @@ def load_video_comments(video_url: str) -> Optional[List[Dict]]:
     video_data = load_json(video_file)
     return video_data['comments'] if video_data else None
 
-def load_urls() -> List[str]:
-    """Load list URLs"""
+def load_urls() -> List[Dict]:
     if not Config.URLS_FILE.exists():
         raise FileNotFoundError(f"File {Config.URLS_FILE} not found!")
-    
+
     urls_data = load_json(Config.URLS_FILE)
-    
+
+    # Format baru
+    if isinstance(urls_data, dict) and 'videos' in urls_data:
+        result = []
+        for item in urls_data['videos']:
+            if isinstance(item, dict) and 'url' in item:
+                result.append({
+                    'url': item['url'],
+                    'sample_category': item.get('sample_category', 'UNKNOWN')
+                })
+            elif isinstance(item, str):
+                result.append({'url': item, 'sample_category': 'UNKNOWN'})
+        return result
+
+    # Format lama
     if isinstance(urls_data, list):
-        return urls_data
+        raw = urls_data
     elif isinstance(urls_data, dict) and 'urls' in urls_data:
-        return urls_data['urls']
+        raw = urls_data['urls']
     else:
         raise ValueError("Invalid URLs file format!")
 
+    return [{'url': u, 'sample_category': 'UNKNOWN'} for u in raw if isinstance(u, str)]
+
 def aggregate_results(video_results: List[VideoResult]) -> Dict:
-    """
-    Aggregate results dari semua video
-    Calculate rata-rata metrics
-    """
+
     import logging
     
     logging.info(f"\n{'='*70}")
@@ -811,7 +753,6 @@ def aggregate_results(video_results: List[VideoResult]) -> Dict:
     return aggregate
 
 def export_to_excel(aggregate_data: Dict):
-    """Export results to 4 separate Excel files"""
     import logging
     
     try:
@@ -828,58 +769,159 @@ def export_to_excel(aggregate_data: Dict):
         logging.warning("No video data to export.")
         return
 
-    # Buat DataFrame terpisah
+    # Konstanta warna Excel per kategori (hex tanpa #)
+    CAT_FILL = {
+        'JUDI':       'FFCCCC',   # merah muda
+        'TIDAK_JUDI': 'CCFFCC',   # hijau muda
+        'AMBIGU':     'FFF2CC',   # kuning muda
+        'UNKNOWN':    'F2F2F2',   # abu-abu
+    }
+    CAT_LABEL = {
+        'JUDI':       'Berindikasi Judi',
+        'TIDAK_JUDI': 'Tidak Judi',
+        'AMBIGU':     'Ambigu',
+        'UNKNOWN':    'Tidak Diketahui',
+    }
+
+    def apply_colors(writer, df, sheet_name):
+        from openpyxl.styles import PatternFill, Font, Alignment
+        from openpyxl.utils import get_column_letter
+
+        # Pisahkan kolom kode kategori (dipakai untuk warna, tidak ditampilkan)
+        code_col = df['_cat_code'].tolist() if '_cat_code' in df.columns else []
+        display  = df.drop(columns=['_cat_code'], errors='ignore')
+
+        display.to_excel(writer, sheet_name=sheet_name, index=False)
+        ws = writer.sheets[sheet_name]
+
+        # Bold + center header
+        for cell in ws[1]:
+            cell.font      = Font(bold=True)
+            cell.alignment = Alignment(horizontal='center', vertical='center')
+
+        # Auto-width kolom
+        for ci, col in enumerate(display.columns, 1):
+            vals    = display[col].astype(str).tolist() + [str(col)]
+            max_len = max(len(v) for v in vals) + 4
+            ws.column_dimensions[get_column_letter(ci)].width = min(max_len, 45)
+
+        # Warnai baris
+        for ri, cat in enumerate(code_col, start=2):
+            fill = PatternFill(
+                start_color=CAT_FILL.get(cat, 'F2F2F2'),
+                end_color=CAT_FILL.get(cat, 'F2F2F2'),
+                fill_type='solid'
+            )
+            for ci in range(1, len(display.columns) + 1):
+                ws.cell(row=ri, column=ci).fill = fill
+
+    def add_legend(writer):
+        from openpyxl.styles import PatternFill, Font, Alignment
+        ws = writer.book.create_sheet('Legenda Kategori')
+        headers = ['Kode', 'Label', 'Keterangan']
+        for ci, h in enumerate(headers, 1):
+            c = ws.cell(row=1, column=ci, value=h)
+            c.font = Font(bold=True)
+            c.alignment = Alignment(horizontal='center')
+        rows = [
+            ('JUDI',       'Berindikasi Judi',  'Merah muda  — video berindikasi komentar judi dominan'),
+            ('TIDAK_JUDI', 'Tidak Judi',        'Hijau muda  — video dengan komentar dominan bukan judi'),
+            ('AMBIGU',     'Ambigu',            'Kuning muda — video dengan komentar campuran / tidak jelas'),
+        ]
+        for ri, (code, label, desc) in enumerate(rows, start=2):
+            ws.cell(row=ri, column=1, value=code)
+            ws.cell(row=ri, column=2, value=label)
+            ws.cell(row=ri, column=3, value=desc)
+            fill = PatternFill(start_color=CAT_FILL[code], end_color=CAT_FILL[code], fill_type='solid')
+            for ci in range(1, 4):
+                ws.cell(row=ri, column=ci).fill = fill
+        for col, w in [('A', 14), ('B', 22), ('C', 55)]:
+            ws.column_dimensions[col].width = w
+
+    # Helper kode & label kategori
+    def code(v):  return v.get('sample_category', 'UNKNOWN')
+    def label(v): return CAT_LABEL.get(code(v), code(v))
+
+
+    # Build DataFrames
     df_rekap = pd.DataFrame(videos)
+    if 'sample_category' not in df_rekap.columns:
+        df_rekap['sample_category'] = 'UNKNOWN'
+    df_rekap['Kategori Sampel'] = df_rekap['sample_category'].map(lambda c: CAT_LABEL.get(c, c))
+    df_rekap['_cat_code']       = df_rekap['sample_category']
+    cols = ['Kategori Sampel', '_cat_code'] + [
+        c for c in df_rekap.columns if c not in ('Kategori Sampel', '_cat_code', 'sample_category')
+    ]
+    df_rekap = df_rekap[cols]
 
     df_agreement = pd.DataFrame([{
-        'Video ID': v.get('video_id'),
-        'Komentar Ditarik': v.get('total_comments'),
+        'Kategori Sampel'   : label(v),
+        'Video ID'          : v.get('video_id'),
+        'Komentar Ditarik'  : v.get('total_comments'),
         'Anomali (Masuk AI)': v.get('rule_based_ambigu'),
-        'Gemini (Judi)': v.get('gemini_judi'),
-        'GPT (Judi)': v.get('gpt_judi'),
-        'Sepakat': v.get('agreement_count'),
-        'Tidak Sepakat': v.get('disagreement_count'),
-        'Agreement Rate (%)': v.get('agreement_rate')
+        'Gemini (Judi)'     : v.get('gemini_judi'),
+        'GPT (Judi)'        : v.get('gpt_judi'),
+        'Sepakat'           : v.get('agreement_count'),
+        'Tidak Sepakat'     : v.get('disagreement_count'),
+        'Agreement Rate (%)': v.get('agreement_rate'),
+        '_cat_code'         : code(v),
     } for v in videos])
 
     df_confidence = pd.DataFrame([{
-        'Video ID': v.get('video_id'),
-        'Anomali (Masuk AI)': v.get('rule_based_ambigu'),
+        'Kategori Sampel'      : label(v),
+        'Video ID'             : v.get('video_id'),
+        'Anomali (Masuk AI)'   : v.get('rule_based_ambigu'),
         'Gemini Avg Confidence': v.get('gemini_avg_confidence'),
-        'GPT Avg Confidence': v.get('gpt_avg_confidence')
+        'GPT Avg Confidence'   : v.get('gpt_avg_confidence'),
+        '_cat_code'            : code(v),
     } for v in videos])
 
     df_latency = pd.DataFrame([{
-        'Video ID': v.get('video_id'),
-        'Anomali (Masuk AI)': v.get('rule_based_ambigu'),
-        'Gemini Avg Latency (ms)': v.get('gemini_avg_latency'),
-        'GPT Avg Latency (ms)': v.get('gpt_avg_latency'),
-        'Total Processing Time (s)': v.get('processing_time_seconds')
+        'Kategori Sampel'          : label(v),
+        'Video ID'                 : v.get('video_id'),
+        'Anomali (Masuk AI)'       : v.get('rule_based_ambigu'),
+        'Gemini Avg Latency (ms)'  : v.get('gemini_avg_latency'),
+        'GPT Avg Latency (ms)'     : v.get('gpt_avg_latency'),
+        'Total Processing Time (s)': v.get('processing_time_seconds'),
+        '_cat_code'                : code(v),
     } for v in videos])
 
     df_cost = pd.DataFrame([{
-        'Video ID': v.get('video_id'),
-        'Anomali (Masuk AI)': v.get('rule_based_ambigu'),
-        'Gemini Input Tokens': v.get('gemini_total_input_tokens', 0),
+        'Kategori Sampel'     : label(v),
+        'Video ID'            : v.get('video_id'),
+        'Anomali (Masuk AI)'  : v.get('rule_based_ambigu'),
+        'Gemini Input Tokens' : v.get('gemini_total_input_tokens', 0),
         'Gemini Output Tokens': v.get('gemini_total_output_tokens', 0),
-        'Gemini Cost (USD)': v.get('gemini_total_cost_usd', 0.0),
-        'GPT Input Tokens': v.get('gpt_total_input_tokens', 0),
-        'GPT Output Tokens': v.get('gpt_total_output_tokens', 0),
-        'GPT Cost (USD)': v.get('gpt_total_cost_usd', 0.0),
-        'Total Cost (USD)': v.get('total_cost_usd', 0.0),
+        'Gemini Cost (USD)'   : v.get('gemini_total_cost_usd', 0.0),
+        'GPT Input Tokens'    : v.get('gpt_total_input_tokens', 0),
+        'GPT Output Tokens'   : v.get('gpt_total_output_tokens', 0),
+        'GPT Cost (USD)'      : v.get('gpt_total_cost_usd', 0.0),
+        'Total Cost (USD)'    : v.get('total_cost_usd', 0.0),
+        '_cat_code'           : code(v),
     } for v in videos])
 
-    # Export ke 5 file
-    df_rekap.to_excel(Config.RESULTS_DIR / "1_Rekap_Keseluruhan.xlsx", index=False)
-    df_agreement.to_excel(Config.RESULTS_DIR / "2_Report_Agreement.xlsx", index=False)
-    df_confidence.to_excel(Config.RESULTS_DIR / "3_Report_Confidence.xlsx", index=False)
-    df_latency.to_excel(Config.RESULTS_DIR / "4_Report_Latency.xlsx", index=False)
-    df_cost.to_excel(Config.RESULTS_DIR / "5_Report_Cost.xlsx", index=False)
-    
+
+    # Export 5 file Excel                                                
+    file_map = [
+        (df_rekap,      "1_Rekap_Keseluruhan.xlsx"),
+        (df_agreement,  "2_Report_Agreement.xlsx"),
+        (df_confidence, "3_Report_Confidence.xlsx"),
+        (df_latency,    "4_Report_Latency.xlsx"),
+        (df_cost,       "5_Report_Cost.xlsx"),
+    ]
+
+    for df, fname in file_map:
+        path = Config.RESULTS_DIR / fname
+        with pd.ExcelWriter(path, engine='openpyxl') as writer:
+            apply_colors(writer, df, 'Data')
+            add_legend(writer)
+        logging.info(f"   Saved: {fname}")
+
     logging.info(f"   5 Excel files saved to: {Config.RESULTS_DIR}")
+    logging.info("   Merah muda=JUDI | Hijau muda=TIDAK_JUDI | Kuning muda=AMBIGU")
 
 def main():
-    """Main pipeline"""
+    
     import logging
     
     setup_logging()
@@ -901,8 +943,8 @@ def main():
     
     # Load URLs
     try:
-        urls = load_urls()
-        logging.info(f"\nFound {len(urls)} videos to process")
+        url_entries = load_urls()
+        logging.info(f"\nFound {len(url_entries)} videos to process")
     except Exception as e:
         logging.error(f"Error loading URLs: {e}")
         return
@@ -911,11 +953,13 @@ def main():
     processor = VideoProcessor()
     video_results = []
     
-    for idx, url in enumerate(urls, 1):
-        video_id = extract_video_id(url)
+    for idx, entry in enumerate(url_entries, 1):
+        url             = entry['url']
+        sample_category = entry['sample_category']
+        video_id        = extract_video_id(url)
         
         logging.info(f"\n{'#'*70}")
-        logging.info(f"# VIDEO {idx}/{len(urls)}: {video_id}")
+        logging.info(f"# VIDEO {idx}/{len(url_entries)}: {video_id}  [Kategori: {sample_category}]")
         logging.info(f"{'#'*70}")
         
         try:
@@ -928,7 +972,7 @@ def main():
                 continue
             
             # Process video
-            video_result = processor.process_video(url, comments_data)
+            video_result = processor.process_video(url, comments_data, sample_category)
             video_results.append(video_result)
             
         except Exception as e:

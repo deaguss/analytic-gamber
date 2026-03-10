@@ -89,9 +89,12 @@ def check_urls_file():
     try:
         with open(urls_file, 'r') as f:
             data = json.load(f)
-            
-        if isinstance(data, list):
-            urls = data
+        
+        if isinstance(data, dict) and 'videos' in data:
+            urls = [item['url'] for item in data['videos']
+                    if isinstance(item, dict) and 'url' in item]
+        elif isinstance(data, list):
+            urls = [u for u in data if isinstance(u, str)]
         elif isinstance(data, dict) and 'urls' in data:
             urls = data['urls']
         else:
