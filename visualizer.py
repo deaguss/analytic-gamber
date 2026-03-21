@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
@@ -7,56 +6,51 @@ import numpy as np
 import seaborn as sns
 
 sns.set_style("whitegrid")
-plt.rcParams['figure.figsize'] = (12, 8)
-plt.rcParams['font.size'] = 12
-plt.rcParams['axes.labelsize'] = 13
-plt.rcParams['axes.titlesize'] = 15
-plt.rcParams['xtick.labelsize'] = 11
-plt.rcParams['ytick.labelsize'] = 11
-plt.rcParams['legend.fontsize'] = 11
+plt.rcParams['figure.figsize'] = (16, 10)
+plt.rcParams['font.size'] = 14
+plt.rcParams['axes.labelsize'] = 15
+plt.rcParams['axes.titlesize'] = 16
+plt.rcParams['xtick.labelsize'] = 13
+plt.rcParams['ytick.labelsize'] = 13
+plt.rcParams['legend.fontsize'] = 13
 
-# ------------------------------------------------------------------ #
-# Konstanta kategori sampel                                           #
-# ------------------------------------------------------------------ #
 CAT_COLOR = {
     'JUDI':       '#FF6B6B',
     'TIDAK_JUDI': '#51CF66',
     'AMBIGU':     '#FFD43B',
+    'RANDOM':     '#FFA94D',
     'UNKNOWN':    '#ADB5BD',
 }
 CAT_LABEL = {
     'JUDI':       'Berindikasi Judi',
     'TIDAK_JUDI': 'Tidak Judi',
     'AMBIGU':     'Ambigu',
+    'RANDOM':     'Data Random',
 }
-CAT_ORDER  = ['JUDI', 'TIDAK_JUDI', 'AMBIGU']
+CAT_ORDER  = ['JUDI', 'TIDAK_JUDI', 'AMBIGU', 'RANDOM']
 CAT_LABELS = [CAT_LABEL[c] for c in CAT_ORDER]
-CAT_COLORS = [CAT_COLOR[c] for c in CAT_ORDER]
+CAT_COLORS = [CAT_COLOR[c]  for c in CAT_ORDER]
 
 GEMINI_COLOR = '#4285F4'
 GPT_COLOR    = '#34A853'
 
-
 def bar_labels(ax, bars, fmt=None):
-    """Tulis nilai di atas setiap bar."""
     for bar in bars:
         h = bar.get_height()
         if h == 0:
             continue
         label = fmt(h) if fmt else (f'{h:.4f}' if h % 1 != 0 else f'{int(h)}')
         ax.text(bar.get_x() + bar.get_width() / 2., h,
-                label, ha='center', va='bottom', fontsize=10, fontweight='bold')
-
+                label, ha='center', va='bottom', fontsize=12, fontweight='bold')
 
 def headroom(ax, factor=1.3):
-    """Tambahkan ruang di atas bar tertinggi."""
     ymax = ax.get_ylim()[1]
     ax.set_ylim(0, max(ymax * factor, 0.001))
 
 def set_cat_xticks(ax, x_positions, labels, colors, fontsize=11):
-    """X-tick label dengan background warna kategori sebagai keterangan visual."""
     ax.set_xticks(x_positions)
     ax.set_xticklabels(labels, fontsize=fontsize)
+    ax.set_xlabel('')
     for tick, col in zip(ax.get_xticklabels(), colors):
         tick.set_bbox(dict(
             boxstyle='round,pad=0.35',
@@ -66,12 +60,10 @@ def set_cat_xticks(ax, x_positions, labels, colors, fontsize=11):
             linewidth=0.8
         ))
 
-
 def legend_above(ax, ncol=2, fontsize=10, **kwargs):
-    """Legend compact di pojok kanan atas LUAR area plot — tidak pernah timpa bar/value."""
     defaults = dict(
-        loc='upper left',
-        bbox_to_anchor=(0, 1.18),
+        loc='upper center',
+        bbox_to_anchor=(0.5, -0.12),
         ncol=ncol,
         borderaxespad=0,
         framealpha=0.92,
@@ -85,19 +77,12 @@ def legend_above(ax, ncol=2, fontsize=10, **kwargs):
     defaults.update(kwargs)
     return ax.legend(**defaults)
 
-
-
-
-# ------------------------------------------------------------------ #
-# DATA LOADER                                                          #
-# ------------------------------------------------------------------ #
-
 class ResearchVisualizer:
 
     def __init__(self, results_dir="results", output_dir="visualizations"):
-        self.results_dir = Path(results_dir)
-        self.output_dir  = Path(output_dir)
-        self.output_dir.mkdir(exist_ok=True)
+        self.results_dir  = Path(results_dir)
+        self.base_out_dir = Path(output_dir)
+        self.base_out_dir.mkdir(exist_ok=True)
         self.load_data()
 
     def load_data(self):
@@ -119,7 +104,6 @@ class ResearchVisualizer:
         self.summary  = self.aggregate.get('summary', {})
         self.averages = self.aggregate.get('averages', {})
 
-        # Kelompokkan video per kategori sampel
         self.by_cat = {c: [] for c in CAT_ORDER}
         for v in self.videos:
             cat = v.get('sample_category', 'UNKNOWN')
@@ -128,12 +112,10 @@ class ResearchVisualizer:
 
         n = {c: len(self.by_cat[c]) for c in CAT_ORDER}
         print(f"  Loaded {len(self.videos)} video(s): "
-              f"JUDI={n['JUDI']}, TIDAK_JUDI={n['TIDAK_JUDI']}, AMBIGU={n['AMBIGU']}")
+              f"JUDI={n['JUDI']}, TIDAK_JUDI={n['TIDAK_JUDI']}, "
+              f"AMBIGU={n['AMBIGU']}, RANDOM={n['RANDOM']}")
         print("Data loaded successfully!")
 
-    # ---------------------------------------------------------------- #
-    # HELPER: rata-rata field dari list video                           #
-    # ---------------------------------------------------------------- #
     def _avg(self, videos, field):
         vals = [v.get(field, 0) for v in videos if v.get(field) is not None]
         return sum(vals) / len(vals) if vals else 0.0
@@ -141,18 +123,65 @@ class ResearchVisualizer:
     def _sum(self, videos, field):
         return sum(v.get(field, 0) for v in videos)
 
-    # ================================================================ #
-    # 1. CONFIDENCE  -  Rata-rata per kategori sampel                     #
-    # ================================================================ #
+    def _set_context(self, videos_subset, out_dir):
+        """Sementara ganti self.videos / by_cat untuk satu subset."""
+        self._orig_videos   = self.videos
+        self._orig_by_cat   = self.by_cat
+        self._orig_summary  = self.summary
+        self._orig_averages = self.averages
+        self._orig_out_dir  = getattr(self, 'output_dir', self.base_out_dir)
+
+        self.videos     = videos_subset
+        self.by_cat     = {c: [] for c in CAT_ORDER}
+        for v in videos_subset:
+            cat = v.get('sample_category', 'UNKNOWN')
+            if cat in self.by_cat:
+                self.by_cat[cat].append(v)
+
+        self.summary = {
+            'total_videos':      len(videos_subset),
+            'total_comments':    self._sum(videos_subset, 'total_comments'),
+            'total_judi_online': self._sum(videos_subset, 'rule_based_judi'),
+            'total_bukan_judi':  self._sum(videos_subset, 'rule_based_bukan_judi'),
+            'total_ambigu':      self._sum(videos_subset, 'rule_based_ambigu'),
+            'gemini_total_cost_usd': self._sum(videos_subset, 'gemini_total_cost_usd'),
+            'gpt_total_cost_usd':    self._sum(videos_subset, 'gpt_total_cost_usd'),
+        }
+
+        def safe_avg(field):
+            vals = [v.get(field, 0) for v in videos_subset if v.get(field, 0) > 0]
+            return sum(vals) / len(vals) if vals else 0.0
+
+        self.averages = {
+            'gemini_agreement_rate': self._avg(videos_subset, 'gemini_agreement_rate'),
+            'gpt_agreement_rate':    self._avg(videos_subset, 'gpt_agreement_rate'),
+            'gemini_confidence':     safe_avg('gemini_avg_confidence'),
+            'gpt_confidence':        safe_avg('gpt_avg_confidence'),
+            'gemini_latency_ms':     safe_avg('gemini_avg_latency'),
+            'gpt_latency_ms':        safe_avg('gpt_avg_latency'),
+        }
+        self.output_dir = out_dir
+        out_dir.mkdir(parents=True, exist_ok=True)
+
+    def _restore_context(self):
+        self.videos   = self._orig_videos
+        self.by_cat   = self._orig_by_cat
+        self.summary  = self._orig_summary
+        self.averages = self._orig_averages
+        self.output_dir = self._orig_out_dir
+
     def plot_confidence_distribution(self):
-        if not self.videos:
+        cats_present = [c for c in CAT_ORDER if self.by_cat.get(c)]
+        if not cats_present:
             print("Skipping confidence - no data"); return
 
-        gemini_vals = [self._avg(self.by_cat[c], 'gemini_avg_confidence') for c in CAT_ORDER]
-        gpt_vals    = [self._avg(self.by_cat[c], 'gpt_avg_confidence')    for c in CAT_ORDER]
+        gemini_vals = [self._avg(self.by_cat[c], 'gemini_avg_confidence') for c in cats_present]
+        gpt_vals    = [self._avg(self.by_cat[c], 'gpt_avg_confidence')    for c in cats_present]
+        labels      = [CAT_LABEL[c] for c in cats_present]
+        colors      = [CAT_COLOR[c] for c in cats_present]
 
-        x, w = np.arange(3), 0.32
-        fig, ax = plt.subplots(figsize=(14, 8))
+        x, w = np.arange(len(cats_present)), 0.32
+        fig, ax = plt.subplots(figsize=(18, 10))
 
         b1 = ax.bar(x - w/2, gemini_vals, w, label='Gemini (gemini-2.5-flash)',
                     color=GEMINI_COLOR, alpha=0.88, edgecolor='white')
@@ -164,35 +193,34 @@ class ResearchVisualizer:
 
         ax.set_title('Rata-rata Confidence Score per Kategori Sampel\n'
                      '(Seberapa yakin model dalam mengklasifikasikan komentar)',
-                     fontweight='bold', fontsize=13)
+                     fontweight='bold', fontsize=14)
         ax.set_ylabel('Avg Confidence Score (0 = tidak yakin, 1 = sangat yakin)')
-        ax.set_xlabel('Kategori Sampel Video')
         ax.set_ylim(0, 1.15)
         legend_above(ax)
         ax.grid(axis='y', alpha=0.3, linestyle='--')
-        set_cat_xticks(ax, x, CAT_LABELS, CAT_COLORS, fontsize=11)
+        set_cat_xticks(ax, x, labels, colors, fontsize=11)
 
-        fig.text(0.5, 0.01,
+        fig.text(0.5, 0.04,
                  'Confidence score tinggi = model lebih yakin. '
                  'Semakin mendekati 1.0 semakin baik.',
                  ha='center', fontsize=11, style='italic', color='gray')
-        plt.tight_layout(rect=[0, 0.04, 1, 0.88])
+        plt.tight_layout(rect=[0, 0.12, 1, 1.0])
         plt.savefig(self.output_dir / '1_confidence_distribution.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("Created: 1_confidence_distribution.png")
+        print(f"  Created: {self.output_dir}/1_confidence_distribution.png")
 
-    # ================================================================ #
-    # 2. LATENCY  -  Rata-rata per kategori sampel                        #
-    # ================================================================ #
     def plot_latency_distribution(self):
-        if not self.videos:
+        cats_present = [c for c in CAT_ORDER if self.by_cat.get(c)]
+        if not cats_present:
             print("Skipping latency - no data"); return
 
-        gemini_vals = [self._avg(self.by_cat[c], 'gemini_avg_latency') for c in CAT_ORDER]
-        gpt_vals    = [self._avg(self.by_cat[c], 'gpt_avg_latency')    for c in CAT_ORDER]
+        gemini_vals = [self._avg(self.by_cat[c], 'gemini_avg_latency') for c in cats_present]
+        gpt_vals    = [self._avg(self.by_cat[c], 'gpt_avg_latency')    for c in cats_present]
+        labels      = [CAT_LABEL[c] for c in cats_present]
+        colors      = [CAT_COLOR[c] for c in cats_present]
 
-        x, w = np.arange(3), 0.32
-        fig, ax = plt.subplots(figsize=(14, 8))
+        x, w = np.arange(len(cats_present)), 0.32
+        fig, ax = plt.subplots(figsize=(18, 10))
 
         b1 = ax.bar(x - w/2, gemini_vals, w, label='Gemini (gemini-2.5-flash)',
                     color=GEMINI_COLOR, alpha=0.88, edgecolor='white')
@@ -204,157 +232,140 @@ class ResearchVisualizer:
 
         ax.set_title('Rata-rata Latency Response per Kategori Sampel\n'
                      '(Waktu respons API per komentar  -  semakin rendah semakin baik)',
-                     fontweight='bold', fontsize=13)
+                     fontweight='bold', fontsize=14)
         ax.set_ylabel('Avg Latency (ms)')
-        ax.set_xlabel('Kategori Sampel Video')
         legend_above(ax)
         ax.grid(axis='y', alpha=0.3, linestyle='--')
         headroom(ax, 1.35)
-        set_cat_xticks(ax, x, CAT_LABELS, CAT_COLORS, fontsize=11)
+        set_cat_xticks(ax, x, labels, colors, fontsize=11)
 
-        fig.text(0.5, 0.01,
+        fig.text(0.5, 0.04,
                  'Latency diukur dari pengiriman request sampai respons diterima (dalam milidetik).',
                  ha='center', fontsize=11, style='italic', color='gray')
-        plt.tight_layout(rect=[0, 0.04, 1, 0.88])
+        plt.tight_layout(rect=[0, 0.12, 1, 1.0])
         plt.savefig(self.output_dir / '2_latency_distribution.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("Created: 2_latency_distribution.png")
+        print(f"  Created: {self.output_dir}/2_latency_distribution.png")
 
-    # ================================================================ #
-    # 3. AGREEMENT  -  Total & per kategori sampel                        #
-    # ================================================================ #
     def plot_agreement_analysis(self):
-        if not self.videos:
+        cats_present = [c for c in CAT_ORDER if self.by_cat.get(c)]
+        if not cats_present:
             print("Skipping agreement - no data"); return
 
-        total_agree    = self._sum(self.videos, 'agreement_count')
-        total_disagree = self._sum(self.videos, 'disagreement_count')
-        total_llm      = total_agree + total_disagree
-        rate_total     = (total_agree / total_llm * 100) if total_llm else 0
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 10))
 
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 8))
+        gemini_rates = [self._avg(self.by_cat[c], 'gemini_agreement_rate') for c in cats_present]
+        gpt_rates    = [self._avg(self.by_cat[c], 'gpt_agreement_rate')    for c in cats_present]
+        labels       = [CAT_LABEL[c] for c in cats_present]
+        colors       = [CAT_COLOR[c] for c in cats_present]
+        x, w = np.arange(len(cats_present)), 0.32
 
-        # --- Pie: agreement rate keseluruhan ---
-        ax1.pie(
-            [total_agree, total_disagree],
-            labels=[f'Sepakat\n{total_agree:,} komentar\n({rate_total:.1f}%)',
-                    f'Tidak Sepakat\n{total_disagree:,} komentar\n({100-rate_total:.1f}%)'],
-            colors=['#34A853', '#EA4335'],
-            explode=(0.05, 0.05), startangle=90,
-            textprops={'fontsize': 11, 'fontweight': 'bold'}
-        )
-        ax1.set_title(
-            f'Agreement Rate Keseluruhan\n'
-            f'Total {total_llm:,} komentar diproses LLM',
-            fontweight='bold', fontsize=13
-        )
+        b1 = ax1.bar(x - w/2, gemini_rates, w, label='Gemini Agreement Rate %',
+                     color=GEMINI_COLOR, alpha=0.88)
+        b2 = ax1.bar(x + w/2, gpt_rates,    w, label='GPT Agreement Rate %',
+                     color=GPT_COLOR,    alpha=0.88)
+        bar_labels(ax1, b1, fmt=lambda h: f'{h:.1f}%')
+        bar_labels(ax1, b2, fmt=lambda h: f'{h:.1f}%')
 
-        # --- Bar: agreement rate per kategori ---
-        rates = []
-        agrees = []
-        disagrees = []
-        for c in CAT_ORDER:
-            vids = self.by_cat[c]
-            ag   = self._sum(vids, 'agreement_count')
-            dag  = self._sum(vids, 'disagreement_count')
-            tot  = ag + dag
-            rates.append((ag / tot * 100) if tot else 0)
-            agrees.append(ag)
-            disagrees.append(dag)
+        ax1.set_title('Perbandingan Agreement Rate\nGemini vs GPT per Kategori Sampel',
+                      fontweight='bold', fontsize=14)
+        ax1.set_ylabel('Agreement Rate (%)\n(Seberapa sering label Gemini == label GPT)')
+        ax1.set_ylim(0, 120)
+        legend_above(ax1)
+        ax1.grid(axis='y', alpha=0.3, linestyle='--')
+        set_cat_xticks(ax1, x, labels, colors, fontsize=11)
 
-        x, w = np.arange(3), 0.32
-        b1 = ax2.bar(x - w/2, agrees,    w, label='Sepakat',       color='#34A853', alpha=0.88)
-        b2 = ax2.bar(x + w/2, disagrees, w, label='Tidak Sepakat', color='#EA4335', alpha=0.88)
+        gemini_agree    = [self._sum(self.by_cat[c], 'gemini_agree_count')    for c in cats_present]
+        gemini_disagree = [self._sum(self.by_cat[c], 'gemini_disagree_count') for c in cats_present]
+        gpt_agree       = [self._sum(self.by_cat[c], 'gpt_agree_count')       for c in cats_present]
+        gpt_disagree    = [self._sum(self.by_cat[c], 'gpt_disagree_count')    for c in cats_present]
 
-        bar_labels(ax2, b1)
-        bar_labels(ax2, b2)
+        x4 = np.arange(len(cats_present))
+        w4 = 0.2
+        ba1 = ax2.bar(x4 - 1.5*w4, gemini_agree,    w4, label='Gemini Sepakat',       color=GEMINI_COLOR, alpha=0.9)
+        ba2 = ax2.bar(x4 - 0.5*w4, gemini_disagree, w4, label='Gemini Tidak Sepakat', color=GEMINI_COLOR, alpha=0.4)
+        ba3 = ax2.bar(x4 + 0.5*w4, gpt_agree,       w4, label='GPT Sepakat',          color=GPT_COLOR,    alpha=0.9)
+        ba4 = ax2.bar(x4 + 1.5*w4, gpt_disagree,    w4, label='GPT Tidak Sepakat',    color=GPT_COLOR,    alpha=0.4)
+        for b in [ba1, ba2, ba3, ba4]:
+            bar_labels(ax2, b)
 
-        # Tampilkan agreement rate di atas tiap pasang bar
-        for i, (xi, rate) in enumerate(zip(x, rates)):
-            ax2.text(xi, max(agrees[i], disagrees[i]) * 1.18,
-                     f'Rate: {rate:.1f}%',
-                     ha='center', fontsize=11, fontweight='bold', color='#1a1a1a')
-
-        ax2.set_title('Jumlah Komentar Sepakat vs Tidak Sepakat\nper Kategori Sampel',
-                      fontweight='bold', fontsize=13)
+        ax2.set_title('Jumlah Komentar Sepakat/Tidak per Model\nper Kategori Sampel',
+                      fontweight='bold', fontsize=14)
         ax2.set_ylabel('Jumlah Komentar')
-        ax2.set_xlabel('Kategori Sampel Video')
-        legend_above(ax2)
+        legend_above(ax2, ncol=2)
         ax2.grid(axis='y', alpha=0.3, linestyle='--')
         headroom(ax2, 1.45)
-        set_cat_xticks(ax2, x, CAT_LABELS, CAT_COLORS, fontsize=11)
+        set_cat_xticks(ax2, x4, labels, colors, fontsize=11)
 
-        fig.text(0.5, 0.01,
-                 'Agreement = Gemini dan GPT menghasilkan klasifikasi yang sama pada komentar ambigu.',
+        fig.text(0.5, 0.04,
+                 'Agreement Rate = frekuensi Gemini & GPT menghasilkan label sama '
+                 '/ total komentar ambigu diproses × 100%.',
                  ha='center', fontsize=11, style='italic', color='gray')
-        plt.tight_layout(rect=[0, 0.04, 1, 0.88])
+        plt.tight_layout(rect=[0, 0.12, 1, 1.0])
         plt.savefig(self.output_dir / '3_agreement_analysis.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("Created: 3_agreement_analysis.png")
+        print(f"  Created: {self.output_dir}/3_agreement_analysis.png")
 
-    # ================================================================ #
-    # 4. CLASSIFICATION  -  Total deteksi per kategori sampel             #
-    # ================================================================ #
     def plot_classification_comparison(self):
-        if not self.videos:
+        cats_present = [c for c in CAT_ORDER if self.by_cat.get(c)]
+        if not cats_present:
             print("Skipping classification - no data"); return
 
-        fig, axes = plt.subplots(2, 2, figsize=(16, 12))
+        labels = [CAT_LABEL[c] for c in cats_present]
+        colors = [CAT_COLOR[c] for c in cats_present]
+
+        fig, axes = plt.subplots(2, 2, figsize=(22, 16))
         fig.suptitle('Perbandingan Hasil Klasifikasi LLM per Kategori Sampel\n'
                      '(Hanya komentar ambigu yang dikirim ke LLM)',
-                     fontweight='bold', fontsize=14, y=1.01)
+                     fontweight='bold', fontsize=15, y=1.01)
 
-        # Panel 1 & 2: Total deteksi judi & bukan judi per kategori
         for idx, (model, color, field_j, field_b, title) in enumerate([
             ('Gemini (gemini-2.5-flash)', GEMINI_COLOR, 'gemini_judi', 'gemini_bukan_judi',
              'Gemini: Total Deteksi per Kategori Sampel'),
-            ('GPT (gpt-4o-mini)',          GPT_COLOR,   'gpt_judi',    'gpt_bukan_judi',
+            ('GPT (gpt-4o-mini)', GPT_COLOR, 'gpt_judi', 'gpt_bukan_judi',
              'GPT: Total Deteksi per Kategori Sampel'),
         ]):
-            ax  = axes[0][idx]
-            judi  = [self._sum(self.by_cat[c], field_j) for c in CAT_ORDER]
-            bukan = [self._sum(self.by_cat[c], field_b) for c in CAT_ORDER]
-            x, w  = np.arange(3), 0.32
+            ax   = axes[0][idx]
+            judi  = [self._sum(self.by_cat[c], field_j) for c in cats_present]
+            bukan = [self._sum(self.by_cat[c], field_b) for c in cats_present]
+            x, w  = np.arange(len(cats_present)), 0.32
 
-            b1 = ax.bar(x - w/2, judi,  w, label='Terdeteksi Judi',  color='#EA4335', alpha=0.88)
-            b2 = ax.bar(x + w/2, bukan, w, label='Bukan Judi',        color='#34A853', alpha=0.88)
+            b1 = ax.bar(x - w/2, judi,  w, label='Terdeteksi Judi', color='#EA4335', alpha=0.88)
+            b2 = ax.bar(x + w/2, bukan, w, label='Bukan Judi',      color='#34A853', alpha=0.88)
             bar_labels(ax, b1)
             bar_labels(ax, b2)
 
-            ax.set_title(title, fontweight='bold', fontsize=11)
+            ax.set_title(title, fontweight='bold', fontsize=13)
             ax.set_ylabel('Jumlah Komentar')
             legend_above(ax, fontsize=10)
             ax.grid(axis='y', alpha=0.3, linestyle='--')
             headroom(ax, 1.35)
-            set_cat_xticks(ax, x, CAT_LABELS, CAT_COLORS, fontsize=10)
+            set_cat_xticks(ax, x, labels, colors, fontsize=10)
 
-        # Panel 3: Detection rate (%) per kategori per model
         ax3 = axes[1][0]
-        x, w = np.arange(3), 0.32
+        x, w = np.arange(len(cats_present)), 0.32
         for shift, (model, color, fj, fb) in enumerate([
             ('Gemini', GEMINI_COLOR, 'gemini_judi', 'gemini_bukan_judi'),
             ('GPT',    GPT_COLOR,    'gpt_judi',    'gpt_bukan_judi'),
         ]):
             rates = []
-            for c in CAT_ORDER:
+            for c in cats_present:
                 j = self._sum(self.by_cat[c], fj)
                 b = self._sum(self.by_cat[c], fb)
                 rates.append((j / (j + b) * 100) if (j + b) > 0 else 0)
-            off = -w/2 if shift == 0 else w/2
+            off  = -w/2 if shift == 0 else w/2
             bars = ax3.bar(x + off, rates, w, label=model, color=color, alpha=0.88)
             bar_labels(ax3, bars, fmt=lambda h: f'{h:.1f}%')
 
         ax3.set_title('Detection Rate per Kategori Sampel\n'
                       '(% komentar ambigu yang terdeteksi sebagai judi)',
-                      fontweight='bold', fontsize=11)
+                      fontweight='bold', fontsize=13)
         ax3.set_ylabel('Detection Rate (%)')
-        ax3.set_xlabel('Kategori Sampel Video')
         ax3.set_ylim(0, 120)
         legend_above(ax3, fontsize=10)
         ax3.grid(axis='y', alpha=0.3, linestyle='--')
-        set_cat_xticks(ax3, x, CAT_LABELS, CAT_COLORS, fontsize=10)
+        set_cat_xticks(ax3, x, labels, colors, fontsize=10)
 
-        # Panel 4: Total keseluruhan Gemini vs GPT (ringkasan)
         ax4 = axes[1][1]
         labels_x = ['Judi\n(Gemini)', 'Bukan Judi\n(Gemini)', 'Judi\n(GPT)', 'Bukan Judi\n(GPT)']
         vals = [
@@ -367,64 +378,54 @@ class ResearchVisualizer:
         alphas     = [0.9, 0.9, 0.6, 0.6]
         x4 = np.arange(4)
         for xi, val, col, alp in zip(x4, vals, colors_bar, alphas):
-            b = ax4.bar(xi, val, 0.55, color=col, alpha=alp, edgecolor='white')
-            ax4.text(xi, val, f'{val:,}', ha='center', va='bottom',
-                     fontsize=11, fontweight='bold')
+            ax4.bar(xi, val, 0.55, color=col, alpha=alp, edgecolor='white')
+            ax4.text(xi, val, f'{val:,}', ha='center', va='bottom', fontsize=11, fontweight='bold')
 
-        # Garis pemisah Gemini vs GPT
         ax4.axvline(1.5, color='gray', linestyle='--', linewidth=1.2, alpha=0.6)
         ax4.text(0.75,  max(vals)*1.08, 'Gemini', ha='center', fontsize=10,
                  fontweight='bold', color=GEMINI_COLOR)
-        ax4.text(2.5, max(vals)*1.08, 'GPT', ha='center', fontsize=10,
+        ax4.text(2.5,   max(vals)*1.08, 'GPT',    ha='center', fontsize=10,
                  fontweight='bold', color=GPT_COLOR)
 
-        ax4.set_title('Total Klasifikasi LLM  -  Seluruh Data\n(30 video, semua kategori)',
-                      fontweight='bold', fontsize=11)
+        ax4.set_title('Total Klasifikasi LLM  -  Seluruh Data', fontweight='bold', fontsize=13)
         ax4.set_ylabel('Jumlah Komentar')
         ax4.set_xticks(x4); ax4.set_xticklabels(labels_x, fontsize=11)
         ax4.grid(axis='y', alpha=0.3, linestyle='--')
         headroom(ax4, 1.25)
 
-        # Legend warna arsir
         leg = [mpatches.Patch(color='#EA4335', label='Terdeteksi Judi'),
                mpatches.Patch(color='#34A853', label='Bukan Judi')]
         legend_above(ax4, handles=leg, fontsize=11)
 
         plt.tight_layout(rect=[0, 0, 1, 0.92])
-        plt.savefig(self.output_dir / '4_classification_comparison.png',
-                    dpi=300, bbox_inches='tight')
+        plt.savefig(self.output_dir / '4_classification_comparison.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("Created: 4_classification_comparison.png")
+        print(f"  Created: {self.output_dir}/4_classification_comparison.png")
 
-    # ================================================================ #
-    # 5. COST ANALYSIS  -  Total & breakdown agregat                      #
-    # ================================================================ #
     def plot_cost_analysis(self):
-        if not self.videos:
+        cats_present = [c for c in CAT_ORDER if self.by_cat.get(c)]
+        if not cats_present:
             print("Skipping cost - no data"); return
 
-        # Agregat keseluruhan
         total_gemini_cost = self._sum(self.videos, 'gemini_total_cost_usd')
         total_gpt_cost    = self._sum(self.videos, 'gpt_total_cost_usd')
-        grand_total       = total_gemini_cost + total_gpt_cost
 
         total_g_in  = self._sum(self.videos, 'gemini_total_input_tokens')
         total_g_out = self._sum(self.videos, 'gemini_total_output_tokens')
         total_p_in  = self._sum(self.videos, 'gpt_total_input_tokens')
         total_p_out = self._sum(self.videos, 'gpt_total_output_tokens')
 
-        # Cost per kategori
-        cost_by_cat_g = [self._sum(self.by_cat[c], 'gemini_total_cost_usd') for c in CAT_ORDER]
-        cost_by_cat_p = [self._sum(self.by_cat[c], 'gpt_total_cost_usd')    for c in CAT_ORDER]
-        cost_by_cat_t = [g + p for g, p in zip(cost_by_cat_g, cost_by_cat_p)]
+        cost_by_cat_g = [self._sum(self.by_cat[c], 'gemini_total_cost_usd') for c in cats_present]
+        cost_by_cat_p = [self._sum(self.by_cat[c], 'gpt_total_cost_usd')    for c in cats_present]
+        labels        = [CAT_LABEL[c] for c in cats_present]
+        colors        = [CAT_COLOR[c] for c in cats_present]
 
-        # Input/output cost breakdown
-        g_in_cost  = (total_g_in  / 1_000_000) * 0.30   # Gemini $0.30/1M
-        g_out_cost = (total_g_out / 1_000_000) * 2.50   # Gemini $2.50/1M
-        p_in_cost  = (total_p_in  / 1_000_000) * 0.15   # GPT    $0.15/1M
-        p_out_cost = (total_p_out / 1_000_000) * 0.60   # GPT    $0.60/1M
+        g_in_cost  = (total_g_in  / 1_000_000) * 0.30
+        g_out_cost = (total_g_out / 1_000_000) * 2.50
+        p_in_cost  = (total_p_in  / 1_000_000) * 0.15
+        p_out_cost = (total_p_out / 1_000_000) * 0.60
 
-        fig = plt.figure(figsize=(22, 18))
+        fig = plt.figure(figsize=(24, 16))
         gs  = fig.add_gridspec(2, 2, hspace=0.5, wspace=0.38)
         fig.suptitle(
             'ANALISIS BIAYA API  -  Gemini (gemini-2.5-flash) vs GPT (gpt-4o-mini)\n'
@@ -433,25 +434,23 @@ class ResearchVisualizer:
             fontsize=14, fontweight='bold', y=1.01
         )
 
-        # --- Panel 1: Total cost per model (bar besar) ---
         ax1 = fig.add_subplot(gs[0, 0])
-        models = ['Gemini\n(gemini-2.5-flash)', 'GPT\n(gpt-4o-mini)', 'Total\nKeduanya']
-        costs  = [total_gemini_cost, total_gpt_cost, grand_total]
-        colors = [GEMINI_COLOR, GPT_COLOR, '#9E9E9E']
-        bars   = ax1.bar(models, costs, color=colors, alpha=0.88, width=0.5, edgecolor='white')
+        models = ['Gemini\n(gemini-2.5-flash)', 'GPT\n(gpt-4o-mini)']
+        costs  = [total_gemini_cost, total_gpt_cost]
+        colors_bar = [GEMINI_COLOR, GPT_COLOR]
+        bars   = ax1.bar(models, costs, color=colors_bar, alpha=0.88, width=0.5, edgecolor='white')
         for bar, val in zip(bars, costs):
             ax1.text(bar.get_x() + bar.get_width()/2., bar.get_height(),
                      f'${val:.5f}\n(Rp {val*16300:,.0f})',
                      ha='center', va='bottom', fontsize=11, fontweight='bold')
-        ax1.set_title('Total Biaya API Keseluruhan\n(30 video, semua komentar ambigu)',
-                      fontweight='bold')
+        ax1.set_title('Perbandingan Biaya API\nGemini vs GPT', fontweight='bold')
         ax1.set_ylabel('Biaya (USD)')
         ax1.grid(axis='y', alpha=0.3, linestyle='--')
         headroom(ax1, 1.55)
 
-        # --- Panel 2: Pie proporsi cost ---
         ax2 = fig.add_subplot(gs[0, 1])
-        if grand_total > 0:
+        if (total_gemini_cost + total_gpt_cost) > 0:
+            grand_total = total_gemini_cost + total_gpt_cost
             ax2.pie(
                 [total_gemini_cost, total_gpt_cost],
                 labels=[f'Gemini\n${total_gemini_cost:.5f}\n({total_gemini_cost/grand_total*100:.1f}%)',
@@ -460,51 +459,39 @@ class ResearchVisualizer:
                 explode=(0.05, 0.05), startangle=90,
                 textprops={'fontsize': 11, 'fontweight': 'bold'}
             )
-            ax2.set_title(f'Proporsi Biaya API\nGrand Total: ${grand_total:.5f} USD '
-                          f'(~ Rp {grand_total*16300:,.0f})',
-                          fontweight='bold')
+            ax2.set_title('Proporsi Biaya API\n(Gemini vs GPT)', fontweight='bold')
         else:
             ax2.text(0.5, 0.5, 'Data cost belum tersedia', ha='center', va='center')
             ax2.axis('off')
 
-        # --- Panel 3: Cost per kategori sampel ---
         ax3 = fig.add_subplot(gs[1, 0])
-        x, w = np.arange(3), 0.32
+        x, w = np.arange(len(cats_present)), 0.32
         b1 = ax3.bar(x - w/2, cost_by_cat_g, w, label='Gemini', color=GEMINI_COLOR, alpha=0.88)
         b2 = ax3.bar(x + w/2, cost_by_cat_p, w, label='GPT',    color=GPT_COLOR,    alpha=0.88)
         bar_labels(ax3, b1, fmt=lambda h: f'${h:.4f}')
         bar_labels(ax3, b2, fmt=lambda h: f'${h:.4f}')
-        ax3.set_title('Biaya API per Kategori Sampel\n(Total 10 video per kategori)',
-                      fontweight='bold')
+        ax3.set_title('Biaya API per Kategori Sampel', fontweight='bold')
         ax3.set_ylabel('Biaya (USD)')
-        ax3.set_xlabel('Kategori Sampel Video')
         legend_above(ax3)
         ax3.grid(axis='y', alpha=0.3, linestyle='--')
         headroom(ax3, 1.45)
-        set_cat_xticks(ax3, x, CAT_LABELS, CAT_COLORS, fontsize=10)
+        set_cat_xticks(ax3, x, labels, colors, fontsize=10)
 
-        # --- Panel 4: Breakdown input vs output cost per model ---
         ax4 = fig.add_subplot(gs[1, 1])
-        x4      = np.arange(2)
-        in_c    = [g_in_cost,  p_in_cost]
-        out_c   = [g_out_cost, p_out_cost]
+        x4    = np.arange(2)
+        in_c  = [g_in_cost,  p_in_cost]
+        out_c = [g_out_cost, p_out_cost]
         b_in  = ax4.bar(x4, in_c,  0.45, label='Input token cost',  color='#74C0FC', alpha=0.9)
         b_out = ax4.bar(x4, out_c, 0.45, label='Output token cost', color='#FF8787', alpha=0.9,
                         bottom=in_c)
-        # Label total
         for xi, ic, oc in zip(x4, in_c, out_c):
             total = ic + oc
-            ax4.text(xi, total, f'${total:.5f}', ha='center', va='bottom',
-                     fontsize=11, fontweight='bold')
-            ax4.text(xi, ic/2, f'Input\n${ic:.5f}', ha='center', va='center',
-                     fontsize=11, color='#1a5276')
+            ax4.text(xi, total, f'${total:.5f}', ha='center', va='bottom', fontsize=11, fontweight='bold')
+            ax4.text(xi, ic/2,  f'Input\n${ic:.5f}', ha='center', va='center', fontsize=11, color='#1a5276')
             if oc > 0:
-                ax4.text(xi, ic + oc/2, f'Output\n${oc:.5f}', ha='center', va='center',
-                         fontsize=11, color='#7b241c')
+                ax4.text(xi, ic + oc/2, f'Output\n${oc:.5f}', ha='center', va='center', fontsize=11, color='#7b241c')
 
-        ax4.set_title('Breakdown: Input Token vs Output Token Cost\n'
-                      '(Output lebih mahal karena harga per-token lebih tinggi)',
-                      fontweight='bold')
+        ax4.set_title('Breakdown: Input vs Output Token Cost', fontweight='bold')
         ax4.set_ylabel('Biaya (USD)')
         ax4.set_xticks(x4)
         ax4.set_xticklabels(['Gemini\n(gemini-2.5-flash)', 'GPT\n(gpt-4o-mini)'], fontsize=10)
@@ -512,8 +499,7 @@ class ResearchVisualizer:
         ax4.grid(axis='y', alpha=0.3, linestyle='--')
         headroom(ax4, 1.35)
 
-        # Token usage footnote
-        fig.text(0.5, 0.01,
+        fig.text(0.5, 0.04,
                  f'Token Usage  -  Gemini: {total_g_in:,} input + {total_g_out:,} output  |  '
                  f'GPT: {total_p_in:,} input + {total_p_out:,} output',
                  ha='center', fontsize=11, fontweight='bold',
@@ -521,16 +507,13 @@ class ResearchVisualizer:
 
         plt.savefig(self.output_dir / '5_cost_analysis.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("Created: 5_cost_analysis.png")
+        print(f"  Created: {self.output_dir}/5_cost_analysis.png")
 
-    # ================================================================ #
-    # 6. COMPLETE DASHBOARD                                             #
-    # ================================================================ #
     def plot_complete_dashboard(self):
-        if not self.videos:
+        cats_present = [c for c in CAT_ORDER if self.by_cat.get(c)]
+        if not cats_present:
             print("Skipping dashboard - no data"); return
 
-        # Hitung semua metrik agregat
         total_g_judi  = self._sum(self.videos, 'gemini_judi')
         total_g_bukan = self._sum(self.videos, 'gemini_bukan_judi')
         total_p_judi  = self._sum(self.videos, 'gpt_judi')
@@ -541,10 +524,11 @@ class ResearchVisualizer:
         total_rb_ambi  = self.summary.get('total_ambigu', 0)
         total_comments = self.summary.get('total_comments', 0)
 
-        total_agree    = self._sum(self.videos, 'agreement_count')
-        total_disagree = self._sum(self.videos, 'disagreement_count')
+        total_agree    = self._sum(self.videos, 'gemini_agree_count')
+        total_disagree = self._sum(self.videos, 'gemini_disagree_count')
         total_llm      = total_agree + total_disagree
-        agr_rate       = (total_agree / total_llm * 100) if total_llm else 0
+        g_agr_rate     = self.averages.get('gemini_agreement_rate', 0)
+        p_agr_rate     = self.averages.get('gpt_agreement_rate',    0)
 
         g_conf = self.averages.get('gemini_confidence', 0)
         p_conf = self.averages.get('gpt_confidence', 0)
@@ -553,7 +537,6 @@ class ResearchVisualizer:
 
         total_g_cost = self.summary.get('gemini_total_cost_usd', 0.0)
         total_p_cost = self.summary.get('gpt_total_cost_usd', 0.0)
-        grand_cost   = self.summary.get('total_cost_usd', 0.0)
 
         def lbl(ax, bars, fmt=None):
             for bar in bars:
@@ -562,9 +545,9 @@ class ResearchVisualizer:
                 label = fmt(h) if fmt else (f'{h:.3f}' if h % 1 != 0 else f'{int(h)}')
                 ax.text(bar.get_x() + bar.get_width()/2., h,
                         label, ha='center', va='bottom', fontsize=10, fontweight='bold')
-            ax.set_ylim(0, max(max(b.get_height() for b in bars) * 1.35, 0.001))
+            ax.set_ylim(0, max((b.get_height() for b in bars), default=0.001) * 1.35)
 
-        fig = plt.figure(figsize=(22, 18))
+        fig = plt.figure(figsize=(26, 20))
         gs  = fig.add_gridspec(3, 3, hspace=0.75, wspace=0.40)
         fig.suptitle(
             'DASHBOARD RINGKASAN PENELITIAN\n'
@@ -573,12 +556,14 @@ class ResearchVisualizer:
             fontsize=16, fontweight='bold', y=1.01
         )
 
-        # --- P1: Rule-based hasil per kategori ---
+        labels = [CAT_LABEL[c] for c in cats_present]
+        colors = [CAT_COLOR[c] for c in cats_present]
+
         ax1 = fig.add_subplot(gs[0, 0])
-        cat_rb_judi  = [self._sum(self.by_cat[c], 'rule_based_judi')      for c in CAT_ORDER]
-        cat_rb_bukan = [self._sum(self.by_cat[c], 'rule_based_bukan_judi') for c in CAT_ORDER]
-        cat_rb_ambi  = [self._sum(self.by_cat[c], 'rule_based_ambigu')    for c in CAT_ORDER]
-        x, w = np.arange(3), 0.25
+        cat_rb_judi  = [self._sum(self.by_cat[c], 'rule_based_judi')       for c in cats_present]
+        cat_rb_bukan = [self._sum(self.by_cat[c], 'rule_based_bukan_judi')  for c in cats_present]
+        cat_rb_ambi  = [self._sum(self.by_cat[c], 'rule_based_ambigu')     for c in cats_present]
+        x, w = np.arange(len(cats_present)), 0.25
         b1 = ax1.bar(x - w,   cat_rb_judi,  w, label='Judi',        color='#EA4335', alpha=0.85)
         b2 = ax1.bar(x,       cat_rb_bukan, w, label='Bukan Judi',  color='#34A853', alpha=0.85)
         b3 = ax1.bar(x + w,   cat_rb_ambi,  w, label='Ambigu->LLM', color='#FBBC04', alpha=0.85)
@@ -589,22 +574,23 @@ class ResearchVisualizer:
                    bbox_to_anchor=(0.5, -0.22), framealpha=0.9,
                    handlelength=1.2, borderpad=0.4, columnspacing=0.8)
         ax1.grid(axis='y', alpha=0.3)
-        set_cat_xticks(ax1, x, CAT_LABELS, CAT_COLORS, fontsize=9)
+        set_cat_xticks(ax1, x, labels, colors, fontsize=9)
 
-        # --- P2: Agreement pie ---
         ax2 = fig.add_subplot(gs[0, 1])
-        ax2.pie(
-            [total_agree, total_disagree],
-            labels=[f'Sepakat\n{total_agree:,}\n({agr_rate:.1f}%)',
-                    f'Tidak Sepakat\n{total_disagree:,}\n({100-agr_rate:.1f}%)'],
-            colors=['#34A853', '#EA4335'],
-            explode=(0.05, 0.05), startangle=90,
-            textprops={'fontsize': 10, 'fontweight': 'bold'}
-        )
-        ax2.set_title(f'Agreement Rate\n{agr_rate:.1f}% dari {total_llm:,} komentar',
-                      fontweight='bold')
+        x2, w2 = np.arange(len(cats_present)), 0.32
+        g_rates = [self._avg(self.by_cat[c], 'gemini_agreement_rate') for c in cats_present]
+        p_rates = [self._avg(self.by_cat[c], 'gpt_agreement_rate')    for c in cats_present]
+        bg = ax2.bar(x2 - w2/2, g_rates, w2, label='Gemini Agr. Rate %', color=GEMINI_COLOR, alpha=0.88)
+        bp = ax2.bar(x2 + w2/2, p_rates, w2, label='GPT Agr. Rate %',    color=GPT_COLOR,    alpha=0.88)
+        bar_labels(ax2, bg, fmt=lambda h: f'{h:.1f}%')
+        bar_labels(ax2, bp, fmt=lambda h: f'{h:.1f}%')
+        ax2.set_title(f'Agreement Rate\nGemini vs GPT per Kategori', fontweight='bold')
+        ax2.set_ylabel('Agreement Rate (%)')
+        ax2.set_ylim(0, 120)
+        legend_above(ax2, fontsize=9)
+        ax2.grid(axis='y', alpha=0.3, linestyle='--')
+        set_cat_xticks(ax2, x2, labels, colors, fontsize=9)
 
-        # --- P3: Summary text ---
         ax3 = fig.add_subplot(gs[0, 2])
         ax3.axis('off')
         faster    = 'GPT' if p_lat  < g_lat  else 'Gemini'
@@ -613,42 +599,39 @@ class ResearchVisualizer:
         summary_text = (
             "RINGKASAN PERFORMA MODEL\n"
             "-----------------------------\n"
-            f"Dataset : 30 video ({len(self.by_cat['JUDI'])} Judi | "
-            f"{len(self.by_cat['TIDAK_JUDI'])} Tidak Judi | "
-            f"{len(self.by_cat['AMBIGU'])} Ambigu)\n"
-            f"Total komentar diproses : {total_comments:,}\n"
-            f"Dikirim ke LLM (ambigu) : {total_llm:,}\n\n"
+            f"Dataset : {len(self.videos)} video\n"
+            f"  {', '.join(f'{c}={len(self.by_cat[c])}' for c in cats_present)}\n"
+            f"Total komentar        : {total_comments:,}\n"
+            f"Dikirim ke LLM        : {total_llm:,}\n\n"
             f"Gemini (gemini-2.5-flash):\n"
-            f"  Deteksi Judi   : {total_g_judi:,}\n"
-            f"  Bukan Judi     : {total_g_bukan:,}\n"
-            f"  Avg Confidence : {g_conf:.4f}\n"
-            f"  Avg Latency    : {g_lat:.1f} ms\n"
-            f"  Total Cost     : ${total_g_cost:.5f}\n\n"
+            f"  Deteksi Judi      : {total_g_judi:,}\n"
+            f"  Bukan Judi        : {total_g_bukan:,}\n"
+            f"  Avg Confidence    : {g_conf:.4f}\n"
+            f"  Avg Latency       : {g_lat:.1f} ms\n"
+            f"  Agreement Rate    : {g_agr_rate:.1f}%\n"
+            f"  Total Cost        : ${total_g_cost:.5f}\n\n"
             f"GPT (gpt-4o-mini):\n"
-            f"  Deteksi Judi   : {total_p_judi:,}\n"
-            f"  Bukan Judi     : {total_p_bukan:,}\n"
-            f"  Avg Confidence : {p_conf:.4f}\n"
-            f"  Avg Latency    : {p_lat:.1f} ms\n"
-            f"  Total Cost     : ${total_p_cost:.5f}\n\n"
+            f"  Deteksi Judi      : {total_p_judi:,}\n"
+            f"  Bukan Judi        : {total_p_bukan:,}\n"
+            f"  Avg Confidence    : {p_conf:.4f}\n"
+            f"  Avg Latency       : {p_lat:.1f} ms\n"
+            f"  Agreement Rate    : {p_agr_rate:.1f}%\n"
+            f"  Total Cost        : ${total_p_cost:.5f}\n\n"
             f"-----------------------------\n"
-            f"Tercepat (latency)    : {faster}\n"
-            f"Paling yakin (conf.)  : {confident}\n"
-            f"Paling murah          : {cheaper}\n"
-            f"Agreement Rate        : {agr_rate:.1f}%\n"
-            f"Grand Total Cost      : ${grand_cost:.5f}\n"
-            f"                       (~ Rp {grand_cost*16300:,.0f})"
+            f"Tercepat (latency) : {faster}\n"
+            f"Paling yakin (conf): {confident}\n"
+            f"Paling murah       : {cheaper}\n"
         )
         ax3.text(0.03, 0.98, summary_text, transform=ax3.transAxes,
-                 fontsize=11, verticalalignment='top', fontfamily='monospace',
+                 fontsize=10, verticalalignment='top', fontfamily='monospace',
                  bbox=dict(boxstyle='round', facecolor='#f0f4ff', alpha=0.8))
 
-        # --- P4: LLM classification per kategori (grouped) ---
         ax4 = fig.add_subplot(gs[1, :])
-        x4, w4 = np.arange(3), 0.2
-        g_judi_cat  = [self._sum(self.by_cat[c], 'gemini_judi')      for c in CAT_ORDER]
-        g_bukan_cat = [self._sum(self.by_cat[c], 'gemini_bukan_judi') for c in CAT_ORDER]
-        p_judi_cat  = [self._sum(self.by_cat[c], 'gpt_judi')          for c in CAT_ORDER]
-        p_bukan_cat = [self._sum(self.by_cat[c], 'gpt_bukan_judi')    for c in CAT_ORDER]
+        x4, w4 = np.arange(len(cats_present)), 0.2
+        g_judi_cat  = [self._sum(self.by_cat[c], 'gemini_judi')       for c in cats_present]
+        g_bukan_cat = [self._sum(self.by_cat[c], 'gemini_bukan_judi')  for c in cats_present]
+        p_judi_cat  = [self._sum(self.by_cat[c], 'gpt_judi')           for c in cats_present]
+        p_bukan_cat = [self._sum(self.by_cat[c], 'gpt_bukan_judi')     for c in cats_present]
 
         bg1 = ax4.bar(x4 - 1.5*w4, g_judi_cat,  w4, label='Gemini  -  Judi',       color=GEMINI_COLOR, alpha=0.9)
         bg2 = ax4.bar(x4 - 0.5*w4, g_bukan_cat, w4, label='Gemini  -  Bukan Judi', color=GEMINI_COLOR, alpha=0.45)
@@ -656,77 +639,67 @@ class ResearchVisualizer:
         bp2 = ax4.bar(x4 + 1.5*w4, p_bukan_cat, w4, label='GPT  -  Bukan Judi',    color=GPT_COLOR,    alpha=0.45)
         for b in [bg1, bg2, bp1, bp2]: lbl(ax4, b)
 
-        ax4.set_title('Hasil Klasifikasi LLM per Kategori Sampel\n'
-                      '(Gemini solid = judi | Gemini transparan = bukan judi | '
-                      'GPT solid = judi | GPT transparan = bukan judi)',
-                      fontweight='bold', fontsize=11)
+        ax4.set_title('Hasil Klasifikasi LLM per Kategori Sampel', fontweight='bold', fontsize=13)
         ax4.set_ylabel('Jumlah Komentar')
-        ax4.set_xlabel('Kategori Sampel Video')
         ax4.legend(fontsize=9, ncol=4, loc='upper center',
                    bbox_to_anchor=(0.5, -0.18), framealpha=0.9,
                    handlelength=1.2, borderpad=0.4, columnspacing=0.8)
         ax4.grid(axis='y', alpha=0.3, linestyle='--')
-        set_cat_xticks(ax4, x4, CAT_LABELS, CAT_COLORS, fontsize=10)
+        set_cat_xticks(ax4, x4, labels, colors, fontsize=10)
 
-        # --- P5: Avg Confidence ---
         ax5 = fig.add_subplot(gs[2, 0])
-        g_conf_cat = [self._avg(self.by_cat[c], 'gemini_avg_confidence') for c in CAT_ORDER]
-        p_conf_cat = [self._avg(self.by_cat[c], 'gpt_avg_confidence')    for c in CAT_ORDER]
-        x5, w5 = np.arange(3), 0.32
+        g_conf_cat = [self._avg(self.by_cat[c], 'gemini_avg_confidence') for c in cats_present]
+        p_conf_cat = [self._avg(self.by_cat[c], 'gpt_avg_confidence')    for c in cats_present]
+        x5, w5 = np.arange(len(cats_present)), 0.32
         b1 = ax5.bar(x5 - w5/2, g_conf_cat, w5, label='Gemini', color=GEMINI_COLOR, alpha=0.88)
         b2 = ax5.bar(x5 + w5/2, p_conf_cat, w5, label='GPT',    color=GPT_COLOR,    alpha=0.88)
         bar_labels(ax5, b1, fmt=lambda h: f'{h:.3f}')
         bar_labels(ax5, b2, fmt=lambda h: f'{h:.3f}')
         ax5.set_title('Avg Confidence Score\nper Kategori Sampel', fontweight='bold')
         ax5.set_ylabel('Confidence (0-1)')
-        set_cat_xticks(ax5, x5, CAT_LABELS, CAT_COLORS, fontsize=9)
+        set_cat_xticks(ax5, x5, labels, colors, fontsize=9)
         ax5.set_ylim(0, 1.25)
         ax5.legend(fontsize=8, ncol=2, loc='upper center',
                    bbox_to_anchor=(0.5, -0.22), framealpha=0.9,
                    handlelength=1.2, borderpad=0.4)
         ax5.grid(axis='y', alpha=0.3, linestyle='--')
 
-        # --- P6: Avg Latency ---
         ax6 = fig.add_subplot(gs[2, 1])
-        g_lat_cat = [self._avg(self.by_cat[c], 'gemini_avg_latency') for c in CAT_ORDER]
-        p_lat_cat = [self._avg(self.by_cat[c], 'gpt_avg_latency')    for c in CAT_ORDER]
+        g_lat_cat = [self._avg(self.by_cat[c], 'gemini_avg_latency') for c in cats_present]
+        p_lat_cat = [self._avg(self.by_cat[c], 'gpt_avg_latency')    for c in cats_present]
         b1 = ax6.bar(x5 - w5/2, g_lat_cat, w5, label='Gemini', color=GEMINI_COLOR, alpha=0.88)
         b2 = ax6.bar(x5 + w5/2, p_lat_cat, w5, label='GPT',    color=GPT_COLOR,    alpha=0.88)
         bar_labels(ax6, b1, fmt=lambda h: f'{h:.0f}ms')
         bar_labels(ax6, b2, fmt=lambda h: f'{h:.0f}ms')
         ax6.set_title('Avg Latency (ms)\nper Kategori Sampel', fontweight='bold')
         ax6.set_ylabel('Latency (ms)')
-        set_cat_xticks(ax6, x5, CAT_LABELS, CAT_COLORS, fontsize=9)
+        set_cat_xticks(ax6, x5, labels, colors, fontsize=9)
         ax6.legend(fontsize=8, ncol=2, loc='upper center',
                    bbox_to_anchor=(0.5, -0.22), framealpha=0.9,
                    handlelength=1.2, borderpad=0.4)
         ax6.grid(axis='y', alpha=0.3, linestyle='--')
         headroom(ax6, 1.35)
 
-        # --- P7: Cost comparison ---
         ax7 = fig.add_subplot(gs[2, 2])
         bars_c = ax7.bar(
-            ['Gemini\n(gemini-2.5-flash)', 'GPT\n(gpt-4o-mini)', 'Total'],
-            [total_g_cost, total_p_cost, grand_cost],
-            color=[GEMINI_COLOR, GPT_COLOR, '#9E9E9E'], alpha=0.88, width=0.5
+            ['Gemini\n(gemini-2.5-flash)', 'GPT\n(gpt-4o-mini)'],
+            [total_g_cost, total_p_cost],
+            color=[GEMINI_COLOR, GPT_COLOR], alpha=0.88, width=0.5
         )
-        for bar, val in zip(bars_c, [total_g_cost, total_p_cost, grand_cost]):
+        for bar, val in zip(bars_c, [total_g_cost, total_p_cost]):
             ax7.text(bar.get_x() + bar.get_width()/2., bar.get_height(),
                      f'${val:.5f}', ha='center', va='bottom', fontsize=10, fontweight='bold')
-        ax7.set_title('Total Biaya API (USD)\n30 video keseluruhan', fontweight='bold')
+        ax7.set_title('Perbandingan Biaya API\nGemini vs GPT', fontweight='bold')
         ax7.set_ylabel('USD')
         ax7.grid(axis='y', alpha=0.3, linestyle='--')
         headroom(ax7, 1.45)
 
         plt.savefig(self.output_dir / '6_complete_dashboard.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("Created: 6_complete_dashboard.png")
+        print(f"  Created: {self.output_dir}/6_complete_dashboard.png")
 
-    # ================================================================ #
-    # 7. RESEARCH FLOW                                                  #
-    # ================================================================ #
     def plot_research_flow(self):
-        fig, ax = plt.subplots(figsize=(16, 11))
+        fig, ax = plt.subplots(figsize=(20, 14))
         ax.axis('off')
         ax.text(0.5, 0.95, 'ALUR METODOLOGI PENELITIAN', ha='center', va='top',
                 fontsize=16, fontweight='bold')
@@ -735,7 +708,7 @@ class ResearchVisualizer:
 
         stages = [
             {'y': 0.85, 'title': '1. INPUT DATA',
-             'text': '30 Video YouTube (10 Judi | 10 Tidak Judi | 10 Ambigu)  x  200 komentar/video  =  6.000 komentar',
+             'text': '35 Video YouTube (10 Judi | 10 Tidak Judi | 10 Ambigu | 5 Random)  x  200 komentar/video',
              'color': '#E3F2FD', 'border': '#2196F3'},
             {'y': 0.75, 'title': '2. PRA-PEMROSESAN',
              'text': 'Case Folding -> Normalisasi Leet Speak -> Tokenisasi -> Penghapusan Stopword',
@@ -744,16 +717,16 @@ class ResearchVisualizer:
              'text': 'Threshold: similarity >= 0.75 -> Judi  |  < 0.50 -> Bukan Judi  |  0.50-0.75 -> Ambigu',
              'color': '#FFF3E0', 'border': '#FF9800'},
             {'y': 0.52, 'title': '   HASIL RULE-BASED',
-             'text': '   Judi Online (langsung)  |  Bukan Judi (langsung)  |  Ambigu -> dikirim ke LLM (~52% komentar)',
+             'text': '   Judi Online (langsung)  |  Bukan Judi (langsung)  |  Ambigu -> dikirim ke LLM',
              'color': '#FCE4EC', 'border': '#E91E63'},
             {'y': 0.38, 'title': '4. LLM CLASSIFICATION  (Hanya untuk komentar Ambigu)',
-             'text': 'Gemini (gemini-2.5-flash) vs GPT (gpt-4o-mini)  -  klasifikasi paralel',
+             'text': 'Gemini (gemini-2.5-flash) vs GPT (gpt-4o-mini)  -  klasifikasi paralel, dibandingkan',
              'color': '#F3E5F5', 'border': '#9C27B0'},
-            {'y': 0.25, 'title': '5. EVALUASI KOMPARASI',
-             'text': 'Agreement Rate  |  Confidence Score  |  Latency  |  Biaya API (USD)',
+            {'y': 0.25, 'title': '5. EVALUASI KOMPARASI (Pembanding, bukan gabungan)',
+             'text': 'Agreement Rate Gemini % | Agreement Rate GPT % | Confidence | Latency | Biaya API',
              'color': '#E0F2F1', 'border': '#009688'},
             {'y': 0.13, 'title': '6. OUTPUT & KESIMPULAN',
-             'text': '5 Tabel Excel (per-video)  +  7 Grafik Visualisasi (agregat)  +  Laporan Penelitian',
+             'text': '5 Tabel Excel  +  7 Grafik per Folder (all/judi/tidak_judi/ambigu/random)  +  Laporan',
              'color': '#FFF9C4', 'border': '#FBC02D'},
         ]
 
@@ -780,27 +753,52 @@ class ResearchVisualizer:
 
         plt.savefig(self.output_dir / '7_research_flow_diagram.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("Created: 7_research_flow_diagram.png")
+        print(f"  Created: {self.output_dir}/7_research_flow_diagram.png")
 
-    # ================================================================ #
-    # MAIN                                                              #
-    # ================================================================ #
     def create_all_visualizations(self):
         print("\nCreating visualizations...\n")
-        self.plot_confidence_distribution()
-        self.plot_latency_distribution()
-        self.plot_agreement_analysis()
-        self.plot_classification_comparison()
-        self.plot_cost_analysis()
-        self.plot_complete_dashboard()
-        self.plot_research_flow()
-        print(f"\nAll visualizations created! -> {self.output_dir}/")
 
+        subfolders = [
+            ('all',        None),
+            ('judi',       'JUDI'),
+            ('tidak_judi', 'TIDAK_JUDI'),
+            ('ambigu',     'AMBIGU'),
+            ('random',     'RANDOM'),
+        ]
+
+        for folder_name, filter_cat in subfolders:
+            out_dir = self.base_out_dir / folder_name
+
+            if filter_cat is None:
+                subset = self.videos
+            else:
+                subset = [v for v in self.videos if v.get('sample_category') == filter_cat]
+
+            if not subset:
+                print(f"  [{folder_name}] Tidak ada data - dilewati")
+                continue
+
+            print(f"\n--- [{folder_name.upper()}] {len(subset)} video ---")
+            self._set_context(subset, out_dir)
+
+            self.plot_confidence_distribution()
+            self.plot_latency_distribution()
+            self.plot_agreement_analysis()
+            self.plot_classification_comparison()
+            self.plot_cost_analysis()
+            self.plot_complete_dashboard()
+            self.plot_research_flow()
+
+            self._restore_context()
+
+        print(f"\nAll visualizations created! -> {self.base_out_dir}/")
+        print("  Subfolder: all/ | judi/ | tidak_judi/ | ambigu/ | random/")
 
 def main():
     print("=" * 70)
     print("RESEARCH RESULTS VISUALIZER")
-    print("  Membaca dari: results/aggregate_results.json")
+    print("  Membaca dari : results/aggregate_results.json")
+    print("  Output       : visualizations/all | judi | tidak_judi | ambigu | random")
     print("=" * 70)
     viz = ResearchVisualizer(results_dir="results", output_dir="visualizations")
     if not viz.videos:
@@ -809,15 +807,12 @@ def main():
     viz.create_all_visualizations()
     print("\n" + "=" * 70)
     print("SELESAI! File tersimpan di: visualizations/")
-    print("  1. 1_confidence_distribution.png   -  Avg confidence per kategori")
-    print("  2. 2_latency_distribution.png      -  Avg latency per kategori")
-    print("  3. 3_agreement_analysis.png        -  Agreement rate total & per kategori")
-    print("  4. 4_classification_comparison.png  -  Hasil klasifikasi LLM per kategori")
-    print("  5. 5_cost_analysis.png             -  Biaya API total & breakdown")
-    print("  6. 6_complete_dashboard.png        -  Dashboard ringkasan lengkap")
-    print("  7. 7_research_flow_diagram.png     -  Alur metodologi penelitian")
+    print("  all/        - Semua video (gabungan)")
+    print("  judi/       - Hanya video JUDI")
+    print("  tidak_judi/ - Hanya video TIDAK_JUDI")
+    print("  ambigu/     - Hanya video AMBIGU")
+    print("  random/     - Hanya video RANDOM")
     print("=" * 70)
-
 
 if __name__ == "__main__":
     main()

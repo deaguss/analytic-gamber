@@ -1,7 +1,7 @@
 {
   "video_id": "mD6uSGSjgr4",
   "video_url": "https://www.youtube.com/watch?v=mD6uSGSjgr4",
-  "scraped_at": "2026-03-02T09:52:15.873830",
+  "scraped_at": "2026-03-14T00:31:17.633102",
   "total_comments": 200,
   "comments": [
     {
@@ -11,97 +11,97 @@
     },
     {
       "comment_id": "comment_5602",
-      "text": "Bg ko d gua 💲 gak bisa yaa, malah eror",
-      "timestamp": "4 hari yang lalu"
+      "text": "untung aja dah belajar python, jdi simpel aja ternyata js, algoritmanya mirip² cuma syntax nya aja yang beda",
+      "timestamp": "3 hari yang lalu"
     },
     {
       "comment_id": "comment_5603",
-      "text": "2026 🎉",
-      "timestamp": "5 hari yang lalu"
+      "text": "kenapa ya bg untuk fungsi backtick ga ngaruh di webnya  27:51",
+      "timestamp": "3 hari yang lalu"
     },
     {
       "comment_id": "comment_5604",
-      "text": "Kira kira klo pake hp bisa gak??, laptopku kentang soalnya😂",
-      "timestamp": "5 hari yang lalu"
+      "text": "bang alert ku ga muncul setelah aku buat di main.js",
+      "timestamp": "8 hari yang lalu"
     },
     {
       "comment_id": "comment_5605",
-      "text": "Kira kira klo pake hp bisa gak??, laptopku kentang soalnya😂",
-      "timestamp": "5 hari yang lalu"
+      "text": "Bg ko d gua 💲 gak bisa yaa, malah eror",
+      "timestamp": "2 minggu yang lalu"
     },
     {
       "comment_id": "comment_5606",
-      "text": "amazing content and helpful",
-      "timestamp": "5 hari yang lalu"
+      "text": "2026 🎉",
+      "timestamp": "2 minggu yang lalu"
     },
     {
       "comment_id": "comment_5607",
-      "text": "terima kasih banyak",
-      "timestamp": "6 hari yang lalu"
+      "text": "Kira kira klo pake hp bisa gak??, laptopku kentang soalnya😂",
+      "timestamp": "2 minggu yang lalu"
     },
     {
       "comment_id": "comment_5608",
-      "text": "hatur nuhun kang, selalu seru kalo belajar sama kang dea. panutan kita semua  😁",
-      "timestamp": "7 hari yang lalu"
+      "text": "Kira kira klo pake hp bisa gak??, laptopku kentang soalnya😂",
+      "timestamp": "2 minggu yang lalu"
     },
     {
       "comment_id": "comment_5609",
-      "text": "//Tugas 1\nlet tabungan = 10\nalert(`Uang kamu di tabungan ada ${tabungan}k`)\nlet nabung = Number(prompt('Kamu ingin menabung berapa hari ini?'))\n\n//output hasil dari menabung\nlet hasil = tabungan + nabung\nalert(`Selamat kamu menabung ${nabung}k dan uang mu sekarang adalah ${hasil}k`)\n\n//Tugas 2\nconst d = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']\nconst hari = new Date()\nconsole.log(d[hari.getDay()])\n\nOk la cukup menyenangkan.😊",
-      "timestamp": "12 hari yang lalu"
+      "text": "amazing content and helpful",
+      "timestamp": "2 minggu yang lalu"
     },
     {
       "comment_id": "comment_5610",
-      "text": "iklan u ga gw skip bnag",
+      "text": "terima kasih banyak",
       "timestamp": "2 minggu yang lalu"
     },
     {
       "comment_id": "comment_5611",
-      "text": "let hari = new Date(). getDay()\r\nswitch (hari){\r\n    case 1 :\r\n   hari = \"senin\"\r\n    break\r\n     case 2 :\r\n    hari = \"selasa\"\r\n    break\r\n case 3 :\r\n   hari = \"rabu\"\r\n    break\r\n case 4 :\r\n  hari  = \"kamis\"\r\n    break\r\n case 5 :\r\n  hari  = \"jumat\"\r\n    break\r\n    case 6 :\r\n  hari  = \"sabtu\"\r\n    break\r\n    case 7 :\r\n  hari  = \"minggu\"\r\n    break\r\n default :\r\n    hari =  \"kiamat\"\r\n    break\r\n\r\n\r\n}\r\n\r\nconsole.log (`hari ${hari}`)",
+      "text": "hatur nuhun kang, selalu seru kalo belajar sama kang dea. panutan kita semua  😁",
       "timestamp": "2 minggu yang lalu"
     },
     {
       "comment_id": "comment_5612",
-      "text": "susah bgt jir, gini amat mengejar masa depan",
-      "timestamp": "1 bulan yang lalu"
+      "text": "//Tugas 1\nlet tabungan = 10\nalert(`Uang kamu di tabungan ada ${tabungan}k`)\nlet nabung = Number(prompt('Kamu ingin menabung berapa hari ini?'))\n\n//output hasil dari menabung\nlet hasil = tabungan + nabung\nalert(`Selamat kamu menabung ${nabung}k dan uang mu sekarang adalah ${hasil}k`)\n\n//Tugas 2\nconst d = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']\nconst hari = new Date()\nconsole.log(d[hari.getDay()])\n\nOk la cukup menyenangkan.😊",
+      "timestamp": "3 minggu yang lalu"
     },
     {
       "comment_id": "comment_5613",
-      "text": "Bang kok \"`\" gua ga fungsi? Di gua malah error kalau pake tanda itu",
-      "timestamp": "1 bulan yang lalu"
+      "text": "iklan u ga gw skip bnag",
+      "timestamp": "3 minggu yang lalu"
     },
     {
       "comment_id": "comment_5614",
-      "text": "bg, kok file we buat main js itu gabisa, gada kyk lo bg",
+      "text": "let hari = new Date(). getDay()\r\nswitch (hari){\r\n    case 1 :\r\n   hari = \"senin\"\r\n    break\r\n     case 2 :\r\n    hari = \"selasa\"\r\n    break\r\n case 3 :\r\n   hari = \"rabu\"\r\n    break\r\n case 4 :\r\n  hari  = \"kamis\"\r\n    break\r\n case 5 :\r\n  hari  = \"jumat\"\r\n    break\r\n    case 6 :\r\n  hari  = \"sabtu\"\r\n    break\r\n    case 7 :\r\n  hari  = \"minggu\"\r\n    break\r\n default :\r\n    hari =  \"kiamat\"\r\n    break\r\n\r\n\r\n}\r\n\r\nconsole.log (`hari ${hari}`)",
       "timestamp": "1 bulan yang lalu"
     },
     {
       "comment_id": "comment_5615",
-      "text": "Ini pake windows brpa",
+      "text": "susah bgt jir, gini amat mengejar masa depan",
       "timestamp": "1 bulan yang lalu"
     },
     {
       "comment_id": "comment_5616",
-      "text": "49:32 salah ketik di 10; i +1 bukan 10; i = i + 1,loopnya jadi ngitung terus jir sampe laptopku ngeleg🤣",
+      "text": "Bang kok \"`\" gua ga fungsi? Di gua malah error kalau pake tanda itu",
       "timestamp": "1 bulan yang lalu"
     },
     {
       "comment_id": "comment_5617",
-      "text": "Bang saya mau nanya donggg, itu saya kan baru belajar dan ini emang baru banget jadi saya ngga skip² apapun tapi masalahnya saat saya lagi nonton vidio nya pikiran saya ke ganggu terus sama kenapa kita harus menggunakan tanda tanda itu, sebenarnya apa sih peletakan tanda tanda itu kenapa sih harus disitu gitu bang, apa saya salah mulai pembelajaran nya? Apa saya harus belajar dari penjelasan dan penempatan tanda tanda itu dulu?\n\nMohon pencerahannya bhangggg😊😊😊😊😊",
+      "text": "bg, kok file we buat main js itu gabisa, gada kyk lo bg",
       "timestamp": "1 bulan yang lalu"
     },
     {
       "comment_id": "comment_5618",
-      "text": "tadi apa bg control apa kon hehe",
+      "text": "Ini pake windows brpa",
       "timestamp": "1 bulan yang lalu"
     },
     {
       "comment_id": "comment_5619",
-      "text": "Tugas 1\n\nlet saldoAwal = Number(prompt(`Masukan saldo awal anda`) ;\nlet saldoTambah = Number(prompt(`Masukan Tambahan Saldo Anda`) ;\nconst hasil = saldoAwal + saldoTambah;\n\nalert(`Sisa saldo anda Rp.${hasil}`);\n\ntugas 2\n\nlet hari = new Date().getDay() ;\nlet banyakHari = [\"Minggu \", \"Senin \",\" Selasa \", \" Rabu \", \" Kamis \", \" Jumat \", \" Sabtu \"];\nlet hariKe = banyakHari[hari];\n\nprompt(`Sekarang adalah hari ke:  ${hariKe}`);",
-      "timestamp": "1 bulan yang lalu (diedit)"
+      "text": "49:32 salah ketik di 10; i +1 bukan 10; i = i + 1,loopnya jadi ngitung terus jir sampe laptopku ngeleg🤣",
+      "timestamp": "1 bulan yang lalu"
     },
     {
       "comment_id": "comment_5620",
-      "text": "jawaban no 2 \n\nconst hari = new Date().toLocaleDateString(\"id-ID\", { weekday: \"long\" });\n\nconsole.log(hari);",
+      "text": "Bang saya mau nanya donggg, itu saya kan baru belajar dan ini emang baru banget jadi saya ngga skip² apapun tapi masalahnya saat saya lagi nonton vidio nya pikiran saya ke ganggu terus sama kenapa kita harus menggunakan tanda tanda itu, sebenarnya apa sih peletakan tanda tanda itu kenapa sih harus disitu gitu bang, apa saya salah mulai pembelajaran nya? Apa saya harus belajar dari penjelasan dan penempatan tanda tanda itu dulu?\n\nMohon pencerahannya bhangggg😊😊😊😊😊",
       "timestamp": "1 bulan yang lalu"
     },
     {
@@ -182,826 +182,826 @@
     {
       "comment_id": "comment_5636",
       "text": "bang gw pemula and gw ga ngertii",
-      "timestamp": "8 bulan yang lalu"
+      "timestamp": "9 bulan yang lalu"
     },
     {
       "comment_id": "comment_5637",
       "text": "bang saya 0 banget saya mau ngerjain tugas hitungan gaji karyawan pusing banget dah😢",
-      "timestamp": "3 bulan yang lalu"
+      "timestamp": "4 bulan yang lalu"
     },
     {
       "comment_id": "comment_5638",
-      "text": "ada cara singkatnya engga bang?",
-      "timestamp": "2 minggu yang lalu"
+      "text": "kemiripan js dengan py yg gw tau :\njs : py\n1. function : function\n2. let, var, const : tanpa tanda/cuma =\n3. conditional statement (sama)\n4. for/while loop (sama)\n5. comparison (sama)\n6. operator (mirip php, ada jga mirip py)\n7. code block (sama)\n8. indentation (sama)\n9. array : list, dictionary\n10. tipe data (termasuk boolean, string, int, float, dll sama)\n11. console.log : print\n12. alert (mirip print tapi khusus pop up website)\n13. prompt : input\n14. parseint mirip kyk py input(int(\"masukkan usia : \"))\n15. ${} : f-string\n\nkayaknya masih ada lagi, tapi ga ingat, kita sama² pemula kok bro, aku di smp belajar ini soalnya 😅",
+      "timestamp": "3 hari yang lalu (diedit)"
     },
     {
       "comment_id": "comment_5639",
-      "text": "sabar bang, semoga rejeki lancar",
-      "timestamp": "2 minggu yang lalu"
+      "text": "ada cara singkatnya engga bang?",
+      "timestamp": "1 bulan yang lalu"
     },
     {
       "comment_id": "comment_5640",
-      "text": "tanda tanda yg ada di bahasa pemrograman itu namanya syntax bray, dan kenapa harus ada tanda-tanda seperti itu, karena emang udah bawaan dari si bahasa javascript ini. Untuk penempatan syntax, tiap bahasa pemrograman beda-beda, tapi biasanya mirip-mirip. Kalau kita mau oakai bahasa pemrograman apapun, kita harus ngikutin aturan penggunaan syntaxnya bray, sama kayak javascript ini. Kalau peletakannya gak bener, si komputernya gak bakal ngerti perintah kita",
+      "text": "sabar bang, semoga rejeki lancar",
       "timestamp": "1 bulan yang lalu"
     },
     {
       "comment_id": "comment_5641",
-      "text": "kalo pusing jangan lupa ngopi kawan\"",
+      "text": "tanda tanda yg ada di bahasa pemrograman itu namanya syntax bray, dan kenapa harus ada tanda-tanda seperti itu, karena emang udah bawaan dari si bahasa javascript ini. Untuk penempatan syntax, tiap bahasa pemrograman beda-beda, tapi biasanya mirip-mirip. Kalau kita mau oakai bahasa pemrograman apapun, kita harus ngikutin aturan penggunaan syntaxnya bray, sama kayak javascript ini. Kalau peletakannya gak bener, si komputernya gak bakal ngerti perintah kita",
       "timestamp": "1 bulan yang lalu"
     },
     {
       "comment_id": "comment_5642",
-      "text": "smangat bang dea💪💪💪💪💪💪💪",
+      "text": "tadi apa bg control apa kon hehe",
       "timestamp": "1 bulan yang lalu"
     },
     {
       "comment_id": "comment_5643",
+      "text": "Tugas 1\n\nlet saldoAwal = Number(prompt(`Masukan saldo awal anda`) ;\nlet saldoTambah = Number(prompt(`Masukan Tambahan Saldo Anda`) ;\nconst hasil = saldoAwal + saldoTambah;\n\nalert(`Sisa saldo anda Rp.${hasil}`);\n\ntugas 2\n\nlet hari = new Date().getDay() ;\nlet banyakHari = [\"Minggu \", \"Senin \",\" Selasa \", \" Rabu \", \" Kamis \", \" Jumat \", \" Sabtu \"];\nlet hariKe = banyakHari[hari];\n\nprompt(`Sekarang adalah hari ke:  ${hariKe}`);",
+      "timestamp": "1 bulan yang lalu (diedit)"
+    },
+    {
+      "comment_id": "comment_5644",
+      "text": "jawaban no 2 \n\nconst hari = new Date().toLocaleDateString(\"id-ID\", { weekday: \"long\" });\n\nconsole.log(hari);",
+      "timestamp": "1 bulan yang lalu"
+    },
+    {
+      "comment_id": "comment_5645",
+      "text": "kalo pusing jangan lupa ngopi kawan\"",
+      "timestamp": "1 bulan yang lalu"
+    },
+    {
+      "comment_id": "comment_5646",
+      "text": "smangat bang dea💪💪💪💪💪💪💪",
+      "timestamp": "1 bulan yang lalu"
+    },
+    {
+      "comment_id": "comment_5647",
       "text": "mantap selalu,udah dipahami penjelasannya\nsukses selalu bang",
       "timestamp": "2 bulan yang lalu"
     },
     {
-      "comment_id": "comment_5644",
+      "comment_id": "comment_5648",
       "text": "Bener ngk broo\n1.\nlet saldoAwal = Number(prompt(\"masukan Ganji Anda\"));\nlet saldoTambah = Number(prompt(\"masukan Saldo Tambahan\"));\nlet pengeluaran = Number(prompt(\"Pengeluaran Bulan Ini\"))\n\nlet saldoAkhir = (saldoAwal + saldoTambah - pengeluaran)\nalert(\"Saldo Kamu\" + saldoAkhir)\n\n2.\n let hari = new Date().getDay(); \n\nlet namaHari= [\"Minggu\",\"Senin\", \"Selasa\", \"Rabu\", \"Kamis\",\"Jumat\",\"Sabtu\",\"Minggu\"]; \nconsole.log(\"Hari ini Adalah hari\",namaHari[hari]);",
       "timestamp": "2 bulan yang lalu (diedit)"
     },
     {
-      "comment_id": "comment_5645",
+      "comment_id": "comment_5649",
       "text": "this is peak milord",
       "timestamp": "2 bulan yang lalu"
     },
     {
-      "comment_id": "comment_5646",
+      "comment_id": "comment_5650",
       "text": "Bagus dan jelas",
       "timestamp": "2 bulan yang lalu"
     },
     {
-      "comment_id": "comment_5647",
-      "text": "Hai? Aku orang",
-      "timestamp": "2 bulan yang lalu"
-    },
-    {
-      "comment_id": "comment_5648",
-      "text": "59:03  49:46 Bang boleh nggak jawab no2 itu pakek rumus for lop or array\n\n\nlet hari = new Date().getDay()\n//Di console.log dulu biar nyari no ke berapa \nlet namaHari = ['minggu', 'senin', 'selasa', 'rabu', 'kamis', \n   'jumaat', 'sabtu']\nfor (let b = 0; b < namaHari.length; b++) {\n   console.log(`hari ini adalah hari ${namaHari[1]}`)\n}\n\n\n>Atau yang kayak gimana\n bang<",
-      "timestamp": "2 bulan yang lalu (diedit)"
-    },
-    {
-      "comment_id": "comment_5649",
-      "text": "bang mau tanya kenapa aku kalau mau spasi antara variabel dan string harus pake \" \"",
-      "timestamp": "2 bulan yang lalu"
-    },
-    {
-      "comment_id": "comment_5650",
-      "text": "Njir hobi ku dari microcontroller main main di arduino ide, udah terasa mentok dengan bosan. Malah berkembang pelajari python dan javascript. Wat the hak😂",
-      "timestamp": "2 bulan yang lalu"
-    },
-    {
       "comment_id": "comment_5651",
-      "text": "terima kasih bang ilmu nya, \n\nudah di subscrib lah..",
+      "text": "Hai? Aku orang",
       "timestamp": "3 bulan yang lalu"
     },
     {
       "comment_id": "comment_5652",
-      "text": "sama aja kan kalo pake apache?",
-      "timestamp": "3 bulan yang lalu"
+      "text": "59:03  49:46 Bang boleh nggak jawab no2 itu pakek rumus for lop or array\n\n\nlet hari = new Date().getDay()\n//Di console.log dulu biar nyari no ke berapa \nlet namaHari = ['minggu', 'senin', 'selasa', 'rabu', 'kamis', \n   'jumaat', 'sabtu']\nfor (let b = 0; b < namaHari.length; b++) {\n   console.log(`hari ini adalah hari ${namaHari[1]}`)\n}\n\n\n>Atau yang kayak gimana\n bang<",
+      "timestamp": "3 bulan yang lalu (diedit)"
     },
     {
       "comment_id": "comment_5653",
-      "text": "Kak, saya baru saja bergabung, apakah bs kasi kursus untuk anak saya usia 10 tahun? Dia ada bakat dan sdh buat game melalui scratch berdasarkan trial saja sekali",
+      "text": "bang mau tanya kenapa aku kalau mau spasi antara variabel dan string harus pake \" \"",
       "timestamp": "3 bulan yang lalu"
     },
     {
       "comment_id": "comment_5654",
-      "text": "// Soal Nomor 1(Saldo Terakhir User)\nlet saldo = [];\r\nlet inputUser;\r\n\r\nwhile (true) {\r\n  inputUser = prompt(\"Masukan Nominal Saldo (ketik 'berhenti' untuk stop):\");\r\n  if (inputUser === \"berhenti\") {\r\n    break;\r\n  }\r\n  saldo.push(inputUser);\r\n}\nlet indexSaldoAkhir = saldo.length - 1;\nalert(\"Saldo terakhir: \" + saldo[indexSaldoAkhir]);",
-      "timestamp": "3 bulan yang lalu (diedit)"
+      "text": "Njir hobi ku dari microcontroller main main di arduino ide, udah terasa mentok dengan bosan. Malah berkembang pelajari python dan javascript. Wat the hak😂",
+      "timestamp": "3 bulan yang lalu"
     },
     {
       "comment_id": "comment_5655",
-      "text": "sudah 2 tahun dan kami baru belajar",
+      "text": "terima kasih bang ilmu nya, \n\nudah di subscrib lah..",
       "timestamp": "3 bulan yang lalu"
     },
     {
       "comment_id": "comment_5656",
-      "text": "kenapa ya waktu isi aller ga muncul di website aneh bet",
+      "text": "sama aja kan kalo pake apache?",
       "timestamp": "3 bulan yang lalu"
     },
     {
       "comment_id": "comment_5657",
-      "text": "ampe mnt 9.13 ga bisa masuk ke body nya gw",
+      "text": "Kak, saya baru saja bergabung, apakah bs kasi kursus untuk anak saya usia 10 tahun? Dia ada bakat dan sdh buat game melalui scratch berdasarkan trial saja sekali",
       "timestamp": "3 bulan yang lalu"
     },
     {
       "comment_id": "comment_5658",
-      "text": "bang mau nanya ,kan aku bener\" balim ngrti soal javascript bahkan laptop aj baru ngrti dikit banget, dan ini tampilan dilaptopku beda sama yg dijelaskan jadi aku bingung bang nyari\" yg dimaksud ga nemu\" soalny beda tampilan",
-      "timestamp": "4 bulan yang lalu"
+      "text": "// Soal Nomor 1(Saldo Terakhir User)\nlet saldo = [];\r\nlet inputUser;\r\n\r\nwhile (true) {\r\n  inputUser = prompt(\"Masukan Nominal Saldo (ketik 'berhenti' untuk stop):\");\r\n  if (inputUser === \"berhenti\") {\r\n    break;\r\n  }\r\n  saldo.push(inputUser);\r\n}\nlet indexSaldoAkhir = saldo.length - 1;\nalert(\"Saldo terakhir: \" + saldo[indexSaldoAkhir]);",
+      "timestamp": "4 bulan yang lalu (diedit)"
     },
     {
       "comment_id": "comment_5659",
-      "text": "Bang kok di gw ngak bisa di save ya",
+      "text": "sudah 2 tahun dan kami baru belajar",
       "timestamp": "4 bulan yang lalu"
     },
     {
       "comment_id": "comment_5660",
-      "text": "Nyimak bang tanpa iklan",
+      "text": "kenapa ya waktu isi aller ga muncul di website aneh bet",
       "timestamp": "4 bulan yang lalu"
     },
     {
       "comment_id": "comment_5661",
-      "text": "pake loop dan array itu, didalam loop itu ada length yang mengukur ukuran dari variabel namaHari",
-      "timestamp": "2 bulan yang lalu"
-    },
-    {
-      "comment_id": "comment_5662",
-      "text": "​@AhmdFariz-o6qiya bang,tapi itu bener nggak jawaban nya atau pakek rumus yang lain, soalnya saya baru belajar bang",
-      "timestamp": "2 bulan yang lalu (diedit)"
-    },
-    {
-      "comment_id": "comment_5663",
-      "text": "Bang mau tanya kalau java sama javascript beda ga ya",
+      "text": "ampe mnt 9.13 ga bisa masuk ke body nya gw",
       "timestamp": "4 bulan yang lalu"
     },
     {
+      "comment_id": "comment_5662",
+      "text": "pake loop dan array itu, didalam loop itu ada length yang mengukur ukuran dari variabel namaHari",
+      "timestamp": "3 bulan yang lalu"
+    },
+    {
+      "comment_id": "comment_5663",
+      "text": "​@AhmdFariz-o6qiya bang,tapi itu bener nggak jawaban nya atau pakek rumus yang lain, soalnya saya baru belajar bang",
+      "timestamp": "3 bulan yang lalu (diedit)"
+    },
+    {
       "comment_id": "comment_5664",
-      "text": "thanks bang ilmu nya, semoga jadi amal jariyah' amin........",
+      "text": "bang mau nanya ,kan aku bener\" balim ngrti soal javascript bahkan laptop aj baru ngrti dikit banget, dan ini tampilan dilaptopku beda sama yg dijelaskan jadi aku bingung bang nyari\" yg dimaksud ga nemu\" soalny beda tampilan",
       "timestamp": "4 bulan yang lalu"
     },
     {
       "comment_id": "comment_5665",
-      "text": "Maaf bang aku pemula😁,ini buat website ya ?bukan ngoding robot?",
+      "text": "Bang kok di gw ngak bisa di save ya",
       "timestamp": "4 bulan yang lalu"
     },
     {
       "comment_id": "comment_5666",
-      "text": "makasih bang",
-      "timestamp": "5 bulan yang lalu"
+      "text": "Nyimak bang tanpa iklan",
+      "timestamp": "4 bulan yang lalu"
     },
     {
       "comment_id": "comment_5667",
-      "text": "dah kelar pak Guru , No skip iklan juga . berikuit hasil Ulik hari Pertama (baru nyoba nyicip js) \n\nconsole.log(\r\n  `sekarang adalah ${namaHari[hari]} ${tanggal} ${namaBulan[bulan]} ${tahun} Pukul ${Pukul} : ${menit} : ${detik}`\r\n);\r\n\r\nalert(`saldo anda sekarang adalah : ${totalSaldo} `);\r\nconsole.log(`saldo anda sekarang adalah : ${totalSaldo} `);",
-      "timestamp": "5 bulan yang lalu"
+      "text": "Bang mau tanya kalau java sama javascript beda ga ya",
+      "timestamp": "4 bulan yang lalu"
     },
     {
       "comment_id": "comment_5668",
-      "text": "Gw yg codingnya di hp belike🗿\nUntng punya apk nya khusus di hp🗿👉👈",
+      "text": "thanks bang ilmu nya, semoga jadi amal jariyah' amin........",
       "timestamp": "5 bulan yang lalu"
     },
     {
       "comment_id": "comment_5669",
-      "text": "Pake termux sama aqode bisa ga sih",
+      "text": "Maaf bang aku pemula😁,ini buat website ya ?bukan ngoding robot?",
       "timestamp": "5 bulan yang lalu"
     },
     {
       "comment_id": "comment_5670",
-      "text": "Saya pake Linux, code-OSS. Gimana tuh bang",
+      "text": "makasih bang",
       "timestamp": "5 bulan yang lalu"
     },
     {
       "comment_id": "comment_5671",
-      "text": "bang baru gabung ini! apakah materi ini masih update?",
+      "text": "dah kelar pak Guru , No skip iklan juga . berikuit hasil Ulik hari Pertama (baru nyoba nyicip js) \n\nconsole.log(\r\n  `sekarang adalah ${namaHari[hari]} ${tanggal} ${namaBulan[bulan]} ${tahun} Pukul ${Pukul} : ${menit} : ${detik}`\r\n);\r\n\r\nalert(`saldo anda sekarang adalah : ${totalSaldo} `);\r\nconsole.log(`saldo anda sekarang adalah : ${totalSaldo} `);",
       "timestamp": "5 bulan yang lalu"
     },
     {
       "comment_id": "comment_5672",
-      "text": "Mau nanya bang..klo pas buka ulang browser tapi ga muncul tulisan nya itu kenapa ya?",
+      "text": "Gw yg codingnya di hp belike🗿\nUntng punya apk nya khusus di hp🗿👉👈",
       "timestamp": "5 bulan yang lalu"
     },
     {
       "comment_id": "comment_5673",
-      "text": "kok punyaku munculnya microsoft edge",
+      "text": "Pake termux sama aqode bisa ga sih",
       "timestamp": "5 bulan yang lalu"
     },
     {
       "comment_id": "comment_5674",
-      "text": "jangan salah sebut kntl bro..............🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣 semoga ilmu dan tutorial ny bermanfaat dan jdi amall jariyah  amin...",
-      "timestamp": "5 bulan yang lalu"
+      "text": "Saya pake Linux, code-OSS. Gimana tuh bang",
+      "timestamp": "6 bulan yang lalu"
     },
     {
       "comment_id": "comment_5675",
-      "text": "Bg jelasin sejarah Java Script :v",
+      "text": "bang baru gabung ini! apakah materi ini masih update?",
       "timestamp": "6 bulan yang lalu"
     },
     {
       "comment_id": "comment_5676",
-      "text": "Kalo misal pake visual code bisa ngga kak",
+      "text": "Mau nanya bang..klo pas buka ulang browser tapi ga muncul tulisan nya itu kenapa ya?",
       "timestamp": "6 bulan yang lalu"
     },
     {
       "comment_id": "comment_5677",
-      "text": "Anjir pacar gua null bang. Bisa dicodingin biar ga null ga?",
+      "text": "kok punyaku munculnya microsoft edge",
       "timestamp": "6 bulan yang lalu"
     },
     {
       "comment_id": "comment_5678",
-      "text": "let hari = new Date().getDay()\nlet namaHari =['minggu', 'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu'];\nalert(namaHari[hari]);",
+      "text": "jangan salah sebut kntl bro..............🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣 semoga ilmu dan tutorial ny bermanfaat dan jdi amall jariyah  amin...",
       "timestamp": "6 bulan yang lalu"
     },
     {
       "comment_id": "comment_5679",
-      "text": "Gw baru belajar, dan susah ingat syntax bejir, mau jawab soal nomor 1 dlu dah\nLet saldoAwal = 50000\nconst input = prompt ('masukkan jumlah saldo tambahan)\nLet saldoAkhir = SaldoAwal + Number (input)\nAlert(`total saldo anda adalah ${saldoAkhir}`) \n\n2.\nlet hari = new Date().getDay()\nlet namaHari= ['minggu', 'senin', 'selasa', 'rabu', 'kamis', 'jum'at', 'sabtu')\nif(hari >=0 hari < namaHari.length){\nAlert(`hari ini adalah hari ${namaHari[hari]}`) } sry kalau slh",
-      "timestamp": "6 bulan yang lalu (diedit)"
+      "text": "Bg jelasin sejarah Java Script :v",
+      "timestamp": "6 bulan yang lalu"
     },
     {
       "comment_id": "comment_5680",
-      "text": "kang cara nampilin create d 9.59 gmn?? sy g ad icon create ny",
-      "timestamp": "7 bulan yang lalu"
+      "text": "Kalo misal pake visual code bisa ngga kak",
+      "timestamp": "6 bulan yang lalu"
     },
     {
       "comment_id": "comment_5681",
-      "text": "Kok saya malah ga nimbul di browser nya ya mang pas tag console.log nya mang",
+      "text": "Anjir pacar gua null bang. Bisa dicodingin biar ga null ga?",
       "timestamp": "7 bulan yang lalu"
     },
     {
       "comment_id": "comment_5682",
-      "text": "ok tapi bukannya date dari 0 ya 0 minggu 1 senin - 6 sabtu?\nini tugas (setelah 2 tahun upload)\nlet hari_raw = new Date().getDay()\nconst hari_str = ['mingggu', 'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu']\nalert(`jadi hari ini itu hari ${hari_str[hari_raw]}`)",
+      "text": "let hari = new Date().getDay()\nlet namaHari =['minggu', 'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu'];\nalert(namaHari[hari]);",
       "timestamp": "7 bulan yang lalu"
     },
     {
       "comment_id": "comment_5683",
+      "text": "Gw baru belajar, dan susah ingat syntax bejir, mau jawab soal nomor 1 dlu dah\nLet saldoAwal = 50000\nconst input = prompt ('masukkan jumlah saldo tambahan)\nLet saldoAkhir = SaldoAwal + Number (input)\nAlert(`total saldo anda adalah ${saldoAkhir}`) \n\n2.\nlet hari = new Date().getDay()\nlet namaHari= ['minggu', 'senin', 'selasa', 'rabu', 'kamis', 'jum'at', 'sabtu')\nif(hari >=0 hari < namaHari.length){\nAlert(`hari ini adalah hari ${namaHari[hari]}`) } sry kalau slh",
+      "timestamp": "7 bulan yang lalu (diedit)"
+    },
+    {
+      "comment_id": "comment_5684",
       "text": "Pke apa di hp ?",
       "timestamp": "5 bulan yang lalu"
     },
     {
-      "comment_id": "comment_5684",
+      "comment_id": "comment_5685",
       "text": " @mirnawatismhemeesugiono1444  acode bisa bng buat html css js",
       "timestamp": "5 bulan yang lalu"
     },
     {
-      "comment_id": "comment_5685",
+      "comment_id": "comment_5686",
       "text": "Bisa bang..",
       "timestamp": "2 bulan yang lalu"
     },
     {
-      "comment_id": "comment_5686",
-      "text": "Enter kontor v 😅",
-      "timestamp": "7 bulan yang lalu"
-    },
-    {
       "comment_id": "comment_5687",
-      "text": "Kalau si refressh tidak muncul perubahan, yg salah dimananya kak 🙏",
+      "text": "kang cara nampilin create d 9.59 gmn?? sy g ad icon create ny",
       "timestamp": "7 bulan yang lalu"
     },
     {
       "comment_id": "comment_5688",
-      "text": "Bisa minta buat, n program bang",
+      "text": "Kok saya malah ga nimbul di browser nya ya mang pas tag console.log nya mang",
       "timestamp": "7 bulan yang lalu"
     },
     {
       "comment_id": "comment_5689",
-      "text": "Rekomen laptop buat coding kak apa ya biar gak salah pilih",
+      "text": "ok tapi bukannya date dari 0 ya 0 minggu 1 senin - 6 sabtu?\nini tugas (setelah 2 tahun upload)\nlet hari_raw = new Date().getDay()\nconst hari_str = ['mingggu', 'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu']\nalert(`jadi hari ini itu hari ${hari_str[hari_raw]}`)",
       "timestamp": "7 bulan yang lalu"
     },
     {
       "comment_id": "comment_5690",
-      "text": "terima kasih ilmunya",
+      "text": "Enter kontor v 😅",
       "timestamp": "7 bulan yang lalu"
     },
     {
       "comment_id": "comment_5691",
-      "text": "thank you gue anak IT bablas bang karena banyak rebahan aing ga pernah belajar :face-purple-crying:",
+      "text": "Kalau si refressh tidak muncul perubahan, yg salah dimananya kak 🙏",
       "timestamp": "7 bulan yang lalu"
     },
     {
       "comment_id": "comment_5692",
-      "text": "1. Rp.${saldoAwal + saldoTambahan} gitu saya di alert nya",
+      "text": "Bisa minta buat, n program bang",
       "timestamp": "7 bulan yang lalu"
     },
     {
       "comment_id": "comment_5693",
-      "text": "47:01 ngakak bang wkwk",
-      "timestamp": "8 bulan yang lalu"
+      "text": "Rekomen laptop buat coding kak apa ya biar gak salah pilih",
+      "timestamp": "7 bulan yang lalu"
     },
     {
       "comment_id": "comment_5694",
-      "text": "Btw ini make PC atau laptop bang? Model nya apaan?\nMasih ngoding lewat hp aku bang:v",
+      "text": "terima kasih ilmunya",
       "timestamp": "8 bulan yang lalu"
     },
     {
       "comment_id": "comment_5695",
-      "text": "baru kali ini gw belajar ngoding se asik ini, kau memang terbaik lah man, hatur nuhun",
+      "text": "thank you gue anak IT bablas bang karena banyak rebahan aing ga pernah belajar :face-purple-crying:",
       "timestamp": "8 bulan yang lalu"
     },
     {
       "comment_id": "comment_5696",
-      "text": "Bng mau nanya yang bagian internal sama external nya itu gimana ya Masi belum paham?",
+      "text": "1. Rp.${saldoAwal + saldoTambahan} gitu saya di alert nya",
       "timestamp": "8 bulan yang lalu"
     },
     {
       "comment_id": "comment_5697",
-      "text": "Ss",
+      "text": "47:01 ngakak bang wkwk",
       "timestamp": "8 bulan yang lalu"
     },
     {
       "comment_id": "comment_5698",
-      "text": "Mantap bang",
+      "text": "Btw ini make PC atau laptop bang? Model nya apaan?\nMasih ngoding lewat hp aku bang:v",
       "timestamp": "8 bulan yang lalu"
     },
     {
       "comment_id": "comment_5699",
-      "text": "29:02 true\n31:52 i hate js curly braces\n32:56\n33:23 default",
-      "timestamp": "8 bulan yang lalu (diedit)"
+      "text": "baru kali ini gw belajar ngoding se asik ini, kau memang terbaik lah man, hatur nuhun",
+      "timestamp": "8 bulan yang lalu"
     },
     {
       "comment_id": "comment_5700",
-      "text": "// tugas no 1 munculkan promp untuk saldo awal + tambahan = saldoakhir;\r\n            let sawal = prompt(\"saldo awal : \");\r\n            let tambahan = prompt(\"tambahan : \");\r\n\r\n            // hasil dari promp format datanya bukan angka sehingga dijadikan angka \r\n            const sakhir = parseInt(sawal) + parseInt(tambahan);\r\n            console.log('saldo akhir adalah : '+sakhir);\r\n\r\n            // tugas no 2 menentukan hari dari tanggal contoh : Hari ini adalah hari X\r\n            let hari = new Date(); \r\n            let hariKe = hari.getDay(); // rumus js Date.getDay()\r\n            let namaHari= [\"Minggu\",\"Senin\", \"Selasa\", \"Rabu\", \"Kamis\",\"Jumat\",\"Sabtu\",\"Minggu\"]; // 0=> minggu, 1=> senin ... \r\n            console.log(namaHari[hariKe]);",
+      "text": "Bng mau nanya yang bagian internal sama external nya itu gimana ya Masi belum paham?",
       "timestamp": "9 bulan yang lalu"
     },
     {
       "comment_id": "comment_5701",
-      "text": "TERIMA KASIH ILMU NYA MAS, SEMOGA BERKAH SELALU YA",
+      "text": "Ss",
       "timestamp": "9 bulan yang lalu"
     },
     {
       "comment_id": "comment_5702",
-      "text": "Bang bisa memperbaiki system AOSP kah? Hp saya sudah root upgrade ke android 14 cuma ke reset balik ke 13,  android open source project saya sudah install linux dan buat vps jaringan configurasi buat email lama saya, bang, bisa mindahin soong nya nya gak ngambil partisi yang pentinngnya ke alamat wallet ,, nyangkut di AOSP semua bang datanya, file nya gak konek ke device akibat ke reset, tolong bantuannya bang",
+      "text": "Mantap bang",
       "timestamp": "9 bulan yang lalu"
     },
     {
       "comment_id": "comment_5703",
-      "text": "KK saya mau belajar dengan kk🙏",
-      "timestamp": "9 bulan yang lalu"
+      "text": "29:02 true\n31:52 i hate js curly braces\n32:56\n33:23 default",
+      "timestamp": "9 bulan yang lalu (diedit)"
     },
     {
       "comment_id": "comment_5704",
-      "text": "bang kok main.js nya gw gak kepanggil ya pas di inspect di console malah error padahal udah di src",
+      "text": "// tugas no 1 munculkan promp untuk saldo awal + tambahan = saldoakhir;\r\n            let sawal = prompt(\"saldo awal : \");\r\n            let tambahan = prompt(\"tambahan : \");\r\n\r\n            // hasil dari promp format datanya bukan angka sehingga dijadikan angka \r\n            const sakhir = parseInt(sawal) + parseInt(tambahan);\r\n            console.log('saldo akhir adalah : '+sakhir);\r\n\r\n            // tugas no 2 menentukan hari dari tanggal contoh : Hari ini adalah hari X\r\n            let hari = new Date(); \r\n            let hariKe = hari.getDay(); // rumus js Date.getDay()\r\n            let namaHari= [\"Minggu\",\"Senin\", \"Selasa\", \"Rabu\", \"Kamis\",\"Jumat\",\"Sabtu\",\"Minggu\"]; // 0=> minggu, 1=> senin ... \r\n            console.log(namaHari[hariKe]);",
       "timestamp": "9 bulan yang lalu"
     },
     {
       "comment_id": "comment_5705",
-      "text": "cihuuuyyyyy:pillow-turquoise-hot-chocolate::pillow-turquoise-hot-chocolate:",
+      "text": "TERIMA KASIH ILMU NYA MAS, SEMOGA BERKAH SELALU YA",
       "timestamp": "9 bulan yang lalu"
     },
     {
       "comment_id": "comment_5706",
+      "text": "Bang bisa memperbaiki system AOSP kah? Hp saya sudah root upgrade ke android 14 cuma ke reset balik ke 13,  android open source project saya sudah install linux dan buat vps jaringan configurasi buat email lama saya, bang, bisa mindahin soong nya nya gak ngambil partisi yang pentinngnya ke alamat wallet ,, nyangkut di AOSP semua bang datanya, file nya gak konek ke device akibat ke reset, tolong bantuannya bang",
+      "timestamp": "9 bulan yang lalu"
+    },
+    {
+      "comment_id": "comment_5707",
       "text": "tinggal hapua tab baru ulangin lagi bang",
       "timestamp": "7 bulan yang lalu"
     },
     {
-      "comment_id": "comment_5707",
+      "comment_id": "comment_5708",
       "text": "Optional bruh, ga perlu spek tinggi kalo untuk belajar",
-      "timestamp": "6 bulan yang lalu"
+      "timestamp": "7 bulan yang lalu"
     },
     {
-      "comment_id": "comment_5708",
+      "comment_id": "comment_5709",
       "text": "gaspol",
       "timestamp": "8 bulan yang lalu"
     },
     {
-      "comment_id": "comment_5709",
+      "comment_id": "comment_5710",
       "text": "udh lama ga maenan cusrom, trhir 2013 😆",
       "timestamp": "9 bulan yang lalu"
     },
     {
-      "comment_id": "comment_5710",
+      "comment_id": "comment_5711",
       "text": "Kalau nge dump ?. File nya ada di AOSP bang soalnya saya gak bisa baca java script 😂  @deaafrizal ",
       "timestamp": "9 bulan yang lalu"
     },
     {
-      "comment_id": "comment_5711",
-      "text": "bang, kok saya di <script src=\"main.js\"></script}\npas di main.js sata ketik alert('halo') \nkok gak bisa ya? \n(btw saya di hp)",
+      "comment_id": "comment_5712",
+      "text": "KK saya mau belajar dengan kk🙏",
       "timestamp": "9 bulan yang lalu"
     },
     {
-      "comment_id": "comment_5712",
-      "text": "tanpa belajar html css langsung js apa bisa",
-      "timestamp": "10 bulan yang lalu"
-    },
-    {
       "comment_id": "comment_5713",
-      "text": "Anjay nonton sekali aja belum apal semua gw ini, dari tadi ngikutin sih lancar eh pas gk liat videonya yg dinget cuman alert ('hello world') gini amat pemula hehehe",
-      "timestamp": "10 bulan yang lalu"
+      "text": "bang kok main.js nya gw gak kepanggil ya pas di inspect di console malah error padahal udah di src",
+      "timestamp": "9 bulan yang lalu"
     },
     {
       "comment_id": "comment_5714",
-      "text": "Anjaaaaay otak gw mau meledak di bagian looping😭",
-      "timestamp": "10 bulan yang lalu"
+      "text": "cihuuuyyyyy:pillow-turquoise-hot-chocolate::pillow-turquoise-hot-chocolate:",
+      "timestamp": "9 bulan yang lalu"
     },
     {
       "comment_id": "comment_5715",
-      "text": "bang di menit 27.12 ketika di save tidak sama ya action nya sama tidak keluar di link nya juga?",
+      "text": "bang, kok saya di <script src=\"main.js\"></script}\npas di main.js sata ketik alert('halo') \nkok gak bisa ya? \n(btw saya di hp)",
       "timestamp": "10 bulan yang lalu"
     },
     {
       "comment_id": "comment_5716",
-      "text": "❤❤",
+      "text": "tanpa belajar html css langsung js apa bisa",
       "timestamp": "10 bulan yang lalu"
     },
     {
       "comment_id": "comment_5717",
-      "text": "Bang punya ku gak mau muncul di outputnya",
+      "text": "Anjay nonton sekali aja belum apal semua gw ini, dari tadi ngikutin sih lancar eh pas gk liat videonya yg dinget cuman alert ('hello world') gini amat pemula hehehe",
       "timestamp": "10 bulan yang lalu"
     },
     {
       "comment_id": "comment_5718",
-      "text": "jawaban tuags kecil 2 :\n\nconst namaHari = [\r\n  \"Minggu\",\r\n  \"Senin\",\r\n  \"Selasa\",\r\n  \"Rabu\",\r\n  \"Kamis\",\r\n  \"Jum'at\",\r\n  \"Sabtu\",\r\n];\r\nconst hariKe = new Date().getDay();\r\nconst hari = namaHari[hariKe];\r\nlet hariIni= new Date()\r\nlet tanggal= hariIni.getDate()\r\nconsole.log(`hari ini tanggal ${tanggal} adalah hari ${hari}`);\r\nalert(`hari ini tanggal ${tanggal} adalah hari ${hari}`)",
+      "text": "Anjaaaaay otak gw mau meledak di bagian looping😭",
       "timestamp": "10 bulan yang lalu"
     },
     {
       "comment_id": "comment_5719",
-      "text": "jawaban tugas kecil 1 :\n\n\r\nlet saldoAwal= 300000\r\nalert('saldo anda saat ini Rp.'+saldoAwal)\r\nlet jlhPenarikan= prompt('masukkan jumlah penarikan')\r\nsaldoAkhir=saldoAwal-jlhPenarikan\r\nif(saldoAwal<=jlhPenarikan){\r\n  alert('saldo anda tidak cukup untuk melakukan penarikan ini!')\r\n}\r\nelse{\r\n  alert('Terima kasih telah melakukan penarikan, \\nsaldo anda saat ini tersisa Rp.'+ saldoAkhir)\r\n  console.log('saldo anda saat ini tersisa Rp.'+saldoAkhir)\r\n}\n\nCMIIW",
+      "text": "bang di menit 27.12 ketika di save tidak sama ya action nya sama tidak keluar di link nya juga?",
       "timestamp": "10 bulan yang lalu"
     },
     {
       "comment_id": "comment_5720",
-      "text": "mulai hari ini 4 april 2025 pukul 19.39 gw belajar ngoding, ketika gw udah bisa gw komen lagi.",
-      "timestamp": "10 bulan yang lalu"
+      "text": "❤❤",
+      "timestamp": "11 bulan yang lalu"
     },
     {
       "comment_id": "comment_5721",
-      "text": "Bang maap mau nanya, kapan kita harus pake titik koma kapan engga, atau kalo pake g pake g ngaruh apa²🙏🙏",
+      "text": "Bang punya ku gak mau muncul di outputnya",
       "timestamp": "11 bulan yang lalu"
     },
     {
       "comment_id": "comment_5722",
-      "text": "Gua anak akuntansi belajar ginian boleh gak sih bg",
+      "text": "jawaban tuags kecil 2 :\n\nconst namaHari = [\r\n  \"Minggu\",\r\n  \"Senin\",\r\n  \"Selasa\",\r\n  \"Rabu\",\r\n  \"Kamis\",\r\n  \"Jum'at\",\r\n  \"Sabtu\",\r\n];\r\nconst hariKe = new Date().getDay();\r\nconst hari = namaHari[hariKe];\r\nlet hariIni= new Date()\r\nlet tanggal= hariIni.getDate()\r\nconsole.log(`hari ini tanggal ${tanggal} adalah hari ${hari}`);\r\nalert(`hari ini tanggal ${tanggal} adalah hari ${hari}`)",
       "timestamp": "11 bulan yang lalu"
     },
     {
       "comment_id": "comment_5723",
-      "text": "alert('nama saya adalah' + nama + 'usia saya adalah' + usia) kenapa saya gak ada spasinya bang ketika di popup",
+      "text": "jawaban tugas kecil 1 :\n\n\r\nlet saldoAwal= 300000\r\nalert('saldo anda saat ini Rp.'+saldoAwal)\r\nlet jlhPenarikan= prompt('masukkan jumlah penarikan')\r\nsaldoAkhir=saldoAwal-jlhPenarikan\r\nif(saldoAwal<=jlhPenarikan){\r\n  alert('saldo anda tidak cukup untuk melakukan penarikan ini!')\r\n}\r\nelse{\r\n  alert('Terima kasih telah melakukan penarikan, \\nsaldo anda saat ini tersisa Rp.'+ saldoAkhir)\r\n  console.log('saldo anda saat ini tersisa Rp.'+saldoAkhir)\r\n}\n\nCMIIW",
       "timestamp": "11 bulan yang lalu"
     },
     {
       "comment_id": "comment_5724",
-      "text": "let hari = new Date().getDay()\r\n\r\nconst no_hari = {\r\n    1:'senin',\r\n    2:'selasa',\r\n    3:'rabu',\r\n    4:'kamis',\r\n    5:'Jumaat',\r\n    6:'Sabtu',\r\n    7:'minggu\"'\r\n}\r\n    alert(`hari ini adalah hari ${no_hari[hari]}`)",
+      "text": "mulai hari ini 4 april 2025 pukul 19.39 gw belajar ngoding, ketika gw udah bisa gw komen lagi.",
       "timestamp": "11 bulan yang lalu"
     },
     {
       "comment_id": "comment_5725",
-      "text": "Bang, Alertnya kok ga jadi ya punyaku? Udah ngikutin kayak punyamu tapi tetap gabisa. Apakah ada extension yang kurang?",
+      "text": "Bang maap mau nanya, kapan kita harus pake titik koma kapan engga, atau kalo pake g pake g ngaruh apa²🙏🙏",
       "timestamp": "11 bulan yang lalu"
     },
     {
       "comment_id": "comment_5726",
-      "text": "menurut gw ini lebih cocok untuk bukn yang bener-bener pemula, untuk yang bener-bener pemula bisa make chatGPT untuk tambahan, dijamin paham karena metode belajar saya juga begitu",
+      "text": "Gua anak akuntansi belajar ginian boleh gak sih bg",
       "timestamp": "11 bulan yang lalu"
     },
     {
       "comment_id": "comment_5727",
-      "text": "mengapa di bagian alert yang bank tulisannya kok gak bisa muncul yah",
+      "text": "alert('nama saya adalah' + nama + 'usia saya adalah' + usia) kenapa saya gak ada spasinya bang ketika di popup",
       "timestamp": "11 bulan yang lalu"
     },
     {
       "comment_id": "comment_5728",
-      "text": "pusing bet nonton vidio ya yang pake windos gue peraktek pake linux",
+      "text": "let hari = new Date().getDay()\r\n\r\nconst no_hari = {\r\n    1:'senin',\r\n    2:'selasa',\r\n    3:'rabu',\r\n    4:'kamis',\r\n    5:'Jumaat',\r\n    6:'Sabtu',\r\n    7:'minggu\"'\r\n}\r\n    alert(`hari ini adalah hari ${no_hari[hari]}`)",
       "timestamp": "11 bulan yang lalu"
     },
     {
       "comment_id": "comment_5729",
-      "text": "2025 😅",
+      "text": "Bang, Alertnya kok ga jadi ya punyaku? Udah ngikutin kayak punyamu tapi tetap gabisa. Apakah ada extension yang kurang?",
       "timestamp": "11 bulan yang lalu"
     },
     {
       "comment_id": "comment_5730",
-      "text": "Bang java script bisa pake termux gak?",
-      "timestamp": "1 tahun yang lalu"
+      "text": "menurut gw ini lebih cocok untuk bukn yang bener-bener pemula, untuk yang bener-bener pemula bisa make chatGPT untuk tambahan, dijamin paham karena metode belajar saya juga begitu",
+      "timestamp": "11 bulan yang lalu"
     },
     {
       "comment_id": "comment_5731",
+      "text": "mengapa di bagian alert yang bank tulisannya kok gak bisa muncul yah",
+      "timestamp": "11 bulan yang lalu"
+    },
+    {
+      "comment_id": "comment_5732",
       "text": "Punya lu <script src=\"main.js\"></script}\nYang bener <script src=\"main.js\"></script>\nKenapa ga bisa, karena tanda kurung lu yg terakhir ga sama. Jadi kalo awal < akhir juga harus >. Jangan gini, awal < akhir }, itu akan  eror",
       "timestamp": "9 bulan yang lalu (diedit)"
     },
     {
-      "comment_id": "comment_5732",
+      "comment_id": "comment_5733",
       "text": "jadi gimana bang udah bisa? gua juga belajar nih",
-      "timestamp": "10 bulan yang lalu"
+      "timestamp": "11 bulan yang lalu"
     },
     {
-      "comment_id": "comment_5733",
+      "comment_id": "comment_5734",
       "text": "Tdk boleh, jangan belajar gituan",
       "timestamp": "10 bulan yang lalu"
     },
     {
-      "comment_id": "comment_5734",
-      "text": "di kata setelah 'adalah' dan sebelum kata 'usia' tambahin spasi. karna dalam kodingan setiap karakter itu dihitung termasuk spasi dsb",
-      "timestamp": "10 bulan yang lalu"
-    },
-    {
       "comment_id": "comment_5735",
-      "text": "let gaji = parseInt(prompt(\"masukkan gaji anda(ribu rupiah)\"));\r\nconst tagihanBulanan = 200 + 300;\r\nconst saldoAkhir = saldoAwal + gaji - tagihanBulanan;\r\n\r\n\r\nlet hari = new Date().getDay();\r\n\r\nswitch(hari){\r\n    case 1:\r\n    hari =\"Hari ini adalah senin\"\r\n    break;\r\n    case 2:\r\n    hari = \"Hari ini adalah selasa\"\r\n    break;\r\n    case 3:\r\n    hari = \"Hari ini adalah rabu\"\r\n    break;\r\n    case 4:\r\n    hari = \"Hari ini adalah kamis\"\r\n    break;\r\n    case 5:\r\n    hari = \"Hari ini adalah jumat\"\r\n    break;\r\n    case 6:\r\n    hari = \"Hari ini adalah sabtu\"\r\n    break;\r\n   default:\r\n    hari = \"hari ini adalah minggu\"\r\n}\r\n\r\nalert(`Saldo akhir anda adalah ${saldoAkhir} ribu, dan ${hari}`);",
-      "timestamp": "1 tahun yang lalu"
+      "text": "di kata setelah 'adalah' dan sebelum kata 'usia' tambahin spasi. karna dalam kodingan setiap karakter itu dihitung termasuk spasi dsb",
+      "timestamp": "11 bulan yang lalu"
     },
     {
       "comment_id": "comment_5736",
-      "text": "47:03 😂",
+      "text": "pusing bet nonton vidio ya yang pake windos gue peraktek pake linux",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5737",
-      "text": "Bang semoga berkah selalu ilmunya dan jadi amal jariyah bang karena udah mau ngajarin pemula, thank u bang 😁😁",
+      "text": "2025 😅",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5738",
-      "text": "//Soal1\r\nlet nama = prompt(\"Halo!!! Siapa nama kamu?\")\r\nalert(`Oke ${nama}! saya akan menghitung saldo akhir kamu setelah makan di warung saya`)\r\nlet saldoAwal = parseFloat(prompt(\"Berapa saldo awal kamu?\"))\r\nlet biayaMinum = parseFloat(prompt(\"Kamu minum habis berapa rupiah?\"))\r\nlet biayaMakan = parseFloat(prompt(\"Kamu makan habis berapa rupiah?\"))\r\nlet makanMinum = biayaMinum+biayaMakan\r\nlet pajak = 10\r\nlet totalPajak = (makanMinum * pajak/100)\r\nlet total = makanMinum + totalPajak\r\nlet saldoAkhir = saldoAwal - total\r\nalert(`halo ${nama}, sisa saldo kamu tinggal Rp.${saldoAkhir} dengan dengan jumlah makan dan minum Rp.${makanMinum} ditambah potongan pajak 10% yaitu Rp.${totalPajak}`)\r\nalert('Terima kasih sudah datang, saya tunggu kedatangannya kembali!')\r\n\r\n//Soal2\r\nconst listHari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']\r\nlet hari = new Date().getDay()\r\nalert(`Hari ini adalah hari ${listHari[hari]} yang sangat menyenangkan dan menggembirakan`)",
+      "text": "Bang java script bisa pake termux gak?",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5739",
-      "text": "versi gw :\n//todo video terakhir di 00:40:50\r\n//^ Bakal eror karena tertimpa\r\n// const usia = 15 //* <const> digunakan untuk mendeklarasikan variabel yang nilainya tidak dapat diubah setelah diinisialisasi\r\n// usia = 36\r\n//^ Contoh pop-up usia sederhana\r\n// let usia = 15 //* let itu dalam bahasa indonesia <terserah>\r\n// usia = 16 //* dia bakal masukin baris terakhir kayak python\r\n// console.log('heyhooo usia kamu adalah ' + usia) //* buat show pesan di console\r\n// alert('usia kamu adalah '+usia) //* buat pesan pop-up\r\n//^ User masukin usia sendiri \r\n// let usia = prompt('berapa usia kamu?') //* prompt memungkinkan pengguna memasukkan teks yang kemudian bisa digunakan dalam program\r\n// alert('usia anda adalah ' + usia)\r\n//^ otomatis\r\n//*ini nama nya variable\r\nlet nama = 'M.Akhlakqul Karim' //* nama adalah tipe string\r\nlet usia = 15 //* angka adalah tipe integer atau number\r\nlet tinggiBadan = 173.5 //* tipe double atau float\r\nlet beratBadan //* bisa di pakai jika mau di isi nanti\r\nlet istri = null\r\nlet saldoStart = 100\r\nlet saldoPlush = 800\r\nconst sedekah = 200\r\nconst saldoAkhir = saldoStart + saldoPlush - sedekah\r\n\r\nconst x = 9\r\nconst y = 3\r\nconst z = x + y\r\n//! const z = x * y //* <bintang itu kali>\r\n//! const z = x / y //* <atau itu bagi>\r\n\r\n//! let unit = \"BTC\";\r\n//! let saldoAwal = saldoStart + unit;\r\n//! let saldoTambahan = saldoPlush + unit;\r\n\r\n\r\n//! let istri = null //<null artinya tidak ada atay kosong>\r\n//!let istri = 1 //<jika seperti ini maka status nya jadi udah punya karena ada else ... udah punya>\r\n\r\nberatBadan = 50\r\n\r\n//! if (istri == null)  //<if itu <jika> sama kek py>\r\n    //! {istri = 'belum punya'}\r\n    //! else //<else itu artinya selain dari kunci-kunci yang ada>\r\n    //! {istri = 'udah punya'}\r\n//! alert('nama anda adalah ' + nama + 'dan usia anda adalah ' + usia)\r\n\r\nswitch(istri) {\r\n    case 0: //* case adalah kasus nya dan jika let istri = 0 maka akan berlaku status akan berlaku\r\n        istri = \"sakit\"\r\n    break\r\n    case 1: //* jika <let istri = 1> maka status ini akan berlaku\r\n        istri = \"punya satu\"\r\n    break\r\n    default:\r\n        istri = \"belum punya\" //* jika <let istri = swlain 0, dan 1 seperti 12 ataupun null > maka status default akan berlaku\r\n    break\r\n}\r\nalert(\r\n    `nama saya ${nama} usia saya itu ${usia} tinggi badan saya sekitar ${tinggiBadan}cm berat badan saya ${beratBadan}kg dan istri saya ${istri}`,\r\n)\r\nalert(\r\n    `saldo awal saya sebesar ${saldoStart} BTC dan saldo yang akan saya miliki sebesar ${saldoPlush} BTC jadi total saldo yang saya miliki adalah ${saldoAkhir} BTC karena ${sedekah} BTC saya buat sedekah`,\r\n)\r\nalert(\r\n    `nilai x = ${x} sedangkan nilai y = ${y} maka hasilnya adalah ${z}`\r\n)",
+      "text": "let gaji = parseInt(prompt(\"masukkan gaji anda(ribu rupiah)\"));\r\nconst tagihanBulanan = 200 + 300;\r\nconst saldoAkhir = saldoAwal + gaji - tagihanBulanan;\r\n\r\n\r\nlet hari = new Date().getDay();\r\n\r\nswitch(hari){\r\n    case 1:\r\n    hari =\"Hari ini adalah senin\"\r\n    break;\r\n    case 2:\r\n    hari = \"Hari ini adalah selasa\"\r\n    break;\r\n    case 3:\r\n    hari = \"Hari ini adalah rabu\"\r\n    break;\r\n    case 4:\r\n    hari = \"Hari ini adalah kamis\"\r\n    break;\r\n    case 5:\r\n    hari = \"Hari ini adalah jumat\"\r\n    break;\r\n    case 6:\r\n    hari = \"Hari ini adalah sabtu\"\r\n    break;\r\n   default:\r\n    hari = \"hari ini adalah minggu\"\r\n}\r\n\r\nalert(`Saldo akhir anda adalah ${saldoAkhir} ribu, dan ${hari}`);",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5740",
-      "text": "Bang gua mau nanya plis lu jawab ya gua 0 besar, pake computer atau laptop cuma ngetik² di word paling browser. cari hal yg gua mau tanyain soal codeding itu di internet gada yg bahas😂 karna telalu basic banget mungkin \n\nitu lu kan ngoding ya, nah tampilan layar item2 itu tempat ngoding apa si namanya nya ? Terus nyari nya dimana kalo di komputer background item² itu bang? \nGua cari di apk laptop gua ga nemu² dah yg kaya gitu",
+      "text": "47:03 😂",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5741",
-      "text": "bang mau nanya kenapa file yang tadi index itu pas buka chrome nya tidak ada tulisan ya, \"contoh tidak ada tulisan mucul hey!\", itu gmna ya bang supaya ada",
+      "text": "Bang semoga berkah selalu ilmunya dan jadi amal jariyah bang karena udah mau ngajarin pemula, thank u bang 😁😁",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5742",
-      "text": "pembawaan lu asik banget bang, mudah dipahami. udah gitu dikasih use case nya juga buat kia coba sendiri biar lebih gampang ingetnya. thank you bro! auto subs mah.",
+      "text": "//Soal1\r\nlet nama = prompt(\"Halo!!! Siapa nama kamu?\")\r\nalert(`Oke ${nama}! saya akan menghitung saldo akhir kamu setelah makan di warung saya`)\r\nlet saldoAwal = parseFloat(prompt(\"Berapa saldo awal kamu?\"))\r\nlet biayaMinum = parseFloat(prompt(\"Kamu minum habis berapa rupiah?\"))\r\nlet biayaMakan = parseFloat(prompt(\"Kamu makan habis berapa rupiah?\"))\r\nlet makanMinum = biayaMinum+biayaMakan\r\nlet pajak = 10\r\nlet totalPajak = (makanMinum * pajak/100)\r\nlet total = makanMinum + totalPajak\r\nlet saldoAkhir = saldoAwal - total\r\nalert(`halo ${nama}, sisa saldo kamu tinggal Rp.${saldoAkhir} dengan dengan jumlah makan dan minum Rp.${makanMinum} ditambah potongan pajak 10% yaitu Rp.${totalPajak}`)\r\nalert('Terima kasih sudah datang, saya tunggu kedatangannya kembali!')\r\n\r\n//Soal2\r\nconst listHari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']\r\nlet hari = new Date().getDay()\r\nalert(`Hari ini adalah hari ${listHari[hari]} yang sangat menyenangkan dan menggembirakan`)",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5743",
-      "text": "bang mau tanya kan gw masukin singkatan \nlet nama = jamet\nalert('nama kamu ${nama}')\n\nkok malah muncul alertnya : nama kamu ${nama}\n\nada yang kurang?",
+      "text": "versi gw :\n//todo video terakhir di 00:40:50\r\n//^ Bakal eror karena tertimpa\r\n// const usia = 15 //* <const> digunakan untuk mendeklarasikan variabel yang nilainya tidak dapat diubah setelah diinisialisasi\r\n// usia = 36\r\n//^ Contoh pop-up usia sederhana\r\n// let usia = 15 //* let itu dalam bahasa indonesia <terserah>\r\n// usia = 16 //* dia bakal masukin baris terakhir kayak python\r\n// console.log('heyhooo usia kamu adalah ' + usia) //* buat show pesan di console\r\n// alert('usia kamu adalah '+usia) //* buat pesan pop-up\r\n//^ User masukin usia sendiri \r\n// let usia = prompt('berapa usia kamu?') //* prompt memungkinkan pengguna memasukkan teks yang kemudian bisa digunakan dalam program\r\n// alert('usia anda adalah ' + usia)\r\n//^ otomatis\r\n//*ini nama nya variable\r\nlet nama = 'M.Akhlakqul Karim' //* nama adalah tipe string\r\nlet usia = 15 //* angka adalah tipe integer atau number\r\nlet tinggiBadan = 173.5 //* tipe double atau float\r\nlet beratBadan //* bisa di pakai jika mau di isi nanti\r\nlet istri = null\r\nlet saldoStart = 100\r\nlet saldoPlush = 800\r\nconst sedekah = 200\r\nconst saldoAkhir = saldoStart + saldoPlush - sedekah\r\n\r\nconst x = 9\r\nconst y = 3\r\nconst z = x + y\r\n//! const z = x * y //* <bintang itu kali>\r\n//! const z = x / y //* <atau itu bagi>\r\n\r\n//! let unit = \"BTC\";\r\n//! let saldoAwal = saldoStart + unit;\r\n//! let saldoTambahan = saldoPlush + unit;\r\n\r\n\r\n//! let istri = null //<null artinya tidak ada atay kosong>\r\n//!let istri = 1 //<jika seperti ini maka status nya jadi udah punya karena ada else ... udah punya>\r\n\r\nberatBadan = 50\r\n\r\n//! if (istri == null)  //<if itu <jika> sama kek py>\r\n    //! {istri = 'belum punya'}\r\n    //! else //<else itu artinya selain dari kunci-kunci yang ada>\r\n    //! {istri = 'udah punya'}\r\n//! alert('nama anda adalah ' + nama + 'dan usia anda adalah ' + usia)\r\n\r\nswitch(istri) {\r\n    case 0: //* case adalah kasus nya dan jika let istri = 0 maka akan berlaku status akan berlaku\r\n        istri = \"sakit\"\r\n    break\r\n    case 1: //* jika <let istri = 1> maka status ini akan berlaku\r\n        istri = \"punya satu\"\r\n    break\r\n    default:\r\n        istri = \"belum punya\" //* jika <let istri = swlain 0, dan 1 seperti 12 ataupun null > maka status default akan berlaku\r\n    break\r\n}\r\nalert(\r\n    `nama saya ${nama} usia saya itu ${usia} tinggi badan saya sekitar ${tinggiBadan}cm berat badan saya ${beratBadan}kg dan istri saya ${istri}`,\r\n)\r\nalert(\r\n    `saldo awal saya sebesar ${saldoStart} BTC dan saldo yang akan saya miliki sebesar ${saldoPlush} BTC jadi total saldo yang saya miliki adalah ${saldoAkhir} BTC karena ${sedekah} BTC saya buat sedekah`,\r\n)\r\nalert(\r\n    `nilai x = ${x} sedangkan nilai y = ${y} maka hasilnya adalah ${z}`\r\n)",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5744",
-      "text": "No.1\nlet saldoAwal = Number(prompt('berapa saldo awal anda?'))\r\nlet saldoTambahan = Number(prompt ('berapa saldo tambahan anda?'))\r\nconst saldoAkhir = saldoAwal + saldoTambahan\r\n\r\nalert(`saldo akhir saya Rp.${saldoAkhir}`)\n\nNo. 2\nconst days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']\r\nconst dayIndex = new Date().getDay()\r\n\r\nalert(`hari ini adalah hari ${days[dayIndex]}`)",
+      "text": "Bang gua mau nanya plis lu jawab ya gua 0 besar, pake computer atau laptop cuma ngetik² di word paling browser. cari hal yg gua mau tanyain soal codeding itu di internet gada yg bahas😂 karna telalu basic banget mungkin \n\nitu lu kan ngoding ya, nah tampilan layar item2 itu tempat ngoding apa si namanya nya ? Terus nyari nya dimana kalo di komputer background item² itu bang? \nGua cari di apk laptop gua ga nemu² dah yg kaya gitu",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5745",
-      "text": "mirip C# kah om kurang lebih?",
+      "text": "bang mau nanya kenapa file yang tadi index itu pas buka chrome nya tidak ada tulisan ya, \"contoh tidak ada tulisan mucul hey!\", itu gmna ya bang supaya ada",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5746",
-      "text": "pas pake consol log,output saya ga keluar,itu kenapa ya?",
+      "text": "pembawaan lu asik banget bang, mudah dipahami. udah gitu dikasih use case nya juga buat kia coba sendiri biar lebih gampang ingetnya. thank you bro! auto subs mah.",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5747",
-      "text": "let saldoAwal = 1000\r\nlet saldoTambahan = 5000\r\nconst saldoAkhir = saldoAwal + saldoTambahan\r\nalert(`saya punya saldo sebesar ${saldoAwal} lalu di berikan lagi sebesar ${saldoTambahan} maka saldo saya sekarang adalah ${saldoAkhir}`)\r\n\r\n\r\nlet hari = new Date().getDay();\r\nconst jumlahHari = [\"Minggu\", \"Senin\", \"Selasa\", \"Rabu\", \"Kamis\", \"Jumat\", \"Sabtu\"];\r\nconst hariIni = jumlahHari[hari];\r\n\r\nalert(`Hari ini adalah hari ${hariIni}`);",
+      "text": "bang mau tanya kan gw masukin singkatan \nlet nama = jamet\nalert('nama kamu ${nama}')\n\nkok malah muncul alertnya : nama kamu ${nama}\n\nada yang kurang?",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5748",
-      "text": "Thanks bang mudah dipahami gk kayak dosen gw bjirrr",
+      "text": "No.1\nlet saldoAwal = Number(prompt('berapa saldo awal anda?'))\r\nlet saldoTambahan = Number(prompt ('berapa saldo tambahan anda?'))\r\nconst saldoAkhir = saldoAwal + saldoTambahan\r\n\r\nalert(`saldo akhir saya Rp.${saldoAkhir}`)\n\nNo. 2\nconst days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']\r\nconst dayIndex = new Date().getDay()\r\n\r\nalert(`hari ini adalah hari ${days[dayIndex]}`)",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5749",
-      "text": "bang w baru install vscode itu yang wajib diinstall apa aja bang ? soal nya mau running pun disuruh install plain text dan debugger dulu mohon bantuan bang",
+      "text": "mirip C# kah om kurang lebih?",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5750",
-      "text": "bismillah bang ini aku mau mulai belajar",
+      "text": "pas pake consol log,output saya ga keluar,itu kenapa ya?",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5751",
-      "text": "bang jujur itu img.background dapet dari mana? bagi ga!!",
+      "text": "let saldoAwal = 1000\r\nlet saldoTambahan = 5000\r\nconst saldoAkhir = saldoAwal + saldoTambahan\r\nalert(`saya punya saldo sebesar ${saldoAwal} lalu di berikan lagi sebesar ${saldoTambahan} maka saldo saya sekarang adalah ${saldoAkhir}`)\r\n\r\n\r\nlet hari = new Date().getDay();\r\nconst jumlahHari = [\"Minggu\", \"Senin\", \"Selasa\", \"Rabu\", \"Kamis\", \"Jumat\", \"Sabtu\"];\r\nconst hariIni = jumlahHari[hari];\r\n\r\nalert(`Hari ini adalah hari ${hariIni}`);",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5752",
-      "text": "Sorry telat nimbrung bang, baru belajar juga nih\nSoal hari-hari :\n//option 1\n\nlet hari = new Date().getDay()\r\nswitch(hari){\r\n    case 1:\r\n    console.log('Hari ini adalah hari senin')\r\n    break\r\n    case 2:\r\n    console.log('Hari ini adalah hari selasa')\r\n    break\r\n    case 3:\r\n    console.log('Hari ini adalah hari rabu')\r\n    break\r\n    case 4:\r\n    console.log('Hari ini adalah hari kamis')\r\n    break\r\n    case 5:\r\n    console.log('Hari ini adalah hari jumat')\r\n    break\r\n    case 6:\r\n    console.log('Hari ini adalah hari sabtu')\r\n    break\r\n    case 7:\r\n    console.log('Hari ini adalah hari minggu')\r\n    break\r\n}\n\n// option 2\n\nlet hari = new Date().getDay()\r\nswitch(hari){\r\n    case 1:\r\n    hari = 'Senin'\r\n    break\r\n    case 2:\r\n    hari = 'Selasa'\r\n    break\r\n    case 3:\r\n    hari = 'Rabu'\r\n    break\r\n    case 4:\r\n    hari = 'Kamis'\r\n    break\r\n    case 5:\r\n    hari = 'Jumat'\r\n    break\r\n    case 6:\r\n    hari = 'Sabtu'\r\n    break\r\n    case 7:\r\n    hari = 'Minggu'\r\n    break\r\n}\r\nalert(`Hari ini adalah hari ${hari}`)",
-      "timestamp": "1 tahun yang lalu (diedit)"
+      "text": "Thanks bang mudah dipahami gk kayak dosen gw bjirrr",
+      "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5753",
-      "text": "terima kasih bang sangat membantu",
+      "text": "bang w baru install vscode itu yang wajib diinstall apa aja bang ? soal nya mau running pun disuruh install plain text dan debugger dulu mohon bantuan bang",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5754",
-      "text": "mirip mirip ama python menurut gw",
+      "text": "bismillah bang ini aku mau mulai belajar",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5755",
-      "text": "coba cek video gue yang tutorial bikin website dari 0 jaman 3 taun lalu ada itu dijelasin kok",
+      "text": "bang jujur itu img.background dapet dari mana? bagi ga!!",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5756",
-      "text": "yes thanks sir!",
+      "text": "coba cek video gue yang tutorial bikin website dari 0 jaman 3 taun lalu ada itu dijelasin kok",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5757",
-      "text": "itu harus pakai backtick kak, yang kyak gini ( ` ), disebelah kiri angka 1\njadi nanti alert(`nama kamu ${nama}`)",
+      "text": "yes thanks sir!",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5758",
-      "text": "1.   Let saldoAwal = 1000000\n       Let saldoTambahan = 1000000\n       Let total = saldoAwal +      saldoTambahan\n\n       alert( `jumlah semua $ {total}`)\n\n\n\n\n2. Let sekarang = new Date ();\n     Console.log (\"Lutfi Mahmudah\" +    sekarang.toLocalDateString(\"id-ID\",{weekday:' long', day : 'numeric', month : ' numeric' ,year: ' numeric}));\n\n\nGini ya?",
+      "text": "itu harus pakai backtick kak, yang kyak gini ( ` ), disebelah kiri angka 1\njadi nanti alert(`nama kamu ${nama}`)",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5759",
-      "text": "Bng Dea ini artinya apa?, soal aku nggak sengaja ngulik-ngulik tapi malah jadi seperti ini \n\nlet namaGuru = ['rain' , 'ruka' , 'reko' , 'rako']\n\ni = namaGuru\n\nif(i < 0){\n  console.log(i++)\n}\nelse(i == 10);{\n  console.log(i=i)\n}",
-      "timestamp": "1 tahun yang lalu"
+      "text": "Sorry telat nimbrung bang, baru belajar juga nih\nSoal hari-hari :\n//option 1\n\nlet hari = new Date().getDay()\r\nswitch(hari){\r\n    case 1:\r\n    console.log('Hari ini adalah hari senin')\r\n    break\r\n    case 2:\r\n    console.log('Hari ini adalah hari selasa')\r\n    break\r\n    case 3:\r\n    console.log('Hari ini adalah hari rabu')\r\n    break\r\n    case 4:\r\n    console.log('Hari ini adalah hari kamis')\r\n    break\r\n    case 5:\r\n    console.log('Hari ini adalah hari jumat')\r\n    break\r\n    case 6:\r\n    console.log('Hari ini adalah hari sabtu')\r\n    break\r\n    case 7:\r\n    console.log('Hari ini adalah hari minggu')\r\n    break\r\n}\n\n// option 2\n\nlet hari = new Date().getDay()\r\nswitch(hari){\r\n    case 1:\r\n    hari = 'Senin'\r\n    break\r\n    case 2:\r\n    hari = 'Selasa'\r\n    break\r\n    case 3:\r\n    hari = 'Rabu'\r\n    break\r\n    case 4:\r\n    hari = 'Kamis'\r\n    break\r\n    case 5:\r\n    hari = 'Jumat'\r\n    break\r\n    case 6:\r\n    hari = 'Sabtu'\r\n    break\r\n    case 7:\r\n    hari = 'Minggu'\r\n    break\r\n}\r\nalert(`Hari ini adalah hari ${hari}`)",
+      "timestamp": "1 tahun yang lalu (diedit)"
     },
     {
       "comment_id": "comment_5760",
-      "text": "Min yg bagian setup awal yg bikin dokumen kok punya saya arahnya bukan ke chrome ya malah ke CCcleaner",
+      "text": "terima kasih bang sangat membantu",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5761",
-      "text": "Makasih bgt bang, gw insomnia, nntn ini vid lgsg turu",
+      "text": "mirip mirip ama python menurut gw",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5762",
-      "text": "saya masih belajar bang jadi tolong koreksi nya buat tugas 1 \n\nconst TentukanGajiUtama = prompt(\"Berapa gaji anda dalam sebulan?\");\r\nconst TentukanPengeluaranMakanan = prompt(\r\n  \"berapakah pengeluaran anda sebulan untuk makanan?\"\r\n);\r\nlet HasilUtama = TentukanGajiUtama - TentukanPengeluaranMakanan;\r\n\r\nconst TentukanPengeluaranKebutukanSampingan = prompt(\r\n  \"Berapa pengeluaran anda untuk sisa waktu senggang seperti bermain dll?\"\r\n);\r\nlet HasilKedua = HasilUtama - TentukanPengeluaranKebutukanSampingan;\r\n\r\nconst TentukanPengeluaranTakpasti = prompt(\r\n  \"Berapa uang yang anda keluarkan untuk hal yang tidak pasti?\"\r\n);\r\nlet HasilKetiga = HasilKedua - TentukanPengeluaranTakpasti;\r\n\r\ndocument.write(\r\n  ` Gaji : ${TentukanGajiUtama}<br />\r\n    Pengeluaran makanan : RP. ${TentukanPengeluaranMakanan}<br />\r\n    Pengeluaran main : RP. ${TentukanPengeluaranKebutukanSampingan}<br />\r\n    Pengeluaran tak berguna : RP. ${TentukanPengeluaranTakpasti}<br />\r\n    <hr>\r\n    keuangan anda bisa lebih hemat jika anda mengeluarkan uang anda hanya untuk makan : RP. ${HasilUtama}<br />\r\n    ketika anda sudah mengeluarkan uang anda untuk makan tetapi anda juga keluar ingin bermain dan melakukan hal lain anda bisa menghemat sebesar : ${HasilKedua}<br />\r\n    anda juga melakukan pengeluaran untuk hal tak berguna? lihat apakah cukup untuk menghemat nya? uang yang tersisa tersisa : ${HasilKetiga}<br />\r\n     `\r\n);",
+      "text": "1.   Let saldoAwal = 1000000\n       Let saldoTambahan = 1000000\n       Let total = saldoAwal +      saldoTambahan\n\n       alert( `jumlah semua $ {total}`)\n\n\n\n\n2. Let sekarang = new Date ();\n     Console.log (\"Lutfi Mahmudah\" +    sekarang.toLocalDateString(\"id-ID\",{weekday:' long', day : 'numeric', month : ' numeric' ,year: ' numeric}));\n\n\nGini ya?",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5763",
-      "text": "Bang kalo saldo akhir nya gk muncul gmn ya",
+      "text": "Bng Dea ini artinya apa?, soal aku nggak sengaja ngulik-ngulik tapi malah jadi seperti ini \n\nlet namaGuru = ['rain' , 'ruka' , 'reko' , 'rako']\n\ni = namaGuru\n\nif(i < 0){\n  console.log(i++)\n}\nelse(i == 10);{\n  console.log(i=i)\n}",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5764",
-      "text": "nuhun kang dea",
+      "text": "Min yg bagian setup awal yg bikin dokumen kok punya saya arahnya bukan ke chrome ya malah ke CCcleaner",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5765",
-      "text": "Hatutnuhun pisan. Video kang Dea sangat mumpuni. Berkah kang",
+      "text": "Makasih bgt bang, gw insomnia, nntn ini vid lgsg turu",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5766",
-      "text": "Tolong direview micnya merk naon A? Note book merk naon?  Software perekam merk naon Kang?",
+      "text": "saya masih belajar bang jadi tolong koreksi nya buat tugas 1 \n\nconst TentukanGajiUtama = prompt(\"Berapa gaji anda dalam sebulan?\");\r\nconst TentukanPengeluaranMakanan = prompt(\r\n  \"berapakah pengeluaran anda sebulan untuk makanan?\"\r\n);\r\nlet HasilUtama = TentukanGajiUtama - TentukanPengeluaranMakanan;\r\n\r\nconst TentukanPengeluaranKebutukanSampingan = prompt(\r\n  \"Berapa pengeluaran anda untuk sisa waktu senggang seperti bermain dll?\"\r\n);\r\nlet HasilKedua = HasilUtama - TentukanPengeluaranKebutukanSampingan;\r\n\r\nconst TentukanPengeluaranTakpasti = prompt(\r\n  \"Berapa uang yang anda keluarkan untuk hal yang tidak pasti?\"\r\n);\r\nlet HasilKetiga = HasilKedua - TentukanPengeluaranTakpasti;\r\n\r\ndocument.write(\r\n  ` Gaji : ${TentukanGajiUtama}<br />\r\n    Pengeluaran makanan : RP. ${TentukanPengeluaranMakanan}<br />\r\n    Pengeluaran main : RP. ${TentukanPengeluaranKebutukanSampingan}<br />\r\n    Pengeluaran tak berguna : RP. ${TentukanPengeluaranTakpasti}<br />\r\n    <hr>\r\n    keuangan anda bisa lebih hemat jika anda mengeluarkan uang anda hanya untuk makan : RP. ${HasilUtama}<br />\r\n    ketika anda sudah mengeluarkan uang anda untuk makan tetapi anda juga keluar ingin bermain dan melakukan hal lain anda bisa menghemat sebesar : ${HasilKedua}<br />\r\n    anda juga melakukan pengeluaran untuk hal tak berguna? lihat apakah cukup untuk menghemat nya? uang yang tersisa tersisa : ${HasilKetiga}<br />\r\n     `\r\n);",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5767",
-      "text": "Bg lbih baik blajar ygmna dlu, js, css, atau python, dan apa bedany bg, maap bru mau mulai😅",
-      "timestamp": "1 tahun yang lalu (diedit)"
+      "text": "Bang kalo saldo akhir nya gk muncul gmn ya",
+      "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5768",
-      "text": "bang cara ngatasin var yang eror gimana soalnya gua gak muncul angkanya",
+      "text": "nuhun kang dea",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5769",
-      "text": "22:41  istirahat",
+      "text": "Hatutnuhun pisan. Video kang Dea sangat mumpuni. Berkah kang",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5770",
-      "text": "bang, cara uploadnya gimana? saya pake hp soalnya",
+      "text": "Tolong direview micnya merk naon A? Note book merk naon?  Software perekam merk naon Kang?",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5771",
-      "text": "mau ikut belajar dari 0 dong mas",
-      "timestamp": "1 tahun yang lalu"
+      "text": "Bg lbih baik blajar ygmna dlu, js, css, atau python, dan apa bedany bg, maap bru mau mulai😅",
+      "timestamp": "1 tahun yang lalu (diedit)"
     },
     {
       "comment_id": "comment_5772",
-      "text": "kok beda mas tulisan ku pas di open folder nggk ada tulisan file ataupun view yang di atas",
+      "text": "bang cara ngatasin var yang eror gimana soalnya gua gak muncul angkanya",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5773",
-      "text": "//  TUGAS KECIL\r\nlet saldoAwal = prompt('masukan saldo anda')\r\nalert ('jumlah saldo anda ' +saldoAwal)\r\n\r\n//jika menggunakan alert\r\nlet hari = new Date().getDay()\r\nconst namaHari = ['Minggu', 'senin', 'selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']\r\nalert ('Hari ini adalah hari ' + namaHari[hari])\r\n\r\n\r\nlet hari = new Date().getDay()\r\nconst namaHari = ['Minggu', 'senin', 'selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']\r\n//jika menggunakan console log\r\nfor (let i=0 ; i<namaHari.length; i++) {\r\n    console.log('Hari ini adalah ' + namaHari[hari])\r\n}",
+      "text": "22:41  istirahat",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5774",
-      "text": "bang kok pusing ya lama lama 🤣kayanya gw harus lebih giat nih belajarnya",
+      "text": "bang, cara uploadnya gimana? saya pake hp soalnya",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5775",
-      "text": "Terima kasih mentor online",
+      "text": "mau ikut belajar dari 0 dong mas",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5776",
-      "text": "Kalo pake hp bisa ga ya",
+      "text": "kok beda mas tulisan ku pas di open folder nggk ada tulisan file ataupun view yang di atas",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5777",
-      "text": "bang ini gaada pembelajaran tentang algoritma js nya bang?",
+      "text": "//  TUGAS KECIL\r\nlet saldoAwal = prompt('masukan saldo anda')\r\nalert ('jumlah saldo anda ' +saldoAwal)\r\n\r\n//jika menggunakan alert\r\nlet hari = new Date().getDay()\r\nconst namaHari = ['Minggu', 'senin', 'selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']\r\nalert ('Hari ini adalah hari ' + namaHari[hari])\r\n\r\n\r\nlet hari = new Date().getDay()\r\nconst namaHari = ['Minggu', 'senin', 'selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']\r\n//jika menggunakan console log\r\nfor (let i=0 ; i<namaHari.length; i++) {\r\n    console.log('Hari ini adalah ' + namaHari[hari])\r\n}",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5778",
-      "text": "yang saldo bukan kita mengisi tapi yang menginputnya,gitu bang dea\nlet SaldoAwal = parseInt (prompt('masukan saldo pertama anda'));\r\nlet SaldoKedua = parseInt (prompt('masukan saldo kedua anda'));\r\nconst Hasil = SaldoAwal * SaldoKedua;\r\n\r\nalert (`\r\n    saldo awal kamu ${SaldoAwal} saldo kedua kamu ${SaldoKedua} totalnya adalah ${Hasil}`);\r\n\nnah si input pertama akan measukkan nilai saldo dan si input juga akan mengisi nilai sldo kedua\nsisanya jumlahkan dengan const lalu buat kesimpulan dengan alert",
+      "text": "bang kok pusing ya lama lama 🤣kayanya gw harus lebih giat nih belajarnya",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5779",
-      "text": "alert SaldoAwal dan SaldoAkhir bebas kau msukkan atau tidak,aku menambahkan supaya lebi spesifikasi",
+      "text": "yang saldo bukan kita mengisi tapi yang menginputnya,gitu bang dea\nlet SaldoAwal = parseInt (prompt('masukan saldo pertama anda'));\r\nlet SaldoKedua = parseInt (prompt('masukan saldo kedua anda'));\r\nconst Hasil = SaldoAwal * SaldoKedua;\r\n\r\nalert (`\r\n    saldo awal kamu ${SaldoAwal} saldo kedua kamu ${SaldoKedua} totalnya adalah ${Hasil}`);\r\n\nnah si input pertama akan measukkan nilai saldo dan si input juga akan mengisi nilai sldo kedua\nsisanya jumlahkan dengan const lalu buat kesimpulan dengan alert",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5780",
-      "text": "ini menghitung penghematan keuangan buat sebulan",
+      "text": "alert SaldoAwal dan SaldoAkhir bebas kau msukkan atau tidak,aku menambahkan supaya lebi spesifikasi",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5781",
-      "text": "mulailah dari cuyuniverse semester 1",
+      "text": "ini menghitung penghematan keuangan buat sebulan",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5782",
-      "text": "sama bg",
+      "text": "mulailah dari cuyuniverse semester 1",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5783",
-      "text": "Awak,subscriber baru mu bang,gw harap gw bisa lebih memahami konten abg semaksimal mungkin,btw gw pemula bg xixixixixi",
+      "text": "sama bg",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5784",
-      "text": "const namaHari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu']\r\nconst hari = new Date().getDay()\r\n\r\nlet hariIni = namaHari[hari]\r\n\r\nconsole.log(`hari ini adalah hari ${hariIni}`);",
+      "text": "Terima kasih mentor online",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5785",
-      "text": "let hari=new Date().getDay()\n\nswitch(hari){\n    case 1:\n        hari='senin'\n        break\n        case 2:\n            hari='selasa'\n            break\n            case 3:\n                hari='rabu'\n                break\n                case 4:\n                    hari='kamis'\n                    break\n                    case 5:\n                        hari='jumat'\n                        break\n                        case 6:\n                            hari='sabtu'\n                            break\n                            case 7:\n                                hari='minggu'\n                                break\n}\n\nalert(`hari ini hari ${hari} `)\natau bisa pake array?",
+      "text": "Kalo pake hp bisa ga ya",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5786",
-      "text": "Buat tutorial bikin bot WhatsApp pake javascript dong",
+      "text": "bang ini gaada pembelajaran tentang algoritma js nya bang?",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5787",
-      "text": "bisah mintak nomer tlfon nya bang",
+      "text": "Awak,subscriber baru mu bang,gw harap gw bisa lebih memahami konten abg semaksimal mungkin,btw gw pemula bg xixixixixi",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5788",
-      "text": "bang\nsaya bisah tolong pesan ke abang bisa",
+      "text": "const namaHari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu']\r\nconst hari = new Date().getDay()\r\n\r\nlet hariIni = namaHari[hari]\r\n\r\nconsole.log(`hari ini adalah hari ${hariIni}`);",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5789",
-      "text": "Jejak 40:50 🥱",
+      "text": "let hari=new Date().getDay()\n\nswitch(hari){\n    case 1:\n        hari='senin'\n        break\n        case 2:\n            hari='selasa'\n            break\n            case 3:\n                hari='rabu'\n                break\n                case 4:\n                    hari='kamis'\n                    break\n                    case 5:\n                        hari='jumat'\n                        break\n                        case 6:\n                            hari='sabtu'\n                            break\n                            case 7:\n                                hari='minggu'\n                                break\n}\n\nalert(`hari ini hari ${hari} `)\natau bisa pake array?",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5790",
-      "text": "Kahartos pisan Kang, haturnuhun",
+      "text": "Buat tutorial bikin bot WhatsApp pake javascript dong",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5791",
-      "text": "bang koreksi dong takut salah paham.\n\njadi di sini 53:21 i itu fungsi i untuk membungkus nama di dalam array ya?",
+      "text": "bisah mintak nomer tlfon nya bang",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5792",
-      "text": "Pliss bg, di kampus kami full belajar java bg😮",
+      "text": "bang\nsaya bisah tolong pesan ke abang bisa",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5793",
-      "text": "Java dgn java script beda kan bg?",
+      "text": "Jejak 40:50 🥱",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5794",
-      "text": "Bg ajarkan dasar  bahsa java bg",
+      "text": "Kahartos pisan Kang, haturnuhun",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5795",
-      "text": "ini bang jawaban no 2 gw hehe maaf panjang baru belajar soal nya 😁\nlet namaHari = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu']\r\nlet hari = new Date().getDay()\r\nlet ambHari = namaHari[hari - 1] \r\nconsole.log(`hari ini adalah hari ${ambHari}`)",
+      "text": "bang koreksi dong takut salah paham.\n\njadi di sini 53:21 i itu fungsi i untuk membungkus nama di dalam array ya?",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5796",
-      "text": "bang Afrizal mantap pokoknya bang.  saya mau sekolah gak punya uang eh bang Afrizal memberi ilmunya secara gratis .... semoga hidupmu diberkahi Allah bang aamiin",
+      "text": "Pliss bg, di kampus kami full belajar java bg😮",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5797",
-      "text": "soal No 1 \nimport PromptSync from \"prompt-sync\";\r\nconst prompt = PromptSync();\r\n\r\nconst saldoAwal = Number(prompt(`salado awal anda :`));\r\nconst saldoTambahan = Number(prompt(`saldo tambahan anda :`));\r\nconst saldoGabungan = saldoAwal + saldoTambahan\r\n\r\nconsole.log(`saldo akhir anda adalah ${saldoGabungan}`);",
+      "text": "Java dgn java script beda kan bg?",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5798",
-      "text": "Coba bikin tugas yang nomor 1 bang. dibawah ini udh saya masukan juga semisal input saldo diambil lebih dari saldoAwal yang diinput maka gagal dan disuruh inputkan ulang. Salam Pemula:hand-pink-waving:\nlet inpSaldoAwal = prompt(\"Masukan Saldo Awal anda\")\r\nlet saldoAwal = parseInt(inpSaldoAwal)\r\nif (saldoAwal != null) {\r\n    alert(\"anda berhasil memasukan saldo anda\")\r\n    while (true) {\r\n        let inpSaldoDiambil = prompt(\"apakah anda ingin menarik saldo anda\")\r\n        let saldoDiambil = parseInt(inpSaldoDiambil)\r\n        let TotalSaldo = saldoAwal - saldoDiambil\r\n        if (saldoDiambil >= saldoAwal) {\r\n            alert(\"saldo yang anda tarik terlalu besar\")\r\n        } else {\r\n            alert(`Saldo terakhir anda adalah Rp.${TotalSaldo}`)\r\n            break\r\n        }\r\n    }\r\n}",
+      "text": "Bg ajarkan dasar  bahsa java bg",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5799",
-      "text": "//tugas 1\r\nlet saldoawal = (20000)\r\nlet bonus = (50000)\r\nconst totalsaldo = saldoawal + bonus\r\n\r\nconsole.log (`saldo awal saya Rp ${saldoawal} Dan saya mendapatkan bonus ${bonus} dan total saldo saya adalah ${totalsaldo}`)\r\n\r\n//tugas 2\r\n\r\nconst namahari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];\r\nconst hari = new Date().getDay();\r\nconst hariini = namahari[hari];\r\n\r\nalert (`hari ini adalah hari ${hariini}`)",
+      "text": "ini bang jawaban no 2 gw hehe maaf panjang baru belajar soal nya 😁\nlet namaHari = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu']\r\nlet hari = new Date().getDay()\r\nlet ambHari = namaHari[hari - 1] \r\nconsole.log(`hari ini adalah hari ${ambHari}`)",
       "timestamp": "1 tahun yang lalu"
     },
     {
       "comment_id": "comment_5800",
-      "text": "sehat sehat orang baik🙏",
+      "text": "bang Afrizal mantap pokoknya bang.  saya mau sekolah gak punya uang eh bang Afrizal memberi ilmunya secara gratis .... semoga hidupmu diberkahi Allah bang aamiin",
       "timestamp": "1 tahun yang lalu"
     }
   ]

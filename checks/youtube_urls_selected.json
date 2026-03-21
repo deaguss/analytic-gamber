@@ -1,0 +1,139 @@
+{
+  "description": "Dataset penelitian deteksi komentar judi YouTube — 30 video terpilih otomatis oleh check_url_valid.py",
+  "generated_at": "2026-03-13T23:08:45.926747",
+  "selection_config": {
+    "judi_video_threshold_pct": 20.0,
+    "bukan_video_threshold_pct": 40.0,
+    "max_comments_per_video": 200,
+    "target_per_category": 10
+  },
+  "categories": {
+    "JUDI": "Video berindikasi komentar judi online dominan",
+    "TIDAK_JUDI": "Video dengan komentar dominan bukan judi",
+    "AMBIGU": "Video dengan komentar campuran atau tidak jelas",
+    "RANDOM": "Video acak untuk uji efektivitas (isi manual)"
+  },
+  "note_random": "Tambahkan 5 URL random secara manual ke bagian bawah array 'videos' dengan sample_category = 'RANDOM'. Contoh: {\"url\": \"https://www.youtube.com/watch?v=XXX\", \"sample_category\": \"RANDOM\"}",
+  "videos": [
+    {
+      "url": "https://www.youtube.com/watch?v=jOQRNeVu9qs",
+      "sample_category": "JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=dgmrvL1LZqc",
+      "sample_category": "JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=CYy_w4Rkdrs",
+      "sample_category": "JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=w83uHnyyZSk",
+      "sample_category": "JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=B6In2B374Ys",
+      "sample_category": "JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=yimrVJdzQLs",
+      "sample_category": "JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=pOPd5nfcAVU",
+      "sample_category": "JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=g1B8nkGnSp8",
+      "sample_category": "JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Mwmex7kDaaE",
+      "sample_category": "JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=i4zo54NirJ4",
+      "sample_category": "JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=tQXX-npOeUY",
+      "sample_category": "TIDAK_JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=9xo4pOaTsxY",
+      "sample_category": "TIDAK_JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=QtIxl1YM9Bk",
+      "sample_category": "TIDAK_JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=2BIwPUhZPS4",
+      "sample_category": "TIDAK_JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=yR2PGC4lTvk",
+      "sample_category": "TIDAK_JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=dV9Ef5b7DAs",
+      "sample_category": "TIDAK_JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=PVdmCzzjc6k",
+      "sample_category": "TIDAK_JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=OtnHpaeOsL8",
+      "sample_category": "TIDAK_JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Z7YWKAnO3U8",
+      "sample_category": "TIDAK_JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=wcwt4AfdkiU",
+      "sample_category": "TIDAK_JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=vIy2Xs0jEhE",
+      "sample_category": "AMBIGU"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=qie-cAy04dE",
+      "sample_category": "AMBIGU"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=oNWGpVpBGsk",
+      "sample_category": "AMBIGU"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=cc9NkbZNsfQ",
+      "sample_category": "AMBIGU"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=KB-h5d0czhs",
+      "sample_category": "AMBIGU"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=U1GiV_2yq_4",
+      "sample_category": "AMBIGU"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=qbtPJZrGu2U",
+      "sample_category": "AMBIGU"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=UMgageGlC-M",
+      "sample_category": "AMBIGU"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=mD6uSGSjgr4",
+      "sample_category": "AMBIGU"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=2kfmi_U2sVI",
+      "sample_category": "AMBIGU"
+    }
+  ]
+}

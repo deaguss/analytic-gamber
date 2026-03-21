@@ -1,17 +1,19 @@
 {
-  "description": "Dataset penelitian deteksi komentar judi YouTube — 30 video (10 per kategori)",
+  "description": "Dataset penelitian deteksi komentar judi YouTube — 35 video (10 JUDI + 10 TIDAK_JUDI + 10 AMBIGU + 5 RANDOM)",
   "categories": {
     "JUDI": "Video berindikasi komentar judi online dominan",
     "TIDAK_JUDI": "Video dengan komentar dominan bukan judi",
-    "AMBIGU": "Video dengan komentar campuran atau tidak jelas"
+    "AMBIGU": "Video dengan komentar campuran atau tidak jelas",
+    "RANDOM": "Video acak untuk menghitung efektivitas metode deteksi cascading"
   },
+  "note_random": "sebagai contoh, 5 video RANDOM digunakan untuk menghitung efektivitas: (anomali terdeteksi / total komentar RANDOM) x 100%",
   "videos": [
     {
-      "url": "https://www.youtube.com/watch?v=yimrVJdzQLs",
+      "url": "https://www.youtube.com/watch?v=jOQRNeVu9qs",
       "sample_category": "JUDI"
     },
     {
-      "url": "https://www.youtube.com/watch?v=jOQRNeVu9qs",
+      "url": "https://www.youtube.com/watch?v=dgmrvL1LZqc",
       "sample_category": "JUDI"
     },
     {
@@ -27,6 +29,10 @@
       "sample_category": "JUDI"
     },
     {
+      "url": "https://www.youtube.com/watch?v=yimrVJdzQLs",
+      "sample_category": "JUDI"
+    },
+    {
       "url": "https://www.youtube.com/watch?v=pOPd5nfcAVU",
       "sample_category": "JUDI"
     },
@@ -35,39 +41,19 @@
       "sample_category": "JUDI"
     },
     {
-      "url": "https://www.youtube.com/watch?v=i4zo54NirJ4",
-      "sample_category": "JUDI"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=QW6M4K0_qUE",
-      "sample_category": "JUDI"
-    },
-    {
       "url": "https://www.youtube.com/watch?v=Mwmex7kDaaE",
       "sample_category": "JUDI"
     },
     {
-      "url": "https://www.youtube.com/watch?v=9xo4pOaTsxY",
-      "sample_category": "TIDAK_JUDI"
+      "url": "https://www.youtube.com/watch?v=i4zo54NirJ4",
+      "sample_category": "JUDI"
     },
     {
       "url": "https://www.youtube.com/watch?v=tQXX-npOeUY",
       "sample_category": "TIDAK_JUDI"
     },
     {
-      "url": "https://www.youtube.com/watch?v=wcwt4AfdkiU",
-      "sample_category": "TIDAK_JUDI"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=Yw1Ivy1VqUo",
-      "sample_category": "TIDAK_JUDI"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=2BIwPUhZPS4",
-      "sample_category": "TIDAK_JUDI"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=dV9Ef5b7DAs",
+      "url": "https://www.youtube.com/watch?v=9xo4pOaTsxY",
       "sample_category": "TIDAK_JUDI"
     },
     {
@@ -75,11 +61,19 @@
       "sample_category": "TIDAK_JUDI"
     },
     {
+      "url": "https://www.youtube.com/watch?v=2BIwPUhZPS4",
+      "sample_category": "TIDAK_JUDI"
+    },
+    {
       "url": "https://www.youtube.com/watch?v=yR2PGC4lTvk",
       "sample_category": "TIDAK_JUDI"
     },
     {
-      "url": "https://www.youtube.com/watch?v=Z7YWKAnO3U8",
+      "url": "https://www.youtube.com/watch?v=dV9Ef5b7DAs",
+      "sample_category": "TIDAK_JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=PVdmCzzjc6k",
       "sample_category": "TIDAK_JUDI"
     },
     {
@@ -87,15 +81,23 @@
       "sample_category": "TIDAK_JUDI"
     },
     {
+      "url": "https://www.youtube.com/watch?v=Z7YWKAnO3U8",
+      "sample_category": "TIDAK_JUDI"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=wcwt4AfdkiU",
+      "sample_category": "TIDAK_JUDI"
+    },
+    {
       "url": "https://www.youtube.com/watch?v=vIy2Xs0jEhE",
       "sample_category": "AMBIGU"
     },
     {
-      "url": "https://www.youtube.com/watch?v=oNWGpVpBGsk",
+      "url": "https://www.youtube.com/watch?v=qie-cAy04dE",
       "sample_category": "AMBIGU"
     },
     {
-      "url": "https://www.youtube.com/watch?v=qie-cAy04dE",
+      "url": "https://www.youtube.com/watch?v=oNWGpVpBGsk",
       "sample_category": "AMBIGU"
     },
     {
@@ -107,7 +109,7 @@
       "sample_category": "AMBIGU"
     },
     {
-      "url": "https://www.youtube.com/watch?v=VsEQFK2P7Jg",
+      "url": "https://www.youtube.com/watch?v=U1GiV_2yq_4",
       "sample_category": "AMBIGU"
     },
     {
@@ -115,7 +117,7 @@
       "sample_category": "AMBIGU"
     },
     {
-      "url": "https://www.youtube.com/watch?v=jWBMrrqwMxA",
+      "url": "https://www.youtube.com/watch?v=UMgageGlC-M",
       "sample_category": "AMBIGU"
     },
     {
@@ -123,8 +125,33 @@
       "sample_category": "AMBIGU"
     },
     {
-      "url": "https://www.youtube.com/watch?v=UMgageGlC-M",
+      "url": "https://www.youtube.com/watch?v=2kfmi_U2sVI",
       "sample_category": "AMBIGU"
+    },
+    {
+      "url": "https://youtu.be/cV8utKzb-vs?si=kM2iCOPIsW1UgAiu",
+      "sample_category": "RANDOM",
+      "note": "Ganti dengan URL YouTube acak pilihan Anda (video 1 dari 5)"
+    },
+    {
+      "url": "https://youtu.be/8C96uuIgBQc?si=QpqV7YQGo2ZHdzzu",
+      "sample_category": "RANDOM",
+      "note": "Ganti dengan URL YouTube acak pilihan Anda (video 2 dari 5)"
+    },
+    {
+      "url": "https://youtu.be/K_XzLMwG6pE?si=EANamKnVjlWpxinN",
+      "sample_category": "RANDOM",
+      "note": "Ganti dengan URL YouTube acak pilihan Anda (video 3 dari 5)"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=IaHWk_HW23g",
+      "sample_category": "RANDOM",
+      "note": "Ganti dengan URL YouTube acak pilihan Anda (video 4 dari 5)"
+    },
+    {
+      "url": "https://youtu.be/-ETckxovvxs?si=2UFFvVCgpm2EEpA7",
+      "sample_category": "RANDOM",
+      "note": "Ganti dengan URL YouTube acak pilihan Anda (video 5 dari 5)"
     }
   ]
 }
